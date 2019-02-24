@@ -1,0 +1,852 @@
+@import url(animate.css);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(material-design.css);
+@import url(in-the-hotel.css);
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+/*========================================================
+					  Main Styles
+=========================================================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000314}}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #888888;
+  background: #ffffff;
+  -webkit-text-size-adjust: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000324}}
+img {
+  max-width: 100%;
+  height: auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000329}}
+h1, h2, h3, h4, h5, h6 {
+  color: #000; }
+
+h3 {
+  color: #f7cf29;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000333}}
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  line-height: 60px;
+  font-weight: 400; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000340}}
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 34px;
+  line-height: 50px;
+  font-weight: 400; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000347}}
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 400;
+  color: #ff925c; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000353}}
+  * + h3 {
+    margin-top: 18px;
+    color: #f7cf29;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000369}}
+* + p {
+  margin-top: 30px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000370}}
+h3 + p {
+  margin-top: 18px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000373}}
+a {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  -moz-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000378}}
+  a:active {
+    background: transparent; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000382}}
+  a:focus {
+    outline: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000389}}
+a[href^="tel:"] {
+  color: inherit;
+  text-decoration: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000395}}
+[class*='fa-']:before {
+  font-family: "FontAwesome"; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003100}}
+.img {
+  display: inline-block;
+  max-width: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003105}}
+.left {
+  text-align: left; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003106}}
+.center {
+  text-align: center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003107}}
+.right {
+  text-align: right; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003109}}
+.border {
+  border-bottom: 1px solid #e3e3e3; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003113}}
+.page {
+  overflow: hidden;
+  min-height: 500px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003117}}
+  .lt-ie9 .page {
+    min-width: 1200px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003122}}
+.bg-1 {
+  background: #ff9a69; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003124}}
+  .bg-1 * {
+    color: #ffffff; }
+
+/*========================================================
+					  Main Layout
+==========================================================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003130}}
+.brand {
+  text-align: center; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003133}}
+  .brand_name {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin: 16px 10px 16px 0;
+    padding: 11px 0 11px 53px;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #888888; }
+
+.brand_name a {
+  color: #000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003146}}
+    .brand_name em {
+      color: #f7cf29; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003149}}
+    .brand_name .icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #000;
+      font-size: 50px;
+      line-height: 50px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003160}}
+.iconed-box {
+  position: relative;
+  padding: 0 0 0 67px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003163}}
+  .iconed-box .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 50px;
+    line-height: 50px;
+    color: #e5e5e5; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003170}}
+    .iconed-box .icon + * {
+      margin-top: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003174}}
+.promo-box {
+  margin: 206px 0 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 45px;
+  line-height: 74px;
+  font-weight: 400;
+  color: #fff; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003174}}
+    .promo-box {
+      margin: 0; } }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003174}}
+    .promo-box {
+      font-size: 35px; } }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003174}}
+    .promo-box {
+      line-height: 54px; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003185}}
+  .promo-box em {
+    display: block;
+    font-size: 56px; }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003185}}
+      .promo-box em {
+        font-size: 35px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003192}}
+.booking-box {
+  padding: 17px 30px 30px;
+  border-radius: 5px;
+  background: #f6cc04;
+  line-height: 25px;
+  color: #ffffff; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000335}}
+  .lt-ie9 .booking-box {
+    background: none;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143')";
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143');
+    zoom: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003200}}
+  .booking-box h2 {
+    color: #ffffff; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003201}}
+  .booking-box * + p {
+    margin-top: 13px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003205}}
+.custom-box01 .img {
+  margin-top: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 4px 4px 9px 0 rgba(0, 0, 0, 0.22); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003215}}
+.custom-box01 .iconed-box .icon.icon-ith-motel {
+  top: 2px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003216}}
+.custom-box01 .iconed-box .icon.icon-ith-hotel77 {
+  top: -8px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003218}}
+.custom-box01 .iconed-box * + p {
+  margin-top: 15px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003221}}
+.custom-box01 * + .iconed-box {
+  margin-top: 33px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003225}}
+* + .custom-box02 {
+  margin-top: 61px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003226}}
+.custom-box02 * + .row {
+  margin-top: 43px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003227}}
+.custom-box02 .iconed-box {
+  padding: 0 0 0 124px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003229}}
+  .custom-box02 .iconed-box .icon {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 50px;
+    color: #ffffff;
+    width: 84px;
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(255, 129, 67, 0.8);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.34); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000335}}
+    .lt-ie9 .custom-box02 .iconed-box .icon {
+      background: none;
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143')";
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143');
+      zoom: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003245}}
+    .custom-box02 .iconed-box .icon.icon-ith-cup53 {
+      line-height: 77px;
+      font-size: 40px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003247}}
+  .custom-box02 .iconed-box * + p {
+    margin-top: 22px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003251}}
+.testimonial-box {
+  padding: 0 200px; }
+  @media (max-width: 1199px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003251}}
+    .testimonial-box {
+      padding: 0; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003254}}
+  * + .testimonial-box {
+    margin-top: 49px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003255}}
+  .testimonial-box .img {
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 4px 4px 9px 0 rgba(0, 0, 0, 0.22); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003261}}
+  .testimonial-box blockquote {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 400;
+    color: #ff925c; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003267}}
+    * + .testimonial-box blockquote {
+      margin-top: 29px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003269}}
+  .testimonial-box figcaption {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #888888; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003275}}
+    * + .testimonial-box figcaption {
+      margin-top: 24px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003279}}
+.gallery-box {
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\00003222}}
+  .gallery-box:before, .gallery-box:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\00003229}}
+  .gallery-box:after {
+    clear: both; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003282}}
+  .gallery-box .img {
+    float: left;
+    width: 25%; }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003282}}
+      .gallery-box .img {
+        width: 50%; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003287}}
+  .gallery-box .thumb {
+    display: block;
+    position: relative;
+    overflow: hidden; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003292}}
+    .gallery-box .thumb img {
+      -moz-transition: 0.5s all ease;
+      -o-transition: 0.5s all ease;
+      -webkit-transition: 0.5s all ease;
+      transition: 0.5s all ease; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003296}}
+    .gallery-box .thumb_overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      -moz-transition: 0.3s all ease;
+      -o-transition: 0.3s all ease;
+      -webkit-transition: 0.3s all ease;
+      transition: 0.3s all ease;
+      background: transparent; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003306}}
+      .gallery-box .thumb_overlay:before {
+        content: "\e007";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: 0;
+        font-family: material-design;
+        line-height: 84px;
+        margin-top: -42px;
+        margin-left: -42px;
+        text-align: center;
+        width: 84px;
+        height: 84px;
+        line-height: 84px;
+        text-align: center;
+        border-radius: 50%;
+        background: rgba(255, 129, 67, 0.8);
+        color: #ffffff;
+        font-size: 44px;
+        -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.34);
+        -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.34);
+        box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.34); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000335}}
+        .lt-ie9 .gallery-box .thumb_overlay:before {
+          background: none;
+          -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143')";
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCFF8143', endColorstr='#CCFF8143');
+          zoom: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003332}}
+        .lt-ie9 .gallery-box .thumb_overlay:before {
+          display: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003340}}
+    .gallery-box .thumb:hover .thumb_overlay {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.2); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000335}}
+      .lt-ie9 .gallery-box .thumb:hover .thumb_overlay {
+        background: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000')";
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#33000000');
+        zoom: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003344}}
+      .lt-ie9 .gallery-box .thumb:hover .thumb_overlay:before {
+        display: block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003349}}
+    .gallery-box .thumb:hover img {
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003356}}
+.custom-box03 {
+  padding: 0 120px; }
+  @media (max-width: 1199px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003356}}
+    .custom-box03 {
+      padding: 0; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003359}}
+  * + .custom-box03 {
+    margin-top: 20px; }
+
+/*==================   Lazy Img    ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_lazy-img\.scss}line{font-family:\000035}}
+.lazy-img {
+  display: block;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  background: #fff url(../images/lazy-loader.gif) no-repeat center center; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_lazy-img\.scss}line{font-family:\0000312}}
+  .lazy-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    -moz-transition: 1s all ease;
+    -o-transition: 1s all ease;
+    -webkit-transition: 1s all ease;
+    transition: 1s all ease;
+    opacity: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000321}}
+    .lt-ie9 .lazy-img img {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_lazy-img\.scss}line{font-family:\0000323}}
+  .lazy-img .lazy-loaded {
+    opacity: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\0000321}}
+    .lt-ie9 .lazy-img .lazy-loaded {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+      filter: alpha(opacity=100); }
+
+/*==================   Parallax    ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\000036}}
+.parallax {
+  background-position: center 0;
+  background-repeat: no-repeat; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000310}}
+  .mobile .parallax, .tablet .parallax {
+    background-position: 50% 0 !important;
+    background-size: cover; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000319}}
+.parallax01 {
+  position: relative;
+  background-color: #ffffff;
+  background-image: url(../Home_files/backround.jpg);
+  background-size: 100%;
+  padding: 112px 0 111px; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000319}}
+    .parallax01 {
+      padding: 100px 0 100px; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000326}}
+  .parallax01:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000339}}
+.parallax02 {
+  position: relative;
+  background-color: #ffffff;
+  background-image: url(../images/parallax02.jpg);
+  padding: 104px 0 133px; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000339}}
+    .parallax02 {
+      padding: 100px 0 100px; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000346}}
+  .parallax02:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35); }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000358}}
+  .parallax02:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-box-shadow: inset 0px -100px 25px -100px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: inset 0px -100px 25px -100px rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0px -100px 25px -100px rgba(0, 0, 0, 0.35); }
+
+@media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/effects\/_parallax\.scss}line{font-family:\0000376}}
+  .parallax {
+    background-position: center 0 !important;
+    background-size: cover; } }
+/*==================     ToTop     ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/_toTop\.scss}line{font-family:\000032}}
+.toTop {
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  line-height: 70px;
+  color: #fff;
+  background: #333;
+  position: fixed;
+  right: 40px;
+  bottom: 120px;
+  display: none;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  z-index: 20; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/_toTop\.scss}line{font-family:\0000320}}
+  .toTop:hover {
+    color: #fff;
+    background: #ff7836;
+    text-decoration: none; }
+
+@media only screen and (max-width: 1023px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/_toTop\.scss}line{font-family:\0000328}}
+  .toTop {
+    display: none !important; } }
+/*==================     Subscribe Form     ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000317}}
+.subscribe-form {
+  position: relative;
+  display: inline-block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000318}}
+  * + .subscribe-form {
+    margin-top: 23px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000321}}
+  .subscribe-form label {
+    position: relative;
+    float: left;
+    display: block;
+    position: relative;
+    padding: 13px 10px 13px;
+    width: 310px;
+    background: #ffffff;
+    border: none;
+    border-radius: 3px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000321}}
+      .subscribe-form label {
+        float: none; } }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000321}}
+      .subscribe-form label {
+        width: 100%; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000335}}
+    .subscribe-form label:before {
+      content: '\e070';
+      display: block;
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      margin-top: -16px;
+      width: 32px;
+      height: 32px;
+      color: #a9a9a9;
+      background: #f2f2f2;
+      border-radius: 50%;
+      font-family: material-design;
+      font-size: 22px;
+      line-height: 32px;
+      text-align: center; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000362}}
+  .subscribe-form input {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    vertical-align: baseline;
+    box-shadow: none;
+    color: #888888;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    height: 22px;
+    padding: 0 0 0 45px;
+    box-sizing: border-box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000375}}
+  .subscribe-form a[data-type="submit"] {
+    margin-left: 10px;
+    float: left;
+    display: inline-block;
+    width: 132px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    background: #333333;
+    border-radius: 3px;
+    -webkit-box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24);
+    box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24); }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000375}}
+      .subscribe-form a[data-type="submit"] {
+        margin-left: 0;
+        margin-top: 15px; } }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000375}}
+      .subscribe-form a[data-type="submit"] {
+        float: none; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000390}}
+    .subscribe-form a[data-type="submit"]:hover {
+      background: #ffffff;
+      color: #ff925c; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\0000399}}
+.error {
+  position: absolute;
+  top: -3px;
+  right: 5px;
+  font-size: 10px;
+  color: #f00;
+  overflow: hidden;
+  height: 0px;
+  -moz-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\00003110}}
+label.invalid .error {
+  height: 21px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\00003118}}
+.success {
+  position: absolute;
+  font-size: 14px;
+  text-align: center;
+  color: #333333;
+  background: #ffffff;
+  left: 0;
+  right: 142px;
+  top: 0;
+  bottom: 0;
+  z-index: 9; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\00003118}}
+    .success {
+      right: 0;
+      bottom: 63px; } }
+
+@media (max-width: 479px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/forms\/_subscribe-form\.scss}line{font-family:\00003137}}
+  .subscribe-form label {
+    width: 100%; } }
+/*==================  GOOGLE MAP  ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\000037}}
+.map {
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\000038}}
+  * + .map {
+    margin-top: 87px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000311}}
+  .map:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 20px;
+    left: 0;
+    right: 0;
+    -webkit-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.75);
+    z-index: 999;
+    pointer-events: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000325}}
+  .map_model {
+    height: 419px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000328}}
+    .map_model img {
+      max-width: none !important; }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000325}}
+      .map_model {
+        height: 250px; } }
+    @media (max-width: 479px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000325}}
+      .map_model {
+        height: 200px; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/components\/widgets\/map\/_google-map\.scss}line{font-family:\0000341}}
+  .map_locations {
+    display: none; }
+
+/*========================================================
+					 HEADER  Section
+==========================================================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003376}}
+header {
+  background: #ffffff; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003376}}
+    header {
+      text-align: center; } }
+
+/*========================================================
+					 CONTENT  Styles
+=========================================================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003385}}
+main {
+  display: block;
+  background: #ffffff; }
+
+/*==================      Well     ======================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003391}}
+.well {
+  padding: 89px 0 105px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003394}}
+  .well__01 {
+    padding: 34px 0 57px; }
+
+/*========================================================
+					 FOOTER  Section
+=========================================================*/
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003402}}
+footer {
+  padding: 82px 0 0; }
+  @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003402}}
+    footer {
+      text-align: center; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003411}}
+.footer-box .footer-brand {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin: 16px 10px 16px 0;
+  padding: 11px 0 11px 53px;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #888888; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003424}}
+  .footer-box .footer-brand em {
+    color: #ff925c; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003427}}
+  .footer-box .footer-brand .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #cccccc;
+    font-size: 50px;
+    line-height: 50px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003438}}
+.footer-box .phone div {
+  display: inline-block;
+  position: relative;
+  margin: 14px 0 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #333333; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003450}}
+  .footer-box .phone div .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #cccccc;
+    font-size: 32px;
+    line-height: 32px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003462}}
+.footer-box .socials {
+  margin-top: 33px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003465}}
+  .footer-box .socials ul {
+    text-align: center;
+    display: inline-block; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\00003222}}
+    .footer-box .socials ul:before, .footer-box .socials ul:after {
+      display: table;
+      content: "";
+      line-height: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\00003229}}
+    .footer-box .socials ul:after {
+      clear: both; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003469}}
+    .footer-box .socials ul li {
+      float: left; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003471}}
+      .footer-box .socials ul li + li {
+        margin-left: 9px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003472}}
+      .footer-box .socials ul li a img {
+        display: inline-block;
+        width: 58px;
+        height: 58px;
+        color: #c0c0c0;
+        font-size: 25px;
+        line-height: 58px;
+        text-align: center;
+        background: #f2f2f2;
+        border-radius: 50%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\00003488}}
+.footer-box .copyright {
+  margin-top: 21px;
+  font-size: 12px; }
+
+.advantages-img {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-size: 50px;
+  color: #ffffff;
+  width: 84px;
+  height: 84px;
+}
