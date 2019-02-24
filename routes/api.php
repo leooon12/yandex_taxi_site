@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Получение списка всех городов
+Route::resource('/driver', 'DriverController', ['only' => [
+    'index', 'store'
+]]);

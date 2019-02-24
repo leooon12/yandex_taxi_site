@@ -49,20 +49,24 @@
                     <div class="grid_4" style="margin-top: 10vh;">
                         <div class="booking-box">
                             <h2>Заявка на подключение</h2>
-                            <form id="bookingForm" class="booking-form">
+                            <form id="bookingForm" class="booking-form" method="POST" action="{{ url('/driver') }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="controlHolder">
                                     <div class="tmInput">
-                                        <input name="name" placeholder="Ваше Имя и Фамилия" type="text">
+                                        <input name="full_name" placeholder="Ваше Имя и Фамилия" type="text">
                                     </div>
                                 </div>
                                 <div class="controlHolder">
                                     <div class="tmInput">
-                                        <input name="phone" placeholder="Ваш номер телефона" type="tel">
+                                        <input name="phone_number" placeholder="Ваш номер телефона" type="tel">
                                     </div>
                                 </div>
 
+                                <button type="submit" class="btn">Отправить!</button>
+                                <!--
                                 <a href="#" class="btn"
                                    data-type="submit" onclick="sendForm()">Отправить!</a>
+                                   -->
                             </form>
                             <p>Подключение к Яндекс.Такси
                                 за 15 минут

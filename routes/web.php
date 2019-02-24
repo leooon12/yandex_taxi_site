@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Получение списка всех городов
+Route::resource('/driver', 'DriverController', ['only' => [
+    'index', 'store'
+]]);
