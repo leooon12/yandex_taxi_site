@@ -152,7 +152,7 @@
                     </ul>
                 </div>
                 <div class="copyright">
-                    Вставить копирайт © <span id="copyright-year">2019</span>
+                    Разработано компанией <a href="http://awake.su">Awake!</a> © <span id="copyright-year">2019</span>
                     <!-- {%FOOTER_LINK} -->
                 </div>
             </div>
