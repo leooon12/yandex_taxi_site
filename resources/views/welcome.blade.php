@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/Home_files/booking.css">
 
     <script src="/Home_files/jquery.js"></script>
+    <script src="/Home_files/jquery.maskedinput.min.js"></script>
 </head>
 
 <body class="">
