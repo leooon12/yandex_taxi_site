@@ -485,7 +485,7 @@ button.ui-state-default[data-handler='today'] {
     background-color: #fc0;
     padding: 10px 30px;
     color: black;
-    margin: 10% 0;
+    margin: 5% 0;
     border: 0;
     border-radius: 3px;
     font-size: 0.9em;
@@ -509,7 +509,7 @@ button.ui-state-default[data-handler='today'] {
     left: 20%;
     border-radius: 5px;
     box-shadow: 3px 2px 150px black;
-    padding: 5%;
+    padding: 1% 5%;
     box-sizing: border-box;
     z-index: 999;
     color: black;
@@ -540,6 +540,6 @@ button.ui-state-default[data-handler='today'] {
 }
 
 .status-icon {
-    width: 40%;
+    width: 30%;
     margin-top: 5%;
 }
