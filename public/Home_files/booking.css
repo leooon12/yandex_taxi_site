@@ -29,14 +29,14 @@
 
 .booking-form .btn {
     margin-top: 20px;
-    color: #FFF;
+    color: #000;
     font-weight: 400;
     font-size: 20px;
     height: 58px;
     line-height: 58px;
     display: block;
     text-align: center;
-    background: #000;
+    background: #fff;
     border-radius: 3px;
     border: 0;
     width: 100%;

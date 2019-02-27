@@ -88,11 +88,12 @@ $(document).ready(function () {
     <header>
         <div class="brand">
             <img src="/Home_files/yandex-taxi-logo.png" style="
-                max-width: 50px;
-                margin-top: 15px;
+                    max-width: 180px;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
             ">
-            <h1 class="brand_name" style="padding-left: 10px">
-                <em>Yandex</em> Taxi </a>
+            <h1 class="brand_name" style="padding-left: 10px; display: none">
+                <em>Yandex</em> Taxi - подключение Владивосток </a>
             </h1>
         </div>
     </header>
@@ -106,7 +107,7 @@ $(document).ready(function () {
                     <div class="grid_8">
                         <div class="promo-box">
                             <p>
-                                Подключайтесь к Яндекс-Такси
+                                Подключайтесь к Яндекс.Такси
                                 <em>
                                     у официального партнера
                                 </em>
@@ -146,7 +147,7 @@ $(document).ready(function () {
 
         <section class="well center border">
             <div class="container">
-                <h2>Присоединяйтесь к яндекс.такси</h2>
+                <h2>Присоединяйтесь к Яндекс.Такси</h2>
                 <h3>С нами</h3>
                 <p style="font-size: 20px">Вы хотите работать водителем такси на своем или арендованном автомобиле и при этом получать достойный доход? Или вы уже работаете в такси, но заработок и условия труда вас не устраивают? А может вы работаете в другом направлении, но вас интересует подработка в такси на своем автомобиле? Начните зарабатывать достойно вместе с нами в Яндекс.Такси!</p>
             </div>
@@ -191,28 +192,19 @@ $(document).ready(function () {
     <footer>
         <div class="container">
             <div class="footer-box center">
-                <div class="brand">
-                    <img src="/Home_files/yandex-taxi-logo.png" style="
-                max-width: 50px;
-                margin-top: 15px;
-            ">
-                    <h1 class="brand_name" style="padding-left: 10px">
-                        <em>Yandex</em> Taxi </a>
-                    </h1>
-                </div>
-                <div class="address">Владивосток, ул. Енисейская 13, оф. 409</div>
+
                 <div class="phone">
-                    <div><a href="tel:123">800-2345-6789</a></div>
+                    <div><a href="tel:+74232800855">8(423) 2800-855</a></div>
                 </div>
                 <div class="socials">
                     <ul>
                         <li>
-                            <a href="">
+                            <a href="https://api.whatsapp.com/send?phone=89679580855">
                                 <img src="/Home_files/wa.png">
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="viber://chat?number=89679580855">
                                 <img src="/Home_files/viber.png">
                             </a>
                         </li>
