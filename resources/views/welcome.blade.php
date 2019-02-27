@@ -14,6 +14,72 @@
 </head>
 
 <body class="">
+
+<script>
+$(document).ready(function () {
+    $("input[name=phone_number]").mask("8 (999) 999-9999");
+
+    $("#form-button").click(function (e) {
+        var phone = $("input[name=phone_number]").val().replace(/\D/g, '');
+        var name = $("input[name=full_name]").val();
+
+        $.post(
+            "http://taxiyour.ru/api/driver",
+            {
+                full_name: name,
+                phone_number: phone
+            },
+            function (data) {
+                ShowResultMessage(data);
+            }
+        );
+
+        e.preventDefault();
+    });
+
+    function ShowResultMessage(data) {
+        if (data.status == 400) {
+            $(".result-modal .status-icon.success").hide();
+            $(".result-modal .status-icon.error").show();
+
+            $(".result-modal .title").html("Ошибка");
+            $(".result-modal .description").html(data.message);
+
+            $(".result-modal .errors").html(
+                (data.object.full_name ? data.object.full_name : "") +
+                "<br /><br />" +
+                (data.object.phone_number ? data.object.phone_number : "")
+            );
+        } else {
+            $(".result-modal .status-icon.success").show();
+            $(".result-modal .status-icon.error").hide();
+
+            $(".result-modal .title").html("Заявка отправлена");
+            $(".result-modal .description").html(data.message);
+
+            $(".result-modal .errors").html("");
+
+            $("input[name=phone_number]").val("");
+            $("input[name=full_name]").val("");
+        }
+
+        $(".result-modal").fadeIn();
+    }
+});
+
+</script>
+
+
+    <div class="result-modal">
+        <img class="status-icon success" src="images/svg/success.svg">
+        <img class="status-icon error" src="images/svg/error.svg">
+        <p class="title"></p>
+        <p class="description"></p>
+        <small><p class="errors"></p></small>
+        <div class="button" onclick="$('.result-modal').fadeOut();">Закрыть</div>
+    </div>
+
+
 <div class="page">
     <!--========================================================
                               HEADER
@@ -62,7 +128,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn">Отправить!</button>
+                                <button type="submit" class="btn" id="form-button">Отправить!</button>
                                 <!--
                                 <a href="#" class="btn"
                                    data-type="submit" onclick="sendForm()">Отправить!</a>
