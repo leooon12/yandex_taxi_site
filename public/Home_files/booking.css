@@ -43,6 +43,8 @@
     -webkit-box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24);
     -moz-box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24);
     box-shadow: 6px 6px 7px 0px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .booking-form .tn:hover {
@@ -499,18 +501,34 @@ button.ui-state-default[data-handler='today'] {
 }
 
 .result-modal {
-    width: 80%;
+    width: 60%;
     background-color: #fc0;
     position: fixed;
     text-align: center;
     top: 70px;
-    left: 10%;
+    left: 20%;
     border-radius: 5px;
-    box-shadow: 3px 2px 38px rgba(0, 0, 0, 0.4);
+    box-shadow: 3px 2px 150px black;
     padding: 5%;
     box-sizing: border-box;
+    z-index: 999;
+    color: black;
 
     display: none;
+}
+
+.result-modal .title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.result-modal .description {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.result-modal .errors {
+    margin-top: 5%;
 }
 
 .result-modal .button {
@@ -518,4 +536,5 @@ button.ui-state-default[data-handler='today'] {
     display: inline-block;
     background-color: black;
     color: white;
+    cursor: pointer;
 }

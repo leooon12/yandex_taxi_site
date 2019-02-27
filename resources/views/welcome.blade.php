@@ -47,7 +47,7 @@ $(document).ready(function () {
 
             $(".result-modal .errors").html(
                 (data.object.full_name ? data.object.full_name : "") +
-                "<br /><br />" +
+                "<br />" +
                 (data.object.phone_number ? data.object.phone_number : "")
             );
         } else {
