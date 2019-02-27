@@ -40,8 +40,8 @@ $(document).ready(function () {
 
     function ShowResultMessage(data) {
         if (data.status == 400) {
-            $(".result-modal .status-icon.success").hide();
-            $(".result-modal .status-icon.error").show();
+            $(".result-modal .status-icon.success-status").hide();
+            $(".result-modal .status-icon.error-status").show();
 
             $(".result-modal .title").html("Ошибка");
             $(".result-modal .description").html(data.message);
@@ -52,8 +52,8 @@ $(document).ready(function () {
                 (data.object.phone_number ? data.object.phone_number : "")
             );
         } else {
-            $(".result-modal .status-icon.success").show();
-            $(".result-modal .status-icon.error").hide();
+            $(".result-modal .status-icon.success-status").show();
+            $(".result-modal .status-icon.error-status").hide();
 
             $(".result-modal .title").html("Заявка отправлена");
             $(".result-modal .description").html(data.message);
@@ -72,8 +72,8 @@ $(document).ready(function () {
 
 
     <div class="result-modal">
-        <img class="status-icon success" src="images/svg/success.svg">
-        <img class="status-icon error" src="images/svg/error.svg">
+        <img class="status-icon success-status" src="/images/svg/success.svg">
+        <img class="status-icon error-status" src="/images/svg/error.svg">
         <p class="title"></p>
         <p class="description"></p>
         <small><p class="errors"></p></small>

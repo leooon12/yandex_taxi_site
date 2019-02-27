@@ -538,3 +538,8 @@ button.ui-state-default[data-handler='today'] {
     color: white;
     cursor: pointer;
 }
+
+.status-icon {
+    width: 40%;
+    margin-top: 5%;
+}
