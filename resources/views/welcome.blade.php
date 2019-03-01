@@ -33,8 +33,11 @@ $(document).ready(function () {
     var isAvailable = true;
 
     $("#form-button").click(function (e) {
+        if (!isAvailable)
+            return;
+
         isAvailable = false;
-        $("#form-button").attr("disabled", "disabled");
+        $("#form-button").css("background-color", "#cccccc");
 
         $("#form-button").html("Отправка...");
 
@@ -50,7 +53,8 @@ $(document).ready(function () {
             function (data) {
                 ShowResultMessage(data);
 
-                $("#form-button").removeAttr("disabled");
+                $("#form-button").css("background-color", "#ffffff");
+                $("#form-button").html("Отправить!");
                 isAvailable = true;
             }
         );
