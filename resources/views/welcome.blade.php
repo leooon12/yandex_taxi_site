@@ -30,7 +30,14 @@
 $(document).ready(function () {
     $("input[name=phone_number]").mask("8 (999) 999-9999");
 
+    var isAvailable = true;
+
     $("#form-button").click(function (e) {
+        isAvailable = false;
+        $("#form-button").attr("disabled", "disabled");
+
+        $("#form-button").html("Отправка...");
+
         var phone = $("input[name=phone_number]").val().replace(/\D/g, '');
         var name = $("input[name=full_name]").val();
 
@@ -42,6 +49,9 @@ $(document).ready(function () {
             },
             function (data) {
                 ShowResultMessage(data);
+
+                $("#form-button").removeAttr("disabled");
+                isAvailable = true;
             }
         );
 
@@ -214,6 +224,7 @@ $(document).ready(function () {
 
                 <div class="phone">
                     <div><a href="tel:+74232800855">+7 (423) 2800-855</a></div>
+                    <div><a href="tel:+79841880588">+7 (984) 188-05-88</a></div>
                 </div>
                 <div class="socials">
                     <ul>
