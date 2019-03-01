@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'taxiyour.ru'),
+    'host' => env('MAIL_HOST', 'smtp.yandex.ru'), //'taxiyour.ru'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 25),
+    'port' => env('MAIL_PORT', 587), //25),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@yandex-taxi.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'skoblic@yandex.ru'),//'info@yandex-taxi.com'),
         'name' => env('MAIL_FROM_NAME', 'Info'),
     ],
 
@@ -84,9 +84,13 @@ return [
     |
     */
 
-    'username' => "admin@taxiyour.ru",
+    //'username' => "admin@taxiyour.ru",
 
-    'password' => "taxi2402",
+    //'password' => "taxi2402",
+
+    'username' => "skoblic@yandex.ru",
+
+    'password' => "s5a5f5e5",
 
     /*
     |--------------------------------------------------------------------------
