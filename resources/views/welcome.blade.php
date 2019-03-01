@@ -33,8 +33,10 @@ $(document).ready(function () {
     var isAvailable = true;
 
     $("#form-button").click(function (e) {
-        if (!isAvailable)
+        if (!isAvailable) {
+            e.preventDefault();
             return;
+        }
 
         isAvailable = false;
         $("#form-button").css("background-color", "#cccccc");
