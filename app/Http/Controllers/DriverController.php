@@ -16,7 +16,7 @@ class DriverController extends Controller
 
     public function store(DriverDataRequest $request)
     {
-        Mail::to("ParkDriver@yandex.ru")->send(new DriverRequestMail($request->full_name, $request->phone_number));
+        Mail::to("develeone@yandex.ru")->send(new DriverRequestMail($request->full_name, $request->phone_number));
 
         return response()->json(['status' => '200', 'message' => "Ваша заявка успешно зарегистрирована!"]);
     }
