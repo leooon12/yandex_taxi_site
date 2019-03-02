@@ -39,6 +39,9 @@ $(document).ready(function () {
         }
 
         isAvailable = false;
+
+        ShowResultMessage("pending");
+
         $("#form-button").css("background-color", "#cccccc");
 
         $("#form-button").html("Отправка...");
@@ -54,17 +57,41 @@ $(document).ready(function () {
             },
             function (data) {
                 ShowResultMessage(data);
-
-                $("#form-button").css("background-color", "#ffffff");
-                $("#form-button").html("Отправить!");
-                isAvailable = true;
+                MakeFormAvailable();
             }
-        );
+        ).error(function(){
+            ShowResultMessage({
+                status: 400,
+                message: "При отправке запроса произошла ошибка на сервере",
+                object: {
+                    full_name: "Ошибка будет исправлена в кратчайшие сроки",
+                    phone_number: "Пока Вы можете связаться с нами по номеру телефона"
+                }
+            });
+            MakeFormAvailable();
+        });
 
         e.preventDefault();
     });
 
+    function MakeFormAvailable() {
+        $("#form-button").css("background-color", "#ffffff");
+        $("#form-button").html("Отправить!");
+        isAvailable = true;
+    }
+
     function ShowResultMessage(data) {
+        if (data === "pending") {
+            $(".result-modal .info").hide();
+            $(".result-modal .preloader").show();
+            $(".result-modal").fadeIn();
+            return;
+        }
+
+        $(".result-modal .preloader").slideUp(function(){
+            $(".result-modal .info").slideDown();
+        });
+
         if (data.status == 400) {
             $(".result-modal .status-icon.success-status").hide();
             $(".result-modal .status-icon.error-status").show();
@@ -98,12 +125,19 @@ $(document).ready(function () {
 
 
     <div class="result-modal">
-        <img class="status-icon success-status" src="/images/svg/success.svg">
-        <img class="status-icon error-status" src="/images/svg/error.svg">
-        <p class="title"></p>
-        <p class="description"></p>
-        <small><p class="errors"></p></small>
-        <div class="button" onclick="$('.result-modal').fadeOut();">Закрыть</div>
+        <div class="preloader">
+            <img class="status-icon" src="/images/svg/preloader.svg">
+            <p class="title">Отправка...</p>
+            <p class="description">Подождите, производится отправка формы</p>
+        </div>
+        <div class="info">
+            <img class="status-icon success-status" src="/images/svg/success.svg">
+            <img class="status-icon error-status" src="/images/svg/error.svg">
+            <p class="title"></p>
+            <p class="description"></p>
+            <small><p class="errors"></p></small>
+            <div class="button" onclick="$('.result-modal').fadeOut();">Закрыть</div>
+        </div>
     </div>
 
 
