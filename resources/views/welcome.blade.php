@@ -93,25 +93,25 @@ $(document).ready(function () {
         });
 
         if (data.status == 400) {
-            $(".result-modal .status-icon.success-status").hide();
-            $(".result-modal .status-icon.error-status").show();
+            $(".result-modal .info .status-icon.success-status").hide();
+            $(".result-modal .info .status-icon.error-status").show();
 
-            $(".result-modal .title").html("Ошибка");
-            $(".result-modal .description").html(data.message);
+            $(".result-modal .info .title").html("Ошибка");
+            $(".result-modal .info .description").html(data.message);
 
-            $(".result-modal .errors").html(
+            $(".result-modal .info .errors").html(
                 (data.object.full_name ? data.object.full_name : "") +
                 "<br />" +
                 (data.object.phone_number ? data.object.phone_number : "")
             );
         } else {
-            $(".result-modal .status-icon.success-status").show();
-            $(".result-modal .status-icon.error-status").hide();
+            $(".result-modal .info .status-icon.success-status").show();
+            $(".result-modal .info .status-icon.error-status").hide();
 
-            $(".result-modal .title").html("Заявка отправлена");
-            $(".result-modal .description").html(data.message);
+            $(".result-modal .info .title").html("Заявка отправлена");
+            $(".result-modal .info .description").html(data.message);
 
-            $(".result-modal .errors").html("");
+            $(".result-modal .info .errors").html("");
 
             $("input[name=phone_number]").val("");
             $("input[name=full_name]").val("");
