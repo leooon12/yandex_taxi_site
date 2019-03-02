@@ -263,7 +263,7 @@ $(document).ready(function () {
             <div class="footer-box center">
 
                 <div class="phone">
-                    <div><a href="tel:+74232800855">+7 (423) 2800-855</a></div>
+                    {{--<div><a href="tel:+74232800855">+7 (423) 2800-855</a></div>--}}
                     <div><a href="tel:+79841880588">+7 (984) 188-05-88</a></div>
                 </div>
                 <div class="socials">
