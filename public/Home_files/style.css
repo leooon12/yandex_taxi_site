@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000; }
 
 h3 {
-  color: #f7cf29;
+    color: #f7cf29;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000333}}
@@ -53,7 +53,7 @@ h3 {
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000353}}
   * + h3 {
     margin-top: 18px;
-    color: #f7cf29;
+    color: black;
   }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000369}}
