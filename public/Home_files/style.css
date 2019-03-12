@@ -850,3 +850,32 @@ footer {
   width: 84px;
   height: 84px;
 }
+
+.item-box .number {
+  font-weight: bold;
+  font-size: 10rem;
+  opacity: 0.5;
+  height: 10rem;
+  line-height: 10rem;
+  display: inline-block;
+  width: 15%;
+}
+
+.item-box .text {
+  display: inline-block;
+  padding: 15px;
+  font-size: 1.2rem;
+  width: 80%;
+}
+
+b {
+  font-weight: bold !important;
+}
+
+hr {
+  height: 0;
+  border: 1px dashed black;
+  color: black;
+  opacity: 0.5;
+  margin: 50px 0;
+}
