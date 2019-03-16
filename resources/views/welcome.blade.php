@@ -22,8 +22,8 @@
     </script>
     <!-- {/literal} END JIVOSITE CODE -->
 
-    <meta name="keywords" content="подключиться,Яндекс,такси,работа,свой,автомобиль,личный,машина,таксист,деньги,бизнес" />
-    <meta name="description" content="Вы хотите работать водителем такси на своем или арендованном автомобиле и при этом получать достойный доход? Начните зарабатывать достойно вместе с нами в Яндекс.Такси!" />
+    <meta name="keywords" content="подключиться,Яндекс,такси,работа,свой,автомобиль,личный,арендованный,машина,таксист,деньги,бизнес" />
+    <meta name="description" content="Вы хотите работать водителем такси на своем, личном или арендованном автомобиле и при этом получать достойный доход? Начните зарабатывать достойно вместе с нами в Яндекс.Такси!" />
 </head>
 
 <body class="">
@@ -167,12 +167,9 @@ $(document).ready(function () {
             <div class="container">
                 <div class="row">
                     <div class="grid_8">
-                        <div class="promo-box">
+                        <div class="promo-box" style="text-align: center; font-size: 2.5rem;  text-shadow: 0 0 15px black;">
                             <p>
-                                Подключайтесь к Яндекс.Такси
-                                <em>
-                                    у официального партнера
-                                </em>
+                                Подключайтесь к Яндекс.Такси<br/><span style="font-size: 2.7rem">На этой работе Вы начальник</span>
                             </p>
                         </div>
                     </div>
@@ -202,6 +199,8 @@ $(document).ready(function () {
                                 за 15 минут
                                 заполняйте заявку и ожидайте звонка </p>
                         </div>
+                        <br/>
+                        <p style="text-align: center; color: white; font-size: 1.2rem; text-shadow: 0 0 5px black; opacity: 0.8">Официальный партнер Яндекс.Такси</p>
                     </div>
                 </div>
             </div>
