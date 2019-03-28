@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000; }
 
 h3 {
-  color: #f7cf29;
+    color: #f7cf29;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000333}}
@@ -53,7 +53,7 @@ h3 {
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000353}}
   * + h3 {
     margin-top: 18px;
-    color: #f7cf29;
+    color: black;
   }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/02\.March\/02\.Mercury\.25472\.landing\.nyan\/2-develop\/site\/sass\/style\.scss}line{font-family:\0000369}}
@@ -849,4 +849,33 @@ footer {
   color: #ffffff;
   width: 84px;
   height: 84px;
+}
+
+.item-box .number {
+  font-weight: bold;
+  font-size: 10rem;
+  opacity: 0.5;
+  height: 10rem;
+  line-height: 10rem;
+  display: inline-block;
+  width: 15%;
+}
+
+.item-box .text {
+  display: inline-block;
+  padding: 15px;
+  font-size: 1.2rem;
+  width: 80%;
+}
+
+b {
+  font-weight: bold !important;
+}
+
+hr {
+  height: 0;
+  border: 1px dashed black;
+  color: black;
+  opacity: 0.5;
+  margin: 50px 0;
 }
