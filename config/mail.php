@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => "3e777eff1e9735",
+    'username' => "admin@taxiyour.ru",
 
-    'password' => "63eb5763d946fb",
+    'password' => "taxi2402",
 
     /*
     |--------------------------------------------------------------------------
