@@ -6,7 +6,7 @@ use App\AnotherClasses\ResponseHandler;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
-class UserRegisterRequest extends FormRequest
+class UserLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,22 +26,20 @@ class UserRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|string|min:5|max:100',
-            'phone_number'  => 'required|string|size:11|unique:users'
+            'phone_number'  => 'required|string|size:11',
+            'password'      => 'required|string|size:4'
         ];
     }
 
     public function messages ()
     {
         return [
-            'full_name.required'        => 'Не был передан параметр ФИО',
-            'full_name.string'          => 'Неверный формат ФИО',
-            'full_name.min'             => 'Длина ФИО должна быть не меньше 5 символов',
-            'full_name.max'             => 'Длина ФИО должна быть не больше 100 символов',
+            'password.required'         => 'Не был передан параметр пароль',
+            'password.string'           => 'Неверный формат пароля',
+            'password.size'             => 'Длина пароля должна быть 4 символа',
             'phone_number.required'     => 'Не был передан параметр номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
-            'phone_number.unique'       => 'Пользователь с данным номером телефона уже зарегистрирован'
         ];
     }
 
