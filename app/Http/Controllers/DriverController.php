@@ -6,6 +6,7 @@ use App\Http\Requests\DriverDataRequest;
 use App\Mail\DriverRequestMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\AnotherClasses\ResponseHandler;
 
 class DriverController extends Controller
 {
@@ -18,6 +19,6 @@ class DriverController extends Controller
     {
         Mail::to("parkdriver@yandex.ru")->send(new DriverRequestMail($request->full_name, $request->phone_number));
 
-        return response()->json(['status' => '200', 'message' => "Ваша заявка успешно зарегистрирована!"]);
+        return ResponseHandler::getJsonResponse(200, 'Ваша заявка успешно зарегистрирована.');
     }
 }
