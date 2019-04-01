@@ -57,9 +57,9 @@ class UserController extends Controller
     public function getAuthenticatedUser()
     {
         if (! $user = JWTAuth::parseToken()->authenticate()) {
-            return response()->json(['user_not_found'], 404);
+            return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
         }
 
-        return response()->json(compact('user'));
+        return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('user'));
     }
 }
