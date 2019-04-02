@@ -27,7 +27,7 @@ class UserLoginRequest extends FormRequest
     {
         return [
             'phone_number'  => 'required|string|size:11',
-            'password'      => 'required|string|size:4'
+            'password'      => 'required|string|size:6'
         ];
     }
 
@@ -36,7 +36,7 @@ class UserLoginRequest extends FormRequest
         return [
             'password.required'         => 'Не был передан параметр пароль',
             'password.string'           => 'Неверный формат пароля',
-            'password.size'             => 'Длина пароля должна быть 4 символа',
+            'password.size'             => 'Длина пароля должна быть 6 символа',
             'phone_number.required'     => 'Не был передан параметр номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
