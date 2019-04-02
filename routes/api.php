@@ -25,8 +25,8 @@ Route::resource('/driver', 'DriverController', ['only' => [
 //Регистрация пользователя
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');
+Route::post('/recovery', 'UserController@recovery');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
-    Route::get('closed', 'DataController@closed');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserRecoveryRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Jobs\SendRegistrationSms;
 use App\UserJWT;
@@ -36,7 +37,7 @@ class UserController extends Controller
         $regSms = new SendRegistrationSms($request->get('phone_number'), $code);
         $this->dispatch($regSms);
 
-        return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы, ожидайте смс-пароля.", compact('user', 'token'));
+        return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы, ожидайте смс-пароля", compact('user', 'token'));
     }
 
     public function login(UserLoginRequest $request)
@@ -61,5 +62,21 @@ class UserController extends Controller
         }
 
         return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('user'));
+    }
+
+
+    public function recovery(UserRecoveryRequest $request)
+    {
+        $code = (string)(rand(100000, 999999));
+
+        $user = UserJWT::where('phone_number', $request->get('phone_number'))
+            ->update([
+            'password' => bcrypt($code),
+        ]);
+
+        $regSms = new SendRegistrationSms($request->get('phone_number'), $code);
+        $this->dispatch($regSms);
+
+        return ResponseHandler::getJsonResponse(200, "Восстановление пароля успешно, ожидайте смс-пароля", compact('user', 'token'));
     }
 }
