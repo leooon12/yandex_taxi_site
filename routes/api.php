@@ -29,4 +29,9 @@ Route::post('/recovery', 'UserController@recovery');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
+
+    Route::group(['prefix' => 'withdrawal'], function() {
+        Route::post('bankcard', 'WithdrawalController@withdrawalBankCard');
+    });
+
 });
