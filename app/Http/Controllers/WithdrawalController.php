@@ -24,13 +24,13 @@ class WithdrawalController extends Controller
         );
     }
 
-    public function withdrawalYandex(WithdrawalBankCardRequest $request)
+    public function withdrawalYandex(WithdrawalYandexRequest $request)
     {
         return $this->withdrawal(
             WithdrawalYandex::class,
             JWTAuth::parseToken()->authenticate()->id,
             $request->get("sum"),
-            $request->get("card_number"),
+            $request->get("yandex_number"),
             "yandex_number"
         );
     }
