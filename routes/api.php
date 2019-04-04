@@ -32,6 +32,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::group(['prefix' => 'withdrawal'], function() {
         Route::post('bankcard', 'WithdrawalController@withdrawalBankCard');
+        Route::post('yandex', 'WithdrawalController@withdrawalYandex');
     });
 
 });
