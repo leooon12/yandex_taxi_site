@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherClasses\TaximeterParser;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRecoveryRequest;
 use App\Http\Requests\UserRegisterRequest;
@@ -78,5 +79,9 @@ class UserController extends Controller
         $this->dispatch($regSms);
 
         return ResponseHandler::getJsonResponse(200, "Восстановление пароля успешно, ожидайте смс-пароля", compact('user', 'token'));
+    }
+
+    public function taximetr() {
+        return TaximeterParser::getData();
     }
 }
