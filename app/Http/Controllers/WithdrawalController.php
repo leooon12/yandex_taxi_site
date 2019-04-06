@@ -86,4 +86,30 @@ class WithdrawalController extends Controller
 
         return $result;
     }
+
+    public function getLastWithdrawal() {
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+
+        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
+
+        $lastWithdrawal = null;
+
+        for ($i = 0, $size = count($models); $i < $size; ++$i) {
+            $lastModelWithdrawal =
+                $models[$i]::where("user_id", $user_id)
+                    ->orderBy('created_at', 'desc')
+                    ->with('status')
+                    ->first();
+
+            if ($lastWithdrawal != null) {
+                if ($lastModelWithdrawal->created_at > $lastWithdrawal->created_at)
+                    $lastWithdrawal = $lastModelWithdrawal;
+            }
+            else
+                $lastWithdrawal = $lastModelWithdrawal;
+
+        };
+
+        return $lastWithdrawal;
+    }
 }
