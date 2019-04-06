@@ -101,15 +101,16 @@ class WithdrawalController extends Controller
                     ->with('status')
                     ->first();
 
-            if ($lastWithdrawal != null) {
-                if ($lastModelWithdrawal->created_at > $lastWithdrawal->created_at)
-                    $lastWithdrawal = $lastModelWithdrawal;
+            if (!is_null($lastWithdrawal)) {
+                if (!is_null($lastModelWithdrawal))
+                    if ($lastModelWithdrawal->created_at > $lastWithdrawal->created_at)
+                        $lastWithdrawal = $lastModelWithdrawal;
             }
             else
                 $lastWithdrawal = $lastModelWithdrawal;
 
         };
 
-        return $lastWithdrawal;
+        return $lastWithdrawal->status;
     }
 }
