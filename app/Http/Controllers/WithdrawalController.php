@@ -41,7 +41,7 @@ class WithdrawalController extends Controller
     {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
 
-        if ($this->checkOldWithdrawal(WithdrawalBankAccount::class, $user_id))
+        if ($this->checkOldWithdrawal($user_id))
             return ResponseHandler::getJsonResponse(400, "У вас уже находится заявка в обработке");
 
         WithdrawalBankAccount::create([
@@ -58,7 +58,7 @@ class WithdrawalController extends Controller
 
     public function withdrawal($model, $user_id, $sum, $number, $field_name) {
 
-        if ($this->checkOldWithdrawal($model, $user_id))
+        if ($this->checkOldWithdrawal($user_id))
             return ResponseHandler::getJsonResponse(400, "У вас уже находится заявка в обработке");
 
         $model::create([
@@ -70,11 +70,19 @@ class WithdrawalController extends Controller
         return ResponseHandler::getJsonResponse(200, "Заявка на вывод средств успешно отправлена");
     }
 
-    public function checkOldWithdrawal($model, $user_id) {
-        $result =
-            $model::where("user_id", $user_id)
-                ->where("status_id", WithdrawalStatus::INWORK)
-                ->first();
+    public function checkOldWithdrawal($user_id) {
+        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
+
+        for ($i = 0, $size = count($models); $i < $size; ++$i) {
+            $result =
+                $models[$i]::where("user_id", $user_id)
+                    ->where("status_id", WithdrawalStatus::INWORK)
+                    ->first();
+
+            if ($result)
+                break;
+
+        };
 
         return $result;
     }
