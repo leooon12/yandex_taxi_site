@@ -111,6 +111,9 @@ class WithdrawalController extends Controller
 
         };
 
-        return $lastWithdrawal->status;
+        if (!is_null($lastWithdrawal))
+            return ResponseHandler::getJsonResponse(200, "Данные успешно получены", $lastWithdrawal->status);
+
+        return ResponseHandler::getJsonResponse(400, "Данных по заявкам не найдено");
     }
 }
