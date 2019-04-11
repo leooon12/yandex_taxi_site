@@ -32,6 +32,9 @@ Route::get('/taximetr', 'UserController@taximetr');
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
 
+    //Редактирование данных
+    Route::post('user/edit', 'UserController@edit');
+
     Route::group(['prefix' => 'withdrawal'], function() {
         Route::post('bankcard', 'WithdrawalController@withdrawalBankCard');
         Route::post('yandex', 'WithdrawalController@withdrawalYandex');

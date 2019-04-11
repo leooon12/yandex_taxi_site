@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AnotherClasses\TaximeterParser;
+use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRecoveryRequest;
 use App\Http\Requests\UserRegisterRequest;
@@ -79,6 +80,18 @@ class UserController extends Controller
         $this->dispatch($regSms);
 
         return ResponseHandler::getJsonResponse(200, "Восстановление пароля успешно, ожидайте смс-пароля", compact('user', 'token'));
+    }
+
+    public function edit(UserEditRequest $request) {
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+
+        $user = UserJWT::where('id', $user_id)
+            ->update([
+                'phone_number' => $request->get('phone_number'),
+                'name' => $request->get('name')
+            ]);
+
+        return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены", compact('user', 'token'));
     }
 
     public function taximetr() {
