@@ -32,6 +32,8 @@ class UserController extends Controller
 
         $user = UserJWT::create([
             'name' => $request->get('name'),
+            'patronymic' => $request->get('patronymic'),
+            'surname' => $request->get('patronymic'),
             'phone_number' => $request->get('phone_number'),
             'password' => bcrypt($code),
         ]);
@@ -88,7 +90,9 @@ class UserController extends Controller
         $user = UserJWT::where('id', $user_id)
             ->update([
                 'phone_number' => $request->get('phone_number'),
-                'name' => $request->get('name')
+                'name' => $request->get('name'),
+                'patronymic' => $request->get('patronymic'),
+                'surname' => $request->get('surname')
             ]);
 
         return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены", compact('user', 'token'));

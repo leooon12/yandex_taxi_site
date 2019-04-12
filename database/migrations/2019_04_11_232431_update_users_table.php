@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWithdrawalStatusesTable extends Migration
+class UpdateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWithdrawalStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('withdrawal_statuses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('surname')->nullable();
+            $table->string('patronymic')->nullable();
         });
     }
 
@@ -26,6 +26,9 @@ class CreateWithdrawalStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('withdrawal_statuses');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('surname');
+            $table->dropColumn('patronymic');
+        });
     }
 }
