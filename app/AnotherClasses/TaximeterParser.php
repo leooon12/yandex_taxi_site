@@ -46,7 +46,7 @@ class TaximeterParser
         $html = substr($html, $header_size);
 
         $sessionId = explode(";", explode("Session_id=", $header)[1])[0];
-        $yandexuid = explode(" ", explode("yandexuid=", $header)[1])[0];
+        $yandexuid = explode("\n", explode("yandexuid=", $header)[1])[0];
 
         echo "[".$sessionId . "*" . $yandexuid."]";
         return;
