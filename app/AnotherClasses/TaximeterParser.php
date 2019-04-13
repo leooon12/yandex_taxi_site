@@ -48,6 +48,9 @@ class TaximeterParser
         $sessionId = explode(";", explode("Session_id=", $header)[1])[0];
         $yandexuid = explode(" ", explode("yandexuid=", $header)[1])[0];
 
+        echo "[".$sessionId . "*" . $yandexuid."]";
+        return;
+
         return [$sessionId, $yandexuid];
     }
 
@@ -85,9 +88,6 @@ class TaximeterParser
         curl_setopt($ch, CURLOPT_HEADER, 1);
 
         $html = curl_exec($ch);
-
-        echo $html;
-        return;
 
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($html, 0, $header_size);
