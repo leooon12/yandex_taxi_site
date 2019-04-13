@@ -101,6 +101,9 @@ class UserController extends Controller
     }
 
     public function taximetr() {
-        return TaximeterParser::getData();
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user = UserJWT::where('id', $user_id)
+            ->first();
+        return TaximeterParser::getBalance($user->phone_number);
     }
 }
