@@ -61,8 +61,6 @@ class UserController extends Controller
 
     public function getAuthenticatedUser()
     {
-        dd($this->taximetr());
-
         if (! $user = JWTAuth::parseToken()->authenticate()) {
             return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
         }
