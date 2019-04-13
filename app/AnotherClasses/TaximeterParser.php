@@ -86,6 +86,9 @@ class TaximeterParser
 
         $html = curl_exec($ch);
 
+        echo $html;
+        return;
+
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($html, 0, $header_size);
         $html = substr($html, $header_size);
