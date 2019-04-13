@@ -9,21 +9,17 @@ class TaximeterParser
 {
 
     private static $url = "https://passport.yandex.ru/auth";
-    private static $login = 'parkcardisp@yandex.ru'; //Логин
-    private static $passwd = 'park188'; //Пароль
-    private static $user_cookie_file = ''; //Полный путь до файла, где будем хранить куки
-    private static $user_token_file = '';
-    private static $idkey = '0EN13471777512SYYmjWcm'; //Хрен знает что
-    private static $retpath = ''; //Откуда мы пришли на страницу авторизации
-    private static $timestamp = ''; //Хрен знает что
-    private static $twoweeks = 'yes'; //Две недели какие-то
-    private static $In = 'Войти'; //Кнопка входа
+    private static $login = 'parkcardisp@yandex.ru';
+    private static $passwd = 'park188';
+    private static $user_cookie_file = '';
 
     public static function auth()
     {
-        $ch = curl_init(TaximeterParser::$url);
+        $url = "https://passport.yandex.ru/auth";
 
-        curl_setopt($ch, CURLOPT_URL,TaximeterParser::$url);
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterParser::$user_cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterParser::$user_cookie_file);
@@ -32,7 +28,6 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_POSTFIELDS,"login=".TaximeterParser::$login."&passwd=".TaximeterParser::$passwd);
 
-        // Получение хедера для вытаскивания Session ID
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
 
@@ -46,19 +41,40 @@ class TaximeterParser
         $html = substr($html, $header_size);
 
         $sessionId = explode(";", explode("Session_id=", $header)[1])[0];
-        $yandexuid = explode(" ", explode("yandexuid=", $header)[1])[0];
+        $yandexuid = explode("\r\n", explode("yandexuid=", $header)[1])[0];
 
         return [$sessionId, $yandexuid];
+    }
+
+    public static function getToken(){
+        $url = 'https://fleet.taxi.yandex.ru/?park=f25f9892dd5c457394733ffe83fcccab';
+
+        $user_cookie_file = 'cookies.txt'; //Получаем сохраненный после авторизации файл с куками.
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterParser::$user_cookie_file); //Подставляем куки раз
+        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterParser::$user_cookie_file); //Подставляем куки два
+        curl_setopt($ch, CURLOPT_ENCODING ,"utf-8");
+
+        $html = curl_exec($ch);
+
+        curl_close($ch);
+
+        $token = explode("\">", explode("csrf-token\" content=\"", $html)[1])[0];
+
+        return $token;
     }
 
     public static function getBalance($phonenumber) {
 
         TaximeterParser::$user_cookie_file = base_path('resources/cookies.txt');
-        TaximeterParser::$user_token_file = base_path('resources/token.txt');
 
         $yandexDataForAuth = TaximeterParser::auth();
 
-        $token = trim(file_get_contents(TaximeterParser::$user_token_file));
+        $token = TaximeterParser::getToken();
 
         $url = 'https://fleet.taxi.yandex.ru/drivers/list';
 
@@ -72,8 +88,8 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json;charset=UTF-8',
-            'Cookie: yandexuid='. $yandexDataForAuth[1] .'; Session_id=' . $yandexDataForAuth[0] . ';' ,
-            'X-CSRF-TOKEN: ' . $token
+            'Cookie: yandexuid='.$yandexDataForAuth[1].'; Session_id='.$yandexDataForAuth[0].';' ,
+            'X-CSRF-TOKEN: '.$token
         ));
 
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterParser::$user_cookie_file); //Подставляем куки раз
@@ -81,21 +97,9 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_ENCODING ,"utf-8");
 
-        curl_setopt($ch, CURLOPT_VERBOSE, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-
         $html = curl_exec($ch);
 
-        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        $header = substr($html, 0, $header_size);
-        $html = substr($html, $header_size);
-
         curl_close($ch);
-
-        $token = explode("\r\n", explode("X-CSRF-TOKEN: ", $header)[1])[0];
-
-
-        file_put_contents(TaximeterParser::$user_token_file, $token);
 
         return json_decode($html)->data[0]->accounts[0]->balance;
     }
