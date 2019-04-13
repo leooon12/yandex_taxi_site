@@ -72,7 +72,7 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json;charset=UTF-8',
-            'Cookie: yandexuid='. $yandexDataForAuth[1] .'; Session_id=' . $yandexDataForAuth[0] . ';' ,
+            'Cookie: yandexuid=824038420; Session_id=' . $yandexDataForAuth[0] . ';' ,
             'X-CSRF-TOKEN: ' . $token
         ));
 
