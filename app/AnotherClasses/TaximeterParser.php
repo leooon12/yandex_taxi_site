@@ -12,6 +12,7 @@ class TaximeterParser
     private static $login = 'parkcardisp@yandex.ru'; //Логин
     private static $passwd = 'park188'; //Пароль
     private static $user_cookie_file = ''; //Полный путь до файла, где будем хранить куки
+    private static $user_token_file = '';
     private static $idkey = '0EN13471777512SYYmjWcm'; //Хрен знает что
     private static $retpath = ''; //Откуда мы пришли на страницу авторизации
     private static $timestamp = ''; //Хрен знает что
@@ -52,10 +53,11 @@ class TaximeterParser
     public static function getBalance($phonenumber) {
 
         TaximeterParser::$user_cookie_file = base_path('resources/cookies.txt');
+        TaximeterParser::$user_token_file = base_path('resources/token.txt');
 
         $sessionId = TaximeterParser::auth();
 
-        $token = trim(file_get_contents(TaximeterParser::$user_cookie_file));
+        $token = trim(file_get_contents(TaximeterParser::$user_token_file));
 
         $url = 'https://fleet.taxi.yandex.ru/drivers/list';
 
@@ -91,7 +93,7 @@ class TaximeterParser
 
         $token = explode("\r\n", explode("X-CSRF-TOKEN: ", $header)[1])[0];
 
-        file_put_contents("token.txt", $token);
+        file_put_contents(TaximeterParser::$user_token_file, $token);
 
         return json_decode($html)->data[0]->accounts[0]->balance;
     }
