@@ -55,16 +55,13 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_COOKIEFILE, $user_cookie_file); //Подставляем куки раз
-        curl_setopt($ch, CURLOPT_COOKIEJAR, $user_cookie_file); //Подставляем куки два
+        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterParser::$user_cookie_file); //Подставляем куки раз
+        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterParser::$user_cookie_file); //Подставляем куки два
         curl_setopt($ch, CURLOPT_ENCODING ,"utf-8");
 
         $html = curl_exec($ch);
 
         curl_close($ch);
-
-        echo $html;
-        return;
 
         $token = explode("\">", explode("csrf-token\" content=\"", $html)[1])[0];
 
