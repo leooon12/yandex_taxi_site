@@ -109,7 +109,7 @@ class UserController extends Controller
 
             JWTAuth::invalidate(JWTAuth::getToken());
 
-            return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены, номер телефона изменен", compact('user', 'token'));
+            return ResponseHandler::getJsonResponse(228, "Данные успешно сохранены, номер телефона изменен", compact('user', 'token'));
         }
         return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены", compact('user', 'token'));
     }
