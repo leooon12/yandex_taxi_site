@@ -63,6 +63,9 @@ class TaximeterParser
 
         curl_close($ch);
 
+        echo $html;
+        return;
+
         $token = explode("\">", explode("csrf-token\" content=\"", $html)[1])[0];
 
         return $token;
