@@ -63,7 +63,7 @@ class TaximeterParser
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS,"{\"park_id\":\"f25f9892dd5c457394733ffe83fcccab\",\"work_rule_id\":null,\"work_status_id\":\"working\",\"car_categories\":[],\"car_amenities\":[],\"limit\":40,\"offset\":0,\"sort\":[{\"direction\":\"desc\",\"field\":\"account.current.balance\"}],\"text\":\"" . $phonenumber ."\"}");
+        curl_setopt($ch, CURLOPT_POSTFIELDS,"{\"park_id\":\"f25f9892dd5c457394733ffe83fcccab\",\"work_rule_id\":null,\"work_status_id\":\"working\",\"car_categories\":[],\"car_amenities\":[],\"limit\":40,\"offset\":0,\"sort\":[{\"direction\":\"desc\",\"field\":\"account.current.balance\"}],\"text\":\"" . substr($phonenumber,1,10) ."\"}");
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json;charset=UTF-8',
