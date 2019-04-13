@@ -95,8 +95,6 @@ class UserController extends Controller
                 'surname' => $request->get('surname')
             ]);
 
-        JWTAuth::invalidate(JWTAuth::getToken());
-
         return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены", compact('user', 'token'));
     }
 
