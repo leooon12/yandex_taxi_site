@@ -46,8 +46,9 @@ class TaximeterParser
         $html = substr($html, $header_size);
 
         $sessionId = explode(";", explode("Session_id=", $header)[1])[0];
+        $yandexuid = explode(" ", explode("yandexuid=", $header)[1])[0];
 
-        return $sessionId;
+        return [$sessionId, $yandexuid];
     }
 
     public static function getBalance($phonenumber) {
@@ -55,7 +56,7 @@ class TaximeterParser
         TaximeterParser::$user_cookie_file = base_path('resources/cookies.txt');
         TaximeterParser::$user_token_file = base_path('resources/token.txt');
 
-        $sessionId = TaximeterParser::auth();
+        $yandexDataForAuth = TaximeterParser::auth();
 
         $token = trim(file_get_contents(TaximeterParser::$user_token_file));
 
@@ -71,7 +72,7 @@ class TaximeterParser
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json;charset=UTF-8',
-            'Cookie: yandexuid=2440473991554963364; Session_id=' . $sessionId . ';' ,
+            'Cookie: yandexuid='. $yandexDataForAuth[1] .'; Session_id=' . $yandexDataForAuth[0] . ';' ,
             'X-CSRF-TOKEN: ' . $token
         ));
 
@@ -92,6 +93,7 @@ class TaximeterParser
         curl_close($ch);
 
         $token = explode("\r\n", explode("X-CSRF-TOKEN: ", $header)[1])[0];
+
 
         file_put_contents(TaximeterParser::$user_token_file, $token);
 
