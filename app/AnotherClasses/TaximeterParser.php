@@ -22,14 +22,14 @@ class TaximeterParser
     {
         $ch = curl_init(TaximeterParser::$url);
 
-        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_URL,TaximeterParser::$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterParser::$user_cookie_file);
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterParser::$user_cookie_file);
         curl_setopt($ch, CURLOPT_POST,1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS,"login=TaximeterParser::$login&passwd=TaximeterParser::$passwd");
+        curl_setopt($ch, CURLOPT_POSTFIELDS,"login=".TaximeterParser::$login."&passwd=".TaximeterParser::$passwd);
 
         // Получение хедера для вытаскивания Session ID
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
