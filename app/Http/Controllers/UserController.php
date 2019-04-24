@@ -8,6 +8,7 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRecoveryRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Jobs\SendRegistrationSms;
+use App\User;
 use App\UserJWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -87,6 +88,8 @@ class UserController extends Controller
     public function edit(UserEditRequest $request) {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
 
+        $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
+
         $user = UserJWT::where('id', $user_id)
             ->update([
                 'phone_number' => $request->get('phone_number'),
@@ -95,6 +98,19 @@ class UserController extends Controller
                 'surname' => $request->get('surname')
             ]);
 
+        if ($user_phone_number != $request->get('phone_number')) {
+            $code = (string)(rand(100000, 999999));
+
+            UserJWT::where('id', $user_id)
+                ->update(['password' => bcrypt($code)]);
+
+            $regSms = new SendRegistrationSms($request->get('phone_number'), $code);
+            $this->dispatch($regSms);
+
+            JWTAuth::invalidate(JWTAuth::getToken());
+
+            return ResponseHandler::getJsonResponse(228, "Данные успешно сохранены, номер телефона изменен", compact('user', 'token'));
+        }
         return ResponseHandler::getJsonResponse(200, "Данные успешно сохранены", compact('user', 'token'));
     }
 
