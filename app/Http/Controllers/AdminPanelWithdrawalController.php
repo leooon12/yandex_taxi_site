@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class AdminPanelWithdrawalController extends Controller
 {
+    public function index() {
+        return view('/vendor/voyager/withdrawal');
+    }
+
     public function get_withdrawals($type = null)
     {
         $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
@@ -19,7 +23,7 @@ class AdminPanelWithdrawalController extends Controller
             $query = $models[$i]::with('status')
                 ->with('user');
 
-            if (!$type)
+            if ($type = "in_work")
                 $query->where('status_id', WithdrawalStatus::INWORK);
 
             $result = $query->get();
@@ -33,7 +37,6 @@ class AdminPanelWithdrawalController extends Controller
             return strcmp($b->created_at, $a->created_at);
         });
 
-        return view('/vendor/voyager/withdrawal')
-            ->with("withdrawals", $withdrawals);
+        return $withdrawals;
     }
 }
