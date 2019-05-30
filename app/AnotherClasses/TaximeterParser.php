@@ -69,10 +69,10 @@ class TaximeterParser
     }
 
     public static function getBalance($phonenumber) {
-        return TaximeterParser::getAccount($phonenumber)['accounts'][0]['balance'];
+        return TaximeterParser::getDriverProfile($phonenumber)['accounts'][0]['balance'];
     }
 
-    public static function getAccount($phonenumber) {
+    public static function getDriverProfile($phonenumber) {
         TaximeterParser::$user_cookie_file = base_path('resources/cookies.txt');
 
         $yandexDataForAuth = TaximeterParser::auth();
