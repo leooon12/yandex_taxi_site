@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Config;
 use JWTAuth;
 use App\AnotherClasses\ResponseHandler;
 
+//TODO: РАЗНЕСТИ ЭТУ ПОЕБЕНЬ ПО РАЗНЫМ КОНТРОЛЛЕРАМ: Login, Register, etc
+
 class UserController extends Controller
 {
 
