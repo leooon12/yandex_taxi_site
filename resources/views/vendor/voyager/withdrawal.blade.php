@@ -1,4 +1,4 @@
 @extends('voyager::master')
 @section('content')
-    <p>Hello all!</p>
+    {{print_r($withdrawals)}}
 @stop
