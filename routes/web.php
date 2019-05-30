@@ -22,3 +22,5 @@ Route::resource('/driver', 'DriverController', ['only' => [
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/vendor/voyager/withdrawal','AdminPanelWithdrawalController@withdrawal');
