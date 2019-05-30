@@ -44,3 +44,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
 });
+
+Route::resource('/edit_request', 'EditRequestController', ['only' => [
+    'index', 'store'
+]]);
+
+Route::get('withdrawal/{type?}','AdminPanelWithdrawalController@get_withdrawals');

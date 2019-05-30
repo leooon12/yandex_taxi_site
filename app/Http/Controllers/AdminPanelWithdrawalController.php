@@ -34,7 +34,7 @@ class AdminPanelWithdrawalController extends Controller
 
         usort($withdrawals, function($a, $b)
         {
-            return strcmp($b->created_at, $a->created_at);
+            return strcmp($a->created_at, $b->created_at);
         });
 
         return $withdrawals;
