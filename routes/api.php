@@ -31,6 +31,7 @@ Route::get('/taximetr', 'UserController@taximetr');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('driver', 'DriverController@getDriver');
 
     //Редактирование данных
     Route::post('user/edit', 'UserController@edit');

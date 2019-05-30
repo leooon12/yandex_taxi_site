@@ -2,6 +2,8 @@
 
 namespace App\AnotherClasses;
 
+use Illuminate\Support\Facades\Log;
+
 ini_set("display_errors", 1);
 ini_set('error_reporting', E_ALL);
 
@@ -47,9 +49,7 @@ class TaximeterParser
     }
 
     public static function getToken(){
-        $url = 'https://fleet.taxi.yandex.ru/?park=f25f9892dd5c457394733ffe83fcccab';
-
-        $user_cookie_file = 'cookies.txt'; //Получаем сохраненный после авторизации файл с куками.
+        $url = 'https://fleet.taxi.yandex.ru/drivers?park_id=f25f9892dd5c457394733ffe83fcccab';
 
         $ch = curl_init($url);
 
@@ -69,7 +69,10 @@ class TaximeterParser
     }
 
     public static function getBalance($phonenumber) {
+        return TaximeterParser::getDriverProfile($phonenumber)['accounts'][0]['balance'];
+    }
 
+    public static function getDriverProfile($phonenumber) {
         TaximeterParser::$user_cookie_file = base_path('resources/cookies.txt');
 
         $yandexDataForAuth = TaximeterParser::auth();
@@ -101,6 +104,6 @@ class TaximeterParser
 
         curl_close($ch);
 
-        return json_decode($html)->data[0]->accounts[0]->balance;
+        return json_decode($html, true)['data']['driver_profiles'][0];
     }
 }
