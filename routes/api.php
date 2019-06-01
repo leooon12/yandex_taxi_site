@@ -44,3 +44,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     });
 
 });
+
+Route::group(['prefix' => 'info'], function() {
+    Route::get('cars/{brandName}', 'CarModelsController@show');
+});

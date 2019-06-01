@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AnotherClasses\TaximeterParser;
+use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\DriverDataRequest;
 use App\Mail\DriverRequestMail;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class DriverController extends Controller
             return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
         }
 
-        $taximeter_user_data = TaximeterParser::getDriverProfile($user->phone_number);
+        $taximeter_user_data = TaximeterConnector::getDriverProfile($user->phone_number);
 
         return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
     }
