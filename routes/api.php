@@ -45,6 +45,12 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 });
 
+Route::resource('/edit_request', 'EditRequestController', ['only' => [
+    'index', 'store'
+]]);
+
+Route::get('withdrawal/{type?}','AdminPanelWithdrawalController@get_withdrawals');
+
 Route::group(['prefix' => 'info'], function() {
     Route::get('cars/{brandName}', 'CarModelsController@show');
 });
