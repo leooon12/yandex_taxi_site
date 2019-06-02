@@ -26,7 +26,7 @@ class WithdrawalYandexRequest extends FormRequest
     public function rules()
     {
         return [
-            'yandex_number'     => 'required|string',
+            'yandex_number' => 'required|string',
             'sum'           => 'required|integer'
         ];
     }

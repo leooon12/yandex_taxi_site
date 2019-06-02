@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WithdrawalStatusRequest;
 use App\WithdrawalBankAccount;
 use App\WithdrawalBankCard;
 use App\WithdrawalStatus;
@@ -42,7 +43,14 @@ class AdminPanelWithdrawalController extends Controller
         return $withdrawals;
     }
 
-    public function change_status($id, $status_id) {
+    public function change_status(WithdrawalStatusRequest $request) {
+        $model = "App\\".$request->model_name;
 
+        return $model::where('id', $request->withdrawal_id)
+            ->update(['status_id' => $request->status_id]);
+    }
+
+    public function get_all_statuses() {
+        return WithdrawalStatus::get();
     }
 }
