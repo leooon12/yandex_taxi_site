@@ -23,7 +23,7 @@ class AdminPanelWithdrawalController extends Controller
             $query = $models[$i]::with('status')
                 ->with('user');
 
-            if ($type = "in_work")
+            if ($type == "in_work")
                 $query->where('status_id', WithdrawalStatus::INWORK);
 
             $result = $query->get();
