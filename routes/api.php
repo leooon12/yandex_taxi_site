@@ -50,3 +50,7 @@ Route::resource('/edit_request', 'EditRequestController', ['only' => [
 ]]);
 
 Route::get('withdrawal/{type?}','AdminPanelWithdrawalController@get_withdrawals');
+
+Route::group(['prefix' => 'info'], function() {
+    Route::get('cars/{brandName}', 'CarModelsController@show');
+});

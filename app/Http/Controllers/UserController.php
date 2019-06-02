@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AnotherClasses\TaximeterParser;
+use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRecoveryRequest;
@@ -120,6 +120,6 @@ class UserController extends Controller
         $user_id = JWTAuth::parseToken()->authenticate()->id;
         $user = UserJWT::where('id', $user_id)
             ->first();
-        return TaximeterParser::getBalance($user->phone_number);
+        return TaximeterConnector::getBalance($user->phone_number);
     }
 }
