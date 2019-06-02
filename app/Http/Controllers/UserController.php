@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherClasses\Builders\NewDriverBuilder;
 use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserLoginRequest;
@@ -31,12 +32,41 @@ class UserController extends Controller
     public function register(UserRegisterRequest $request)
     {
 
+        $driverInfo = new NewDriverBuilder();
+
+        $driverInfo->setName($request->get('name'))
+            ->setSurname($request->get('surname'))
+            ->setPatronymic($request->get('patronymic'))
+            ->setBirthdate($request->get('birthdate'))
+            ->setPhone($request->get('phone_number'));
+
+        $driverInfo->getCarInfo()
+            ->setBrand($request->get('car_brand'))
+            ->setModel($request->get('car_model'))
+            ->setGovNumber($request->get('car_gov_number'))
+            ->setColor($request->get('car_color'))
+            ->setVin($request->get('car_vin'))
+            ->setCreationYear($request->get('car_creation_year'))
+            ->setRegSertificate($request->get('car_reg_sertificate'));
+
+        $driverInfo->getDriverDocumentInfo()
+            ->setSerialNumber($request->get('document_serial_number'))
+            ->setUniqNumber($request->get('document_uniq_number'))
+            ->setCounty($request->get('document_country'))
+            ->setEndDate($request->get('document_end_date'))
+            ->setIssueDate($request->get('document_issue_date'));
+
+        $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
+
+        if (!$driverCreationResult['redirect'])
+            return ResponseHandler::getJsonResponse(500, "Не удалось произвести регистрацию в таксометре");
+
         $code = (string)(rand(100000, 999999));
 
         $user = UserJWT::create([
             'name' => $request->get('name'),
             'patronymic' => $request->get('patronymic'),
-            'surname' => $request->get('patronymic'),
+            'surname' => $request->get('surname'),
             'phone_number' => $request->get('phone_number'),
             'password' => bcrypt($code),
         ]);
