@@ -16,7 +16,7 @@ class CarInfoBuilder
     protected $color;
     protected $gov_number;
     protected $vin;
-    protected $serial_number;
+    protected $reg_sertificate;
 
     /**
      * @param mixed $brand
@@ -127,21 +127,21 @@ class CarInfoBuilder
     }
 
     /**
-     * @param mixed $serial_number
+     * @param mixed $reg_sertificate
      * @return CarInfoBuilder
      */
-    public function setSerialNumber($serial_number)
+    public function setRegSertificate($reg_sertificate)
     {
-        $this->serial_number = $serial_number;
+        $this->reg_sertificate = $reg_sertificate;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getSerialNumber()
+    public function getRegSertificate()
     {
-        return $this->serial_number;
+        return $this->reg_sertificate;
     }
 
 }
