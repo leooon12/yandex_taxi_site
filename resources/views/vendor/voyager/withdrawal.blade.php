@@ -24,6 +24,12 @@
            $.get("/api/withdrawal/" + type, function(withdrawals){
                withdrawals_html.innerHTML = "";
 
+               if (withdrawals.length < 1) {
+                   withdrawals_html.innerHTML = "На текущий момент нет заявок";
+                   return;
+               }
+
+
                withdrawals.forEach(function (withdrawal) {
                    switch(withdrawal.type) {
                        case "WithdrawalBankAccount":
