@@ -23,13 +23,15 @@ class AdminPanelWithdrawalController extends Controller
             $query = $models[$i]::with('status')
                 ->with('user');
 
-            if ($type = "in_work")
+            if ($type == "in_work")
                 $query->where('status_id', WithdrawalStatus::INWORK);
 
             $result = $query->get();
 
-            foreach ($result as $element)
+            foreach ($result as $element) {
+                $element->type = explode('\\', $models[$i])[1];
                 array_push($withdrawals, $element);
+            }
         };
 
         usort($withdrawals, function($a, $b)
@@ -38,5 +40,9 @@ class AdminPanelWithdrawalController extends Controller
         });
 
         return $withdrawals;
+    }
+
+    public function change_status($id, $status_id) {
+
     }
 }

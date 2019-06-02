@@ -11,7 +11,7 @@ trait WithdrawalTrait {
 
     public function user()
     {
-        return $this->hasOne('App\User', 'id', 'user_id')->select(['id', 'surname', 'name', 'patronymic']);
+        return $this->hasOne('App\User', 'id', 'user_id')->select(['id', 'surname', 'name', 'patronymic', 'phone_number']);
     }
 
 }
