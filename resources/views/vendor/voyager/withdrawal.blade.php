@@ -6,8 +6,8 @@
        <p>Документация: <a href="https://yandextaxi.docs.apiary.io/#reference/-/0/get">все необходимые роуты на получение данных</a></p>
 
        <div>
-           <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(this.id);" />
-           <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(this.id);" />
+           <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" />
+           <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" />
 
        </div>
        <div id="withdrawals"></div>
@@ -17,21 +17,39 @@
 
    <script>
 
-       var last_state = "in_work";
-       getWithdrawals(last_state);
+       const IN_WORK_WITHDRAWAL = "in_work";
+       const ALL_WITHDRAWALS = "all";
 
+       var audio = new Audio('/new_withdrawal_sound.mp3');
+       var last_state = "";
        var withdrawals_html = document.getElementById('withdrawals');
+       var withdrawals_count = 0;
 
+       //Инициирование страницы
+       getWithdrawals(IN_WORK_WITHDRAWAL);
+
+       //Основной метод на получение данных с сервера
        function getWithdrawals(type) {
-
-           last_state = type;
 
            $.ajax("/api/withdrawal_statuses").done(function (statuses) {
 
                $.get("/api/withdrawal/" + type, function(withdrawals){
+
+                   //Чтобы не было коллизии при переключении между типами заявок
+                   if (last_state !== type)
+                       withdrawals_count = withdrawals.length;
+
+                   last_state = type;
+
                    withdrawals_html.innerHTML = "";
 
-                   if (withdrawals.length < 1) {
+
+                   if (withdrawals_count < withdrawals.length) {
+                       audio.play();
+                       withdrawals_count = withdrawals.length;
+                   }
+
+                   if (withdrawals_count < 1) {
                        withdrawals_html.innerHTML = "<br> На текущий момент заявок нет.";
                        return;
                    }
@@ -63,12 +81,14 @@
            });
        }
 
+       //Заполенение данных о типе заявки
        function inner_withdrawal_info(type, status, created_at) {
            withdrawals_html.innerHTML = withdrawals_html.innerHTML + '<br><div id="withdrawal_info"><b>Заявка на выплату</b>'+
                '<br>Тип: ' + type + '<br>Статус: ' + status + '<br>Дата создания: ' + created_at
                +'</div>';
        }
 
+       //Заполенение данных о реквизитах
        function inner_withdrawal_details(type, requisites, sum) {
            withdrawals_html.innerHTML =
                withdrawals_html.innerHTML + '<br><div id="withdrawal_details"> <b>Реквизиты и суммы</b> ' +
@@ -76,6 +96,7 @@
                + '</div>';
        }
 
+       //Заполенение данных о пользователе
        function inner_user_info(surname, name, patronymic, phone_number) {
            withdrawals_html.innerHTML =
                withdrawals_html.innerHTML + '<br><div id="user_info"> <b>Пользователь</b> ' +
@@ -83,6 +104,7 @@
                + '</div>';
        }
 
+       //Заполенение данных о статусах заявки
        function inner_statuses(statuses, withdrawal_id, withdrawal_type) {
            withdrawals_html.innerHTML = withdrawals_html.innerHTML + '<br><div id="statuses_info_'+ withdrawal_type + '_' + withdrawal_id +'"></div><hr>';
            var statuses_html = document.getElementById('statuses_info_'+ withdrawal_type + '_' + withdrawal_id);
@@ -94,6 +116,7 @@
 
        }
 
+       //Изменение статуса заявки
        function changeStatus(parent_node_name, status_id) {
             var model_name = parent_node_name.split("_")[2];
             var withdrawal_id = parent_node_name.split("_")[3];
@@ -111,6 +134,12 @@
                }
            });
        }
+
+       //Автоообновление данных каждую минуту
+       setInterval(function() {
+           getWithdrawals(last_state);
+           console.log('Вызов автообновления!');
+       }, 1000 * 60);
 
    </script>
 @stop
