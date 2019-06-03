@@ -1,7 +1,12 @@
 @extends('voyager::master')
 @section('content')
 
+
+    <link rel="stylesheet" href="/css/my_loader.css">
+
    <div>
+
+       <div id="my_loader" class="my_loader"></div>
 
        <p>Документация: <a href="https://yandextaxi.docs.apiary.io/#reference/-/0/get">все необходимые роуты на получение данных</a></p>
 
@@ -16,6 +21,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
    <script>
+       $('#my_loader').hide();
 
        const IN_WORK_WITHDRAWAL = "in_work";
        const ALL_WITHDRAWALS = "all";
@@ -30,6 +36,15 @@
 
        //Основной метод на получение данных с сервера
        function getWithdrawals(type) {
+
+           $.ajax({
+               beforeSend: function() {
+                   $('#my_loader').show();
+               },
+               complete: function() {
+                   $('#my_loader').hide();
+               }
+           });
 
            $.ajax("/api/withdrawal_statuses").done(function (statuses) {
 
