@@ -30,6 +30,7 @@
        var last_state = "";
        var withdrawals_html = document.getElementById('withdrawals');
        var withdrawals_count = 0;
+       var loader = true;
 
        //Инициирование страницы
        getWithdrawals(IN_WORK_WITHDRAWAL);
@@ -37,14 +38,15 @@
        //Основной метод на получение данных с сервера
        function getWithdrawals(type) {
 
-           $.ajax({
-               beforeSend: function() {
-                   $('#my_loader').show();
-               },
-               complete: function() {
-                   $('#my_loader').hide();
-               }
-           });
+           if (loader)
+               $.ajax({
+                   beforeSend: function() {
+                       $('#my_loader').show();
+                   },
+                   complete: function() {
+                       $('#my_loader').hide();
+                   }
+               });
 
            $.ajax("/api/withdrawal_statuses").done(function (statuses) {
 
@@ -152,9 +154,11 @@
 
        //Автоообновление данных каждую минуту
        setInterval(function() {
+           //Костыль, чтобы лоадер не показывался во время автообновления
+           loader = false;
            getWithdrawals(last_state);
-           console.log('Вызов автообновления!');
-       }, 1000 * 60);
+           loader = true;
+       }, 1000 * 30);
 
    </script>
 @stop
