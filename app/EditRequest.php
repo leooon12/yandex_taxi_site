@@ -15,4 +15,9 @@ class EditRequest extends Model
         return $this->hasOne('App\WithdrawalStatus', 'id', 'status_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'phone_number', 'phone_number')->select(['id', 'surname', 'name', 'patronymic', 'phone_number']);
+    }
+
 }

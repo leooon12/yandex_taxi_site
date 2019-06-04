@@ -45,15 +45,17 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
 });
 
-Route::resource('/edit_request', 'EditRequestController', ['only' => [
-    'index', 'store'
-]]);
-
 Route::get('withdrawal_statuses','AdminPanelWithdrawalController@get_all_statuses');
 
 Route::group(['prefix' => 'withdrawal'], function() {
     Route::get('/{type?}','AdminPanelWithdrawalController@get_withdrawals');
     Route::post('/status','AdminPanelWithdrawalController@change_status');
+});
+
+Route::group(['prefix' => 'edit_request'], function() {
+    Route::get('/{type?}','AdminRequestController@get_requests');
+    Route::post('/','AdminRequestController@store');
+    Route::post('/status','AdminRequestController@change_status');
 });
 
 
