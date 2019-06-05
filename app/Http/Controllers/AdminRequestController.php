@@ -49,5 +49,6 @@ class AdminRequestController extends Controller
         ]);
 
         return ResponseHandler::getJsonResponse(200, "данные успешно сохранены");
+
     }
 }
