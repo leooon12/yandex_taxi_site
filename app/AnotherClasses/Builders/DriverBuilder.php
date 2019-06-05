@@ -9,7 +9,7 @@
 namespace App\AnotherClasses\Builders;
 
 
-class NewDriverBuilder
+class DriverBuilder
 {
     protected $carInfo;
     protected $driverDocumentInfo;
@@ -43,7 +43,7 @@ class NewDriverBuilder
 
     /**
      * @param mixed $name
-     * @return NewDriverBuilder
+     * @return DriverBuilder
      */
     public function setName($name)
     {
@@ -61,7 +61,7 @@ class NewDriverBuilder
 
     /**
      * @param mixed $surname
-     * @return NewDriverBuilder
+     * @return DriverBuilder
      */
     public function setSurname($surname)
     {
@@ -79,7 +79,7 @@ class NewDriverBuilder
 
     /**
      * @param mixed $patronymic
-     * @return NewDriverBuilder
+     * @return DriverBuilder
      */
     public function setPatronymic($patronymic)
     {
@@ -97,7 +97,7 @@ class NewDriverBuilder
 
     /**
      * @param mixed $phone
-     * @return NewDriverBuilder
+     * @return DriverBuilder
      */
     public function setPhone($phone)
     {
@@ -115,7 +115,7 @@ class NewDriverBuilder
 
     /**
      * @param mixed $birthdate
-     * @return NewDriverBuilder
+     * @return DriverBuilder
      */
     public function setBirthdate($birthdate)
     {

@@ -24,7 +24,7 @@ class CarInfoBuilder
      */
     public function setBrand($brand)
     {
-        $this->brand = $brand;
+        $this->brand = str_ireplace(" ", '%20', $brand);
         return $this;
     }
 
@@ -42,7 +42,7 @@ class CarInfoBuilder
      */
     public function setModel($model)
     {
-        $this->model = $model;
+        $this->model = str_ireplace(" ", '%20', $model);
         return $this;
     }
 

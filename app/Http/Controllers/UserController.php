@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AnotherClasses\Builders\NewDriverBuilder;
+use App\AnotherClasses\Builders\DriverBuilder;
 use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserLoginRequest;
@@ -32,7 +32,7 @@ class UserController extends Controller
     public function register(UserRegisterRequest $request)
     {
 
-        $driverInfo = new NewDriverBuilder();
+        $driverInfo = new DriverBuilder();
 
         $driverInfo->setName($request->get('name'))
             ->setSurname($request->get('surname'))

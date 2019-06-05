@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\AnotherClasses\Builders\NewDriverBuilder;
+use App\AnotherClasses\Builders\DriverBuilder;
 use App\AnotherClasses\TaximeterConnector;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -17,7 +17,7 @@ class CreateDriverThrowTaximeterTest extends TestCase
      */
     public function testExample()
     {
-        $driverInfo = new NewDriverBuilder();
+        $driverInfo = new DriverBuilder();
 
         $driverInfo->setName("Leo")
             ->setSurname("BabkaААААААяяяя")
