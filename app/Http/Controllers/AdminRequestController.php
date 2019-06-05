@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherClasses\ResponseHandler;
 use App\EditRequest;
 use App\Http\Requests\EditRequestRequest;
 use App\Http\Requests\RequestStatusRequest;
@@ -42,9 +43,11 @@ class AdminRequestController extends Controller
 
         $phone_number = JWTAuth::parseToken()->authenticate()->phone_number;
 
-        return EditRequest::create([
+        EditRequest::create([
             "phone_number"  => $phone_number,
             "content"       => $request->json_content,
         ]);
+
+        return ResponseHandler::getJsonResponse(200, "данные успешно сохранены");
     }
 }
