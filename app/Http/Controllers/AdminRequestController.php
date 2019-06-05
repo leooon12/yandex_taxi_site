@@ -20,7 +20,7 @@ class AdminRequestController extends Controller
     public function get_requests($type = null)
     {
 
-        $query = EditRequest::orderBy('created_at', 'asc')
+        $query = EditRequest::orderBy('created_at', 'desc')
             ->with('status')
             ->with('user');
 
