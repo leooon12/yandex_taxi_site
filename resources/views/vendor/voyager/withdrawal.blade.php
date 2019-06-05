@@ -117,7 +117,8 @@
        function inner_user_info(surname, name, patronymic, phone_number) {
            withdrawals_html.innerHTML =
                withdrawals_html.innerHTML + '<br><div id="user_info"> <b>Пользователь</b> ' +
-               '<br>Фамилия: ' + surname + '<br>Имя: ' + name + '<br>Отчество: ' + patronymic + '<br>Номер телефона: ' + phone_number
+               //'<br>Фамилия: ' + surname + '<br>Имя: ' + name + '<br>Отчество: ' + patronymic +
+               '<br>Номер телефона: ' + phone_number
                + '</div>';
        }
 

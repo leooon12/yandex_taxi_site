@@ -26,7 +26,6 @@ class EditRequestRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone_number'  => 'required|string|size:11',
             'json_content'       => 'required|string',
         ];
     }
@@ -34,9 +33,6 @@ class EditRequestRequest extends FormRequest
     public function messages ()
     {
         return [
-            'phone_number.required'     => 'Не был передан параметр номер телефона',
-            'phone_number.string'       => 'Неверный формат номера телефона',
-            'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
             'json_content.required'          => 'Не был передан параметр content',
             'json_content.string'            => 'Неверный формат content',
         ];

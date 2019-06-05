@@ -8,6 +8,8 @@ use App\Http\Requests\RequestStatusRequest;
 use App\WithdrawalStatus;
 use Illuminate\Http\Request;
 
+use JWTAuth;
+
 class AdminRequestController extends Controller
 {
     public function index() {
@@ -37,8 +39,11 @@ class AdminRequestController extends Controller
     }
 
     public function store(EditRequestRequest $request) {
+
+        $phone_number = JWTAuth::parseToken()->authenticate()->phone_number;
+
         return EditRequest::create([
-            "phone_number"  => $request->phone_number,
+            "phone_number"  => $phone_number,
             "content"       => $request->json_content,
         ]);
     }
