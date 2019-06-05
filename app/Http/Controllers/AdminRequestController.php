@@ -18,6 +18,17 @@ class AdminRequestController extends Controller
     }
 
 
+    public function get_user_requests() {
+        $phone_number = JWTAuth::parseToken()->authenticate()->phone_number;
+
+        $requests = EditRequest::orderBy('created_at', 'desc')
+            ->where('phone_number', $phone_number)
+            ->with('status')
+            ->get();
+
+        return ResponseHandler::getJsonResponse(200, "Данные успешно получены", $requests);
+    }
+
     public function get_requests($type = null)
     {
 

@@ -43,6 +43,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('last', 'WithdrawalController@getLastWithdrawal');
     });
 
+    //Получение всех универсальных заявок пользователя
+    Route::get('user/requests', 'AdminRequestController@get_user_requests');
+
 });
 
 Route::get('withdrawal_statuses','AdminPanelWithdrawalController@get_all_statuses');
