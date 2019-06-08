@@ -22,4 +22,5 @@ Route::resource('/driver', 'DriverController', ['only' => [
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('withdrawal/','AdminPanelWithdrawalController@index');
+    Route::get('edit_request/','AdminRequestController@index');
 });

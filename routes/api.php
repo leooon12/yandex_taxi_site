@@ -44,13 +44,24 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('last', 'WithdrawalController@getLastWithdrawal');
     });
 
+    //Получение всех универсальных заявок пользователя
+    Route::get('user/requests', 'AdminRequestController@get_user_requests');
+
 });
 
-Route::resource('/edit_request', 'EditRequestController', ['only' => [
-    'index', 'store'
-]]);
+Route::get('withdrawal_statuses','AdminPanelWithdrawalController@get_all_statuses');
 
-Route::get('withdrawal/{type?}','AdminPanelWithdrawalController@get_withdrawals');
+Route::group(['prefix' => 'withdrawal'], function() {
+    Route::get('/{type?}','AdminPanelWithdrawalController@get_withdrawals');
+    Route::post('/status','AdminPanelWithdrawalController@change_status');
+});
+
+Route::group(['prefix' => 'edit_request'], function() {
+    Route::get('/{type?}','AdminRequestController@get_requests');
+    Route::post('/','AdminRequestController@store');
+    Route::post('/status','AdminRequestController@change_status');
+});
+
 
 Route::group(['prefix' => 'info'], function() {
     Route::get('cars/{brandName}', 'CarModelsController@show');
