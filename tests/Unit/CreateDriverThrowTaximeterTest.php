@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\AnotherClasses\Builders\DriverBuilder;
+use App\AnotherClasses\Builders\DriverInfo;
 use App\AnotherClasses\TaximeterConnector;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -17,11 +17,11 @@ class CreateDriverThrowTaximeterTest extends TestCase
      */
     public function testExample()
     {
-        $driverInfo = new DriverBuilder();
+        $driverInfo = new DriverInfo();
 
-        $driverInfo->setName("Leo")
-            ->setSurname("BabkaААААААяяяя")
-            ->setPatronymic("Testovnaяяя")
+        $driverInfo->setName("Леонид")
+            ->setSurname("Бабков")
+            ->setPatronymic("Николаевич")
             ->setBirthdate("1990-09-09")
             ->setPhone("79145551353");
 
@@ -41,7 +41,7 @@ class CreateDriverThrowTaximeterTest extends TestCase
             ->setEndDate("2029-09-09")
             ->setIssueDate("2001-09-09");
 
-        $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
+        //$driverCreationResult = TaximeterConnector::createDriver($driverInfo);
 
         $this->assertTrue(true);
     }

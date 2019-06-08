@@ -9,7 +9,7 @@
 namespace App\AnotherClasses\Builders;
 
 
-class DriverDocumentInfoBuilder
+class DriverDocumentInfo
 {
     protected $serial_number;
     protected $uniq_number;
@@ -19,7 +19,7 @@ class DriverDocumentInfoBuilder
 
     /**
      * @param mixed $serial_number
-     * @return DriverDocumentInfoBuilder
+     * @return DriverDocumentInfo
      */
     public function setSerialNumber($serial_number)
     {
@@ -37,7 +37,7 @@ class DriverDocumentInfoBuilder
 
     /**
      * @param mixed $uniq_number
-     * @return DriverDocumentInfoBuilder
+     * @return DriverDocumentInfo
      */
     public function setUniqNumber($uniq_number)
     {
@@ -55,11 +55,11 @@ class DriverDocumentInfoBuilder
 
     /**
      * @param mixed $issue_date
-     * @return DriverDocumentInfoBuilder
+     * @return DriverDocumentInfo
      */
     public function setIssueDate($issue_date)
     {
-        $this->issue_date = $issue_date;
+        $this->issue_date = substr($issue_date, 0, 10);
         return $this;
     }
 
@@ -73,11 +73,11 @@ class DriverDocumentInfoBuilder
 
     /**
      * @param mixed $end_date
-     * @return DriverDocumentInfoBuilder
+     * @return DriverDocumentInfo
      */
     public function setEndDate($end_date)
     {
-        $this->end_date = $end_date;
+        $this->end_date = substr($end_date, 0, 10);
         return $this;
     }
 
@@ -91,7 +91,7 @@ class DriverDocumentInfoBuilder
 
     /**
      * @param mixed $county
-     * @return DriverDocumentInfoBuilder
+     * @return DriverDocumentInfo
      */
     public function setCounty($county)
     {

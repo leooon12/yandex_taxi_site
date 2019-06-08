@@ -34,7 +34,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('driver', 'DriverController@getDriver');
 
     //Редактирование данных
-    Route::post('user/edit', 'UserController@edit');
+    Route::post('driver/phone/edit', 'DriverController@changeNumber');
+    Route::post('driver/car/edit', 'DriverController@changeCar');
 
     Route::group(['prefix' => 'withdrawal'], function() {
         Route::post('bankcard', 'WithdrawalController@withdrawalBankCard');

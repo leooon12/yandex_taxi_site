@@ -8,7 +8,7 @@
 
 namespace App\AnotherClasses\Builders;
 
-class CarInfoBuilder
+class CarInfo
 {
     protected $brand;
     protected $model;
@@ -17,10 +17,11 @@ class CarInfoBuilder
     protected $gov_number;
     protected $vin;
     protected $reg_sertificate;
+    protected $id;
 
     /**
      * @param mixed $brand
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setBrand($brand)
     {
@@ -38,7 +39,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $model
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setModel($model)
     {
@@ -56,7 +57,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $creation_year
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setCreationYear($creation_year)
     {
@@ -74,7 +75,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $color
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setColor($color)
     {
@@ -92,7 +93,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $gov_number
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setGovNumber($gov_number)
     {
@@ -110,7 +111,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $vin
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setVin($vin)
     {
@@ -128,7 +129,7 @@ class CarInfoBuilder
 
     /**
      * @param mixed $reg_sertificate
-     * @return CarInfoBuilder
+     * @return CarInfo
      */
     public function setRegSertificate($reg_sertificate)
     {
@@ -142,6 +143,28 @@ class CarInfoBuilder
     public function getRegSertificate()
     {
         return $this->reg_sertificate;
+    }
+
+    public function getCallSign() {
+        return substr($this->getGovNumber(), 1, 3) . $this->getModel();
+    }
+
+    /**
+     * @param mixed $id
+     * @return CarInfo
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 }

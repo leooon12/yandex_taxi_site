@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherClasses\Builders\CarInfo;
+use App\AnotherClasses\Builders\FullDriverInfo;
 use App\AnotherClasses\TaximeterConnector;
+use App\Http\Requests\ChangeDriverCarRequest;
+use App\Http\Requests\ChangeDriverPhoneRequest;
 use App\Http\Requests\DriverDataRequest;
+use App\Jobs\SendRegistrationSms;
 use App\Mail\DriverRequestMail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\AnotherClasses\ResponseHandler;
 use JWTAuth;
+use App\UserJWT;
 
 class DriverController extends Controller
 {
@@ -32,5 +37,74 @@ class DriverController extends Controller
         $taximeter_user_data = TaximeterConnector::getDriverProfile($user->phone_number);
 
         return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
+    }
+
+    protected function getFullDriverInfo($user_phone_number) {
+        $profile = TaximeterConnector::getDriverProfile($user_phone_number);
+        $versionAndImei = TaximeterConnector::getAdditionalDriverInfo($user_phone_number);
+
+        $driverInfo = new FullDriverInfo();
+        $driverInfo->setAllFromTaximeterDriverProfile($profile);
+        $driverInfo->setImei($versionAndImei[1]);
+        $driverInfo->setTaximeterVesion($versionAndImei[0]);
+
+        return $driverInfo;
+    }
+
+    public function changeNumber(ChangeDriverPhoneRequest $request) {
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
+
+        $driverInfo = $this->getFullDriverInfo($user_phone_number);
+        $driverInfo->setPhone($request->get('phone_number'));
+
+        $editResponce = TaximeterConnector::editDriver($driverInfo);
+
+        if (!$editResponce['reload'])
+            return ResponseHandler::getJsonResponse(500, "Номер телефона не изменен", compact('user', 'token'));
+
+        $user = UserJWT::where('id', $user_id)
+            ->update([
+                'phone_number' => $request->get('phone_number')
+            ]);
+
+        $code = (string)(rand(100000, 999999));
+
+        UserJWT::where('id', $user_id)
+            ->update(['password' => bcrypt($code)]);
+
+        $this->dispatch(new SendRegistrationSms($request->get('phone_number'), $code));
+
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        return ResponseHandler::getJsonResponse(228, "Номер телефона изменен", compact('user', 'token'));
+    }
+
+    public function changeCar(ChangeDriverCarRequest$request) {
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
+
+        $carInfo = (new CarInfo())
+            ->setBrand($request->get('car_brand'))
+            ->setModel($request->get('car_model'))
+            ->setGovNumber($request->get('Car_gov_number'))
+            ->setColor($request->get('car_color'))
+            ->setVin($request->get('car_vin'))
+            ->setCreationYear($request->get('car_creation_year'))
+            ->setRegSertificate($request->get('car_reg_sertificate'));
+
+        $carCreationResult = TaximeterConnector::createCar($carInfo);
+
+        $carInfo->setId(TaximeterConnector::getCar()['id']);
+
+        $driverInfo = $this->getFullDriverInfo($user_phone_number);
+        $driverInfo->setCarInfo($carCreationResult);
+
+        $editResponce = TaximeterConnector::editDriver($driverInfo);
+
+        if (!$editResponce['reload'])
+            return ResponseHandler::getJsonResponse(500, "Данные автомобиля не были изменены");
+
+        return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }
 }
