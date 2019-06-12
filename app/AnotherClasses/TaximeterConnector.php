@@ -188,7 +188,12 @@ class TaximeterConnector
         $url = TaximeterConnector::FLEET_URL . '/drivers/list';
         $postfields = "{\"park_id\":\"" . TaximeterConnector::PARK_ID . "\",\"work_rule_id\":null,\"work_status_id\":\"working\",\"car_categories\":[],\"car_amenities\":[],\"limit\":40,\"offset\":0,\"sort\":[{\"direction\":\"desc\",\"field\":\"account.current.balance\"}],\"text\":\"" . substr($phonenumber, 1, 10) . "\"}";
 
-        return TaximeterConnector::fleetPostInfoReq($postfields, $url)['data']['driver_profiles'][0];
+        $profiles = TaximeterConnector::fleetPostInfoReq($postfields, $url)['data']['driver_profiles'];
+
+        if (count($profiles) > 0)
+            return TaximeterConnector::fleetPostInfoReq($postfields, $url)['data']['driver_profiles'][0];
+
+        return null;
     }
 
     public static function getCar($gov_number)

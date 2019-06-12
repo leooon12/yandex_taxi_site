@@ -36,11 +36,17 @@ class DriverController extends Controller
 
         $taximeter_user_data = TaximeterConnector::getDriverProfile($user->phone_number);
 
-        return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
+        if ($taximeter_user_data)
+            return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
+
+        return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
     }
 
     protected function getFullDriverInfo($user_phone_number) {
         $profile = TaximeterConnector::getDriverProfile($user_phone_number);
+        if (!$profile)
+            return null;
+
         $versionAndImei = TaximeterConnector::getAdditionalDriverInfo($user_phone_number);
 
         $driverInfo = new FullDriverInfo();
@@ -56,6 +62,10 @@ class DriverController extends Controller
         $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
 
         $driverInfo = $this->getFullDriverInfo($user_phone_number);
+
+        if (!$driverInfo)
+            return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
+
         $driverInfo->setPhone($request->get('phone_number'));
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
@@ -98,6 +108,10 @@ class DriverController extends Controller
         $carInfo->setId(TaximeterConnector::getCar()['id']);
 
         $driverInfo = $this->getFullDriverInfo($user_phone_number);
+
+        if (!$driverInfo)
+            return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
+
         $driverInfo->setCarInfo($carCreationResult);
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
