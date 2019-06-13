@@ -26,7 +26,7 @@ Route::namespace('JWTAuth')->group(function () {
     Route::post('/register',    'RegisterController@register');
 
     Route::group(['middleware' => ['jwt.verify']], function() {
-        Route::post('/register', 'RegisterController@taximeterRegister');
+        Route::post('/taximeter_register', 'RegisterController@taximeterRegister');
     });
 
     Route::post('/login',       'LoginController@login');
