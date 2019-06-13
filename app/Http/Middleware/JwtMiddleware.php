@@ -26,9 +26,9 @@ class JwtMiddleware extends BaseMiddleware
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
                 return ResponseHandler::getJsonResponse(400, "Невалидный токен");
             }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                return ResponseHandler::getJsonResponse(400, "токен устарел");
+                return ResponseHandler::getJsonResponse(400, "Токен устарел");
             }else{
-                return ResponseHandler::getJsonResponse(400, "Токен не был перевдан");
+                return ResponseHandler::getJsonResponse(400, "Токен не был передан");
             }
         }
         return $next($request);
