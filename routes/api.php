@@ -22,10 +22,15 @@ Route::resource('/driver', 'DriverController', ['only' => [
 ]]);
 
 
-//Регистрация пользователя
-Route::post('/register', 'UserController@register');
-Route::post('/login', 'UserController@login');
-Route::post('/recovery', 'UserController@recovery');
+Route::namespace('JWTAuth')->group(function () {
+    Route::post('/register',    'RegisterController@register');
+
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        Route::post('/register', 'RegisterController@taximeterRegister');
+    });
+
+    Route::post('/login',       'LoginController@login');
+});
 
 Route::get('/taximetr', 'UserController@taximetr');
 

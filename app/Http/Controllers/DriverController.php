@@ -90,7 +90,7 @@ class DriverController extends Controller
         return ResponseHandler::getJsonResponse(228, "Номер телефона изменен", compact('user', 'token'));
     }
 
-    public function changeCar(ChangeDriverCarRequest$request) {
+    public function changeCar(ChangeDriverCarRequest $request) {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
         $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
 
