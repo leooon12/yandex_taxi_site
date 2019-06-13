@@ -29,7 +29,7 @@ class UserTaximeterRegisterRequest extends FormRequest
             'name'                      => 'required|string|min:2|max:100',
             'surname'                   => 'required|string|min:2|max:100',
             'patronymic'                => 'required|string|max:100',
-            'birthdate'                 => 'required|string',
+            'birthdate'                 => 'string',
             'document_serial_number'    => 'required|string',
             'document_uniq_number'      => 'required|string',
             'document_issue_date'       => 'required|string',
@@ -40,7 +40,7 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_creation_year'         => 'required|string',
             'car_color'                 => 'required|string',
             'car_gov_number'            => 'required|string',
-            'car_vin'                   => 'required|string',
+            'car_vin'                   => 'string',
             'car_reg_sertificate'       => 'required|string'
 
         ];
@@ -60,7 +60,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'patronymic.required'                           => 'Не был передан параметр: отчество',
             'patronymic.string'                             => 'Неверный формат отчества',
             'patronymic.max'                                => 'Длина отчества должна быть не больше 100 символов',
-            'birthdate.required'                            => 'Не был передан параметр: дата рождения',
             'document_serial_number.required'               => 'Не был передан параметр: серия прав',
             'document_uniq_number.required'                 => 'Не был передан параметр: номер прав',
             'document_issue_date.required'                  => 'Не был передан параметр: дата выпуска прав',
@@ -71,7 +70,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_creation_year.required'                    => 'Не был передан параметр: дата выпуска автомобиля',
             'car_color.required'                            => 'Не был передан параметр: цвет автомобиля',
             'car_gov_number.required'                       => 'Не был передан параметр: госномер',
-            'car_vin.required'                              => 'Не был передан параметр: вин',
             'car_reg_sertificate.required'                  => 'Не был передан параметр: серия/номер СТС',
             'birthdate.string'                              => 'Неверный формат параметра: дата рождения',
             'document_serial_number.string'                 => 'Неверный формат параметра: серия прав',

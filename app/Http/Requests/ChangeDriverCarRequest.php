@@ -31,7 +31,7 @@ class ChangeDriverCarRequest extends FormRequest
             'car_creation_year'         => 'required|string',
             'car_color'                 => 'required|string',
             'car_gov_number'            => 'required|string',
-            'car_vin'                   => 'required|string',
+            'car_vin'                   => 'string',
             'car_reg_sertificate'       => 'required|string'
         ];
     }
@@ -44,7 +44,6 @@ class ChangeDriverCarRequest extends FormRequest
             'car_creation_year.required'                    => 'Не был передан параметр: дата выпуска автомобиля',
             'car_color.required'                            => 'Не был передан параметр: цвет автомобиля',
             'car_gov_number.required'                       => 'Не был передан параметр: госномер',
-            'car_vin.required'                              => 'Не был передан параметр: вин',
             'car_reg_sertificate.required'                  => 'Не был передан параметр: серия/номер СТС',
             'car_brand.string'                              => 'Неверный формат параметра: марка автомобиля',
             'car_model.string'                              => 'Неверный формат параметра: модель автомобиля',
