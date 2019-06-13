@@ -36,7 +36,6 @@ class BaseSms implements ShouldQueue
     {
         $client = new Api(new ApiIdAuth(config('sms_service.api_id')));
         $sms = new Sms($this->phoneNumber, $this->text);
-        Log::info($this->phoneNumber, $this->text);
         $client->smsSend($sms);
     }
 }
