@@ -12,11 +12,21 @@ namespace App\Http\Controllers\JWTAuth;
 use App\AnotherClasses\ResponseHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
+use App\UserJWT;
+use Illuminate\Support\Facades\Config;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
+    function __construct()
+    {
+        Config::set('auth.providers', ['users' => [
+            'driver' => 'eloquent',
+            'model' => UserJWT::class,
+        ]]);
+    }
+
     public function login(UserLoginRequest $request)
     {
         $credentials = $request->only('phone_number', 'password');

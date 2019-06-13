@@ -17,10 +17,20 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserTaximeterRegisterRequest;
 use App\Jobs\SendRegistrationSms;
 use App\UserJWT;
+use Illuminate\Support\Facades\Config;
 use JWTAuth;
 
 class RegisterController extends Controller
 {
+
+    function __construct()
+    {
+        Config::set('auth.providers', ['users' => [
+            'driver' => 'eloquent',
+            'model' => UserJWT::class,
+        ]]);
+    }
+
 
     //Допилить
     public function register(UserRegisterRequest $request) {
