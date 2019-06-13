@@ -26,7 +26,7 @@ class RegisterController extends Controller
     public function register(UserRegisterRequest $request) {
         $code = (string)(rand(100000, 999999));
 
-        $user = UserJWT::updateOrCreate(
+        UserJWT::updateOrCreate(
             ['phone_number' => $request->get('phone_number')],
             ['password' => bcrypt($code)]
         );
@@ -34,7 +34,7 @@ class RegisterController extends Controller
         $regSms = new SendRegistrationSms($request->get('phone_number'), $code);
         $this->dispatch($regSms);
 
-        return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы, ожидайте смс-пароля", compact('user'));
+        return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы, ожидайте смс-пароля");
 
     }
 

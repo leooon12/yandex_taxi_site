@@ -7,6 +7,6 @@ class SendRegistrationSms extends BaseSms
     public function __construct($phoneNumber, $code)
     {
         parent::__construct($phoneNumber);
-        $this->text .= self::MESSAGE.$code;
+        $this->text .= self::MESSAGE . $code;
     }
 }
