@@ -29,7 +29,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'name'                      => 'required|string|min:2|max:100',
             'surname'                   => 'required|string|min:2|max:100',
             'patronymic'                => 'required|string|max:100',
-            'birthdate'                 => 'string',
             'document_serial_number'    => 'required|string',
             'document_uniq_number'      => 'required|string',
             'document_issue_date'       => 'required|string',
@@ -40,7 +39,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_creation_year'         => 'required|string',
             'car_color'                 => 'required|string',
             'car_gov_number'            => 'required|string',
-            'car_vin'                   => 'string',
             'car_reg_sertificate'       => 'required|string'
 
         ];
@@ -71,7 +69,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_color.required'                            => 'Не был передан параметр: цвет автомобиля',
             'car_gov_number.required'                       => 'Не был передан параметр: госномер',
             'car_reg_sertificate.required'                  => 'Не был передан параметр: серия/номер СТС',
-            'birthdate.string'                              => 'Неверный формат параметра: дата рождения',
             'document_serial_number.string'                 => 'Неверный формат параметра: серия прав',
             'document_uniq_number.string'                   => 'Неверный формат параметра: номер прав',
             'document_issue_date.string'                    => 'Неверный формат параметра: дата выпуска прав',
@@ -82,7 +79,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_creation_year.string'                      => 'Неверный формат параметра: дата выпуска автомобиля',
             'car_color.string'                              => 'Неверный формат параметра: цвет автомобиля',
             'car_gov_number.string'                         => 'Неверный формат параметра: госномер',
-            'car_vin.string'                                => 'Неверный формат параметра: вин',
             'car_reg_sertificate.string'                    => 'Неверный формат параметра: серия/номер СТС',
 
         ];
