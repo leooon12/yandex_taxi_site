@@ -151,7 +151,7 @@ class DriverInfo
         $this->getDriverDocumentInfo()
             ->setSerialNumber(substr($driverProfile["driver"]['license']['normalized_number'], 0, 4))
             ->setUniqNumber(substr($driverProfile["driver"]['license']['normalized_number'], 4, 6))
-            ->setCounty($driverProfile["driver"]['license']['country'])
+            ->setCountry($driverProfile["driver"]['license']['country'])
             ->setEndDate(substr($driverProfile["driver"]['license']['expiration_date'], 0, 10))
             ->setIssueDate(substr($driverProfile["driver"]['license']['issue_date'], 0, 10));
     }

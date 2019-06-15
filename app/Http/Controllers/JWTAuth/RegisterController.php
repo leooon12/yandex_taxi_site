@@ -74,14 +74,14 @@ class RegisterController extends Controller
         $driverInfo->getDriverDocumentInfo()
             ->setSerialNumber($request->get('document_serial_number'))
             ->setUniqNumber($request->get('document_uniq_number'))
-            ->setCounty($request->get('document_country'))
+            ->setCountry($request->get('document_country'))
             ->setEndDate($request->get('document_end_date'))
             ->setIssueDate($request->get('document_issue_date'));
 
         $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
 
         if (!$driverCreationResult['redirect'])
-            return ResponseHandler::getJsonResponse(500, "Не удалось произвести регистрацию в таксометре");
+            return ResponseHandler::getJsonResponse(500, "Не удалось произвести регистрацию в таксометре", compact('driverCreationResult'));
 
 
         $user->name = $request->get('name');

@@ -298,7 +298,7 @@ class TaximeterConnector
             "&DriverModel.Driver.LicenseNumber="          . $driverInfo->getDriverDocumentInfo()->getUniqNumber() .
             "&DriverModel.Driver.LicenseIssueDate="       . $driverInfo->getDriverDocumentInfo()->getIssueDate() .
             "&DriverModel.Driver.LicenseExpireDate="      . $driverInfo->getDriverDocumentInfo()->getEndDate() .
-            "&DriverModel.Driver.LicenseCountryId="       . $driverInfo->getDriverDocumentInfo()->getCounty() .
+            "&DriverModel.Driver.LicenseCountryId="       . $driverInfo->getDriverDocumentInfo()->getCountry() .
             "&Car.Callsign="                              . $driverInfo->getCarInfo()->getCallSign() .
             "&Car.Brand="                                 . $driverInfo->getCarInfo()->getBrand() .
             "&Car.Model="                                 . $driverInfo->getCarInfo()->getModel() .

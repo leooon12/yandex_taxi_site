@@ -93,7 +93,7 @@ class DriverDocumentInfo
      * @param mixed $county
      * @return DriverDocumentInfo
      */
-    public function setCounty($county)
+    public function setCountry($county)
     {
         $this->county = $county;
         return $this;
@@ -102,7 +102,7 @@ class DriverDocumentInfo
     /**
      * @return mixed
      */
-    public function getCounty()
+    public function getCountry()
     {
         return $this->county;
     }
