@@ -154,9 +154,7 @@
 
 				function generateCard(paymentInfo, requisites, user) {
 					var html = '<div id="withdrawal_info">' +
-							'<b>Заявка на выплату</b>' +
-							'<br>' +
-							'Тип: ' + paymentInfo.typeRU +
+							'<b>Заявка на выплату: ' + paymentInfo.typeRU + '</b>' +
 							'<br>' +
 							'Статус: ' + paymentInfo.status +
 							'<br>' +
