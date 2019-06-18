@@ -17,6 +17,13 @@
 		.withdrawal-info .title {
 			text-align: center;
 		}
+
+		input[type="button"] {
+			background: #dddddd;
+			border: 0;
+			border-radius: 0;
+			margin: 5px;
+		}
 	</style>
 
     <div>
