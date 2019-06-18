@@ -166,7 +166,7 @@
 		            statuses.forEach(function (status) {
 			            var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
 
-			            html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+requestInfo.id+', '+status.id+');" />';
+			            html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus('+requestInfo.id+', '+status.id+');" />';
 		            });
 
 		            html += "</div>";
