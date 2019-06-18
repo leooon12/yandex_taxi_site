@@ -70,7 +70,7 @@ class DriverController extends Controller
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
 
-        if (!isset($editResponce['redirect']))
+        if (!isset($editResponce['reload']))
             return ResponseHandler::getJsonResponse(500, "Номер телефона не изменен", compact('editResponce'));
 
         $user = UserJWT::where('id', $user_id)
@@ -116,7 +116,7 @@ class DriverController extends Controller
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
 
-        if (!isset($editResponce['redirect']))
+        if (!isset($editResponce['reload']))
             return ResponseHandler::getJsonResponse(500, "Данные автомобиля не были изменены", compact('editResponce'));
 
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
