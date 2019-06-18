@@ -4,6 +4,58 @@
 
     <link rel="stylesheet" href="/css/my_loader.css">
 
+    <style>
+        .tabs {
+            text-align: center;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .withdrawal-info {
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            background: #eeeeee;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .withdrawal-info .title {
+            text-align: center;
+        }
+
+        input[type="button"] {
+            background: #dddddd;
+            border: 0;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            color: #333333;
+            opacity: 0.9;
+        }
+
+        input[type="button"]:hover {
+            opacity: 1;
+        }
+
+        .all {
+            background: #53aae8 !important;;
+        }
+
+        .waiting {
+            background: #e8c153 !important;;
+        }
+
+        .success {
+            background: #53e888 !important;;
+        }
+
+        .error {
+            background: #e85353 !important;
+        }
+    </style>
+
     <div>
 
         <div id="my_loader" class="my_loader"></div>
@@ -65,28 +117,30 @@
                     }
 
                     if (requests_count < 1) {
-                        requests_html.innerHTML = "<br> На текущий момент заявок нет.";
+                        requests_html.innerHTML = "<br> На текущий момент заявок нет";
                         return;
                     }
 
                     requests.forEach(function (request) {
-                        data = JSON.parse(request.content);
+	                    var data = JSON.parse(request.content);
 
-                        //Здесь свитч по типу зачвки, по каждому типу Jsona свой парсинг
-                        switch(data.type) {
-                            case "Изменение ВУ":
-                                inner_request_info(data.type,  request.status.name, request.created_at);
-                                inner_request_data(data);
-                                inner_user_info(request.user.surname, request.user.name, request.user.patronymic, request.user.phone_number);
-                                inner_statuses(statuses, request.id);
-                                break;
-                            default:
-                                inner_request_info(data.type,  request.status.name, request.created_at);
-                                inner_request_data(data);
-                                inner_user_info(request.user.surname, request.user.name, request.user.patronymic, request.user.phone_number);
-                                inner_statuses(statuses, request.id);
-                                break;
-                        }
+	                    var paymentInfo = {
+		                    type:		data.type,
+		                    status: 	request.status.name,
+		                    date: 		request.created_at,
+		                    id:			request.id
+	                    };
+
+	                    var requisites = data;
+
+	                    var user = {
+		                    surname: 	request.user.surname,
+		                    name: 		request.user.name,
+		                    patronymic: request.user.patronymic,
+		                    phone: 		request.user.phone_number
+	                    };
+
+	                    requests_html.innerHTML += generateCard(paymentInfo, requisites, user);
                     });
 
                 });
@@ -94,37 +148,37 @@
             });
         }
 
-        //Заполенение данных о типе заявки
-        function inner_request_info(type, status, created_at) {
-            requests_html.innerHTML = requests_html.innerHTML + '<br><div id="request_info"><b>Заявка</b>'+
-                '<br>Тип: ' + type + '<br>Статус: ' + status + '<br>Дата создания: ' + created_at
-                +'</div>';
+        function generateCard(requestInfo, requisites, user) {
+	        var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
+
+	        var html = '<div class="withdrawal-info">' +
+		        '<p class="title">' + requestInfo.typeRU + '</p>' +
+		        'Статус: <b class="'+statusClass+'">' + requestInfo.status + '</b><br>' +
+		        'Дата создания: <b>' + requestInfo.date + '</b><br>' +
+		        '<br>' +
+		        'Реквизиты и суммы' + '<br>';
+
+	        requisites.forEach(function (item) {
+		        html += item.name + ': <b>' + item.valueText + '</b><br>';
+	        });
+
+	        html += 'Сумма: <b>' + requestInfo.sum + "</b><br>" +
+		        '<br>' +
+		        'Пользователь' +
+		        '<br>' +
+		        'Номер телефона: <b>' + user.phone + '</b><br><br>';
+
+	        statuses.forEach(function (status) {
+		        var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
+
+		        html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+requestInfo.type+'\', '+requestInfo.id+', '+status.id+');" />';
+	        });
+
+	        html += "</div>";
+
+	        return html;
         }
 
-        //Заполенение данных о типе заявки
-        function inner_request_data(data) {
-            //Код вывода пропасенного JSON
-        }
-
-        //Заполенение данных о пользователе
-        function inner_user_info(surname, name, patronymic, phone_number) {
-            requests_html.innerHTML =
-                requests_html.innerHTML + '<br><div id="user_info"> <b>Пользователь</b> ' +
-                //'<br>Фамилия: ' + surname + '<br>Имя: ' + name + '<br>Отчество: ' + patronymic +
-                '<br>Номер телефона: ' + phone_number
-                + '</div>';
-        }
-
-        //Заполенение данных о статусах заявки
-        function inner_statuses(statuses, request_id) {
-            requests_html.innerHTML = requests_html.innerHTML + '<br><div id="statuses_info_'+ request_id +'"></div><hr>';
-            var statuses_html = document.getElementById('statuses_info_'+ request_id);
-
-            statuses.forEach(function (status) {
-                statuses_html.innerHTML = statuses_html.innerHTML +
-                    ' <input id="'+ status.id +'" type="button" value="' + status.name + '" onclick="changeStatus(this.parentNode.id, this.id);" />';
-            });
-        }
 
         //Изменение статуса заявки
         function changeStatus(parent_node_name, status_id) {
