@@ -93,7 +93,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 
@@ -119,7 +119,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 
@@ -145,7 +145,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 						}
@@ -180,6 +180,10 @@
 					statuses.forEach(function (status) {
 						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus('+paymentInfo.type+', '+paymentInfo.id+');" />';
 					});
+
+					html += "</div>";
+
+					return html;
 				}
 			});
 		}
