@@ -103,6 +103,10 @@ class DriverController extends Controller
 
         $carCreationResult = TaximeterConnector::createCar($carInfo);
 
+        if (!isset($carCreationResult['redirect']))
+            return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));
+
+
         $carInfo->setId(TaximeterConnector::getCar($request->get('car_reg_sertificate'))['id']);
 
         $driverInfo = $this->getFullDriverInfo($user_phone_number);
