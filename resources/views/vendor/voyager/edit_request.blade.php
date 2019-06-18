@@ -158,7 +158,7 @@
 		        '<br>' +
 		        'Реквизиты и суммы' + '<br>';
 
-	        content.keys().forEach(function (item) {
+	        Object.keys(content).forEach(function (item) {
 		        html += item + ': <b>' + content[item] + '</b><br>';
 	        });
 
