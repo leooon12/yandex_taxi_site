@@ -145,38 +145,37 @@
 
                 });
 
+	            function generateCard(requestInfo, content, user) {
+		            var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
+
+		            var html = '<div class="withdrawal-info">' +
+			            '<p class="title">' + requestInfo.typeRU + '</p>' +
+			            'Статус: <b class="'+statusClass+'">' + requestInfo.status + '</b><br>' +
+			            'Дата создания: <b>' + requestInfo.date + '</b><br>' +
+			            '<br>' +
+			            'Реквизиты и суммы' + '<br>';
+
+		            Object.keys(content).forEach(function (item) {
+			            html += item + ': <b>' + content[item] + '</b><br>';
+		            });
+
+		            html += 'Пользователь' +
+			            '<br>' +
+			            'Номер телефона: <b>' + user.phone + '</b><br><br>';
+
+		            statuses.forEach(function (status) {
+			            var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
+
+			            html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+requestInfo.type+'\', '+requestInfo.id+', '+status.id+');" />';
+		            });
+
+		            html += "</div>";
+
+		            return html;
+	            }
+
             });
         }
-
-        function generateCard(requestInfo, content, user) {
-	        var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
-
-	        var html = '<div class="withdrawal-info">' +
-		        '<p class="title">' + requestInfo.typeRU + '</p>' +
-		        'Статус: <b class="'+statusClass+'">' + requestInfo.status + '</b><br>' +
-		        'Дата создания: <b>' + requestInfo.date + '</b><br>' +
-		        '<br>' +
-		        'Реквизиты и суммы' + '<br>';
-
-	        Object.keys(content).forEach(function (item) {
-		        html += item + ': <b>' + content[item] + '</b><br>';
-	        });
-
-	        html += 'Пользователь' +
-		        '<br>' +
-		        'Номер телефона: <b>' + user.phone + '</b><br><br>';
-
-	        statuses.forEach(function (status) {
-		        var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
-
-		        html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+requestInfo.type+'\', '+requestInfo.id+', '+status.id+');" />';
-	        });
-
-	        html += "</div>";
-
-	        return html;
-        }
-
 
         //Изменение статуса заявки
         function changeStatus(parent_node_name, status_id) {
