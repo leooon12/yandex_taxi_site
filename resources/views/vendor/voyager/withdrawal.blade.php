@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="/css/my_loader.css">
 
 	<style>
+		.tabs {
+			text-align: center;
+			color: #333333;
+			font-weight: bold;
+		}
+
 		.withdrawal-info {
 			display: inline-block;
 			padding: 10px;
@@ -33,6 +39,10 @@
 			opacity: 1;
 		}
 
+		.all {
+			background: #53aae8;
+		}
+
 		.waiting {
 			background: #e8c153;
 		}
@@ -50,11 +60,11 @@
 
         <div id="my_loader" class="my_loader"></div>
 
-        <div>
-            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);"/>
-            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);"/>
-
+        <div class="tabs">
+            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting"/>
+            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" class="all"/>
         </div>
+
         <div id="withdrawals"></div>
     </div>
 
