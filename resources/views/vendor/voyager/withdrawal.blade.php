@@ -83,7 +83,7 @@
 
 								var requisites = [{
 									name: 		"Номер счета",
-									value: 		withdrawal.account_number
+									valueText: 	withdrawal.account_number
 								}];
 
 								var user = {
@@ -109,7 +109,7 @@
 
 								var requisites = [{
 									name: 		"Номер карты",
-									value: 		withdrawal.card_number
+									valueText: 	withdrawal.card_number
 								}];
 
 								var user = {
@@ -135,7 +135,7 @@
 
 								var requisites = [{
 									name: 		"Номер кошелька",
-									value: 		withdrawal.card_number
+									valueText:  withdrawal.card_number
 								}];
 
 								var user = {
@@ -165,7 +165,7 @@
 							'<br>';
 
 					requisites.forEach(function (item) {
-						html += item.name + ': ' + item.value + '<br>';
+						html += item.name + ': ' + item.valueText + '<br>';
 					});
 
 					html += 'Сумма: ' + paymentInfo.sum + "<br>";
