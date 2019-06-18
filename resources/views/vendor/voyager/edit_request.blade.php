@@ -125,7 +125,7 @@
 	                    var data = JSON.parse(request.content);
 
 	                    var requestInfo = {
-		                    type:		data.type,
+		                    type:		data.data.type,
 		                    status: 	request.status.name,
 		                    date: 		request.created_at,
 		                    id:			request.id
