@@ -2,7 +2,7 @@
 	font-family: voyager;
 	src: url("/fonts/voyager.woff");
 	src:
-			url("https://github.com/the-control-group/voyager/raw/1.2/publishable/assets/fonts/voyager.woff") format("woff"),
+			url("/fonts/voyager.woff") format("woff"),
 			url("https://github.com/the-control-group/voyager/blob/1.2/publishable/assets/fonts/voyager.svg") format("svg");
 }
 
