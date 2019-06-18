@@ -60,10 +60,9 @@
 
         <div id="my_loader" class="my_loader"></div>
 
-        <div>
-            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getRequests(IN_WORK_REQUESTS);" />
-            <input id="all" type="button" value="Все заявки" onclick="getRequests(ALL_REQUESTS);" />
-
+        <div class="tabs">
+            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getRequests(IN_WORK_REQUESTS);" class="waiting" />
+            <input id="all" type="button" value="Все заявки" onclick="getRequests(ALL_REQUESTS);" class="all" />
         </div>
 
         <div id="requests"></div>

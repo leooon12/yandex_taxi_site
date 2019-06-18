@@ -61,8 +61,8 @@
         <div id="my_loader" class="my_loader"></div>
 
         <div class="tabs">
-            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting"/>
-            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" class="all"/>
+            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting" />
+            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" class="all" />
         </div>
 
         <div id="withdrawals"></div>
