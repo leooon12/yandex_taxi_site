@@ -138,7 +138,7 @@
 
 								var requisites = [{
 									name: 		"Номер кошелька",
-									valueText:  withdrawal.card_number
+									valueText:  withdrawal.wallet_number
 								}];
 
 								var user = {
@@ -179,7 +179,7 @@
 							'<br>';
 
 					statuses.forEach(function (status) {
-						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+');" />';
+						html += '<input type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
 					});
 
 					html += "</div>";
@@ -190,9 +190,7 @@
 		}
 
 		//Изменение статуса заявки
-		function changeStatus(parent_node_name, status_id) {
-			var model_name = parent_node_name.split("_")[2];
-			var withdrawal_id = parent_node_name.split("_")[3];
+		function changeStatus(model_name, withdrawal_id, status_id) {
 
 			$.ajax({
 				type: "POST",
