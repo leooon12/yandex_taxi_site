@@ -121,6 +121,9 @@
 						return;
 					}
 
+					if (type == ALL_WITHDRAWALS)
+						withdrawals.reverse();
+
 					withdrawals.forEach(function (withdrawal) {
 						switch (withdrawal.type) {
 							case "WithdrawalBankAccount":
