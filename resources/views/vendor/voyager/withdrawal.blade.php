@@ -180,6 +180,8 @@
 					statuses.forEach(function (status) {
 						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus('+paymentInfo.type+', '+paymentInfo.id+');" />';
 					});
+
+					return html;
 				}
 			});
 		}
