@@ -167,10 +167,10 @@
 							'<br>';
 
 					requisites.forEach(function (item) {
-						html += requisites.name + ': ' + requisites.value + '<br>';
+						html += item.name + ': ' + item.value + '<br>';
 					});
 
-					html += 'Сумма: ' + paymentInfo.sum;
+					html += 'Сумма: ' + paymentInfo.sum + "<br>";
 
 					html += '<b>Пользователь</b>' +
 							'<br>' +
