@@ -3,9 +3,4 @@
 	src: url("/fonts/voyager.woff");
 	src:
 			url("/fonts/voyager.woff") format("woff"),
-			url("https://github.com/the-control-group/voyager/blob/1.2/publishable/assets/fonts/voyager.svg") format("svg");
-}
-
-* {
-	font-family: voyager !important;
 }
