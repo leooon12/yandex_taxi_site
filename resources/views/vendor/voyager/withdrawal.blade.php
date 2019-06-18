@@ -40,19 +40,19 @@
 		}
 
 		.all {
-			background: #53aae8;
+			background: #53aae8 !important;;
 		}
 
 		.waiting {
-			background: #e8c153;
+			background: #e8c153 !important;;
 		}
 
 		.success {
-			background: #53e888;
+			background: #53e888 !important;;
 		}
 
 		.error {
-			background: #e85353;
+			background: #e85353 !important;
 		}
 	</style>
 
