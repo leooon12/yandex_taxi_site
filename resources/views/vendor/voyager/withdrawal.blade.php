@@ -83,7 +83,10 @@
 
 								var requisites = [{
 									name: 		"Номер счета",
-									value: 		withdrawal.account_number
+									valueText: 	withdrawal.account_number
+								}, {
+									name: 		"ФИО",
+									valueText: 	withdrawal.surname + " " + withdrawal.name + " " + withdrawal.patronymic
 								}];
 
 								var user = {
@@ -109,7 +112,7 @@
 
 								var requisites = [{
 									name: 		"Номер карты",
-									value: 		withdrawal.card_number
+									valueText: 	withdrawal.card_number
 								}];
 
 								var user = {
@@ -135,7 +138,7 @@
 
 								var requisites = [{
 									name: 		"Номер кошелька",
-									value: 		withdrawal.card_number
+									valueText:  withdrawal.card_number
 								}];
 
 								var user = {
@@ -165,7 +168,7 @@
 							'<br>';
 
 					requisites.forEach(function (item) {
-						html += item.name + ': ' + item.value + '<br>';
+						html += item.name + ': ' + item.valueText + '<br>';
 					});
 
 					html += 'Сумма: ' + paymentInfo.sum + "<br>";
@@ -176,7 +179,7 @@
 							'<br>';
 
 					statuses.forEach(function (status) {
-						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus('+paymentInfo.type+', '+paymentInfo.id+');" />';
+						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+');" />';
 					});
 
 					html += "</div>";
