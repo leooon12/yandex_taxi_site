@@ -125,7 +125,7 @@
 	                    var data = JSON.parse(request.content);
 
 	                    var requestInfo = {
-		                    type:		data.data.type,
+		                    type:		data.type,
 		                    status: 	request.status.name,
 		                    date: 		request.created_at,
 		                    id:			request.id
@@ -149,7 +149,7 @@
 		            var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
 
 		            var html = '<div class="withdrawal-info">' +
-			            '<p class="title">' + requestInfo.typeRU + '</p>' +
+			            '<p class="title">' + requestInfo.type + '</p>' +
 			            'Статус: <b class="'+statusClass+'">' + requestInfo.status + '</b><br>' +
 			            'Дата создания: <b>' + requestInfo.date + '</b><br>' +
 			            '<br>' +
@@ -179,7 +179,6 @@
 
         //Изменение статуса заявки
         function changeStatus(request_id, status_id) {
-
 	        $.ajax({
                 type: "POST",
                 url: "/api/edit_request/status",
