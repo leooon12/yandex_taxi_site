@@ -133,6 +133,8 @@
 
 	                    var requisites = data;
 
+	                    console.log(data);
+
 	                    var user = {
 		                    surname: 	request.user.surname,
 		                    name: 		request.user.name,
