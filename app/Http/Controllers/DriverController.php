@@ -95,7 +95,7 @@ class DriverController extends Controller
         $carInfo = (new CarInfo())
             ->setBrand($request->get('car_brand'))
             ->setModel($request->get('car_model'))
-            ->setGovNumber($request->get('Car_gov_number'))
+            ->setGovNumber($request->get('car_gov_number'))
             ->setColor($request->get('car_color'))
             ->setVin($request->get('car_vin'))
             ->setCreationYear($request->get('car_creation_year'))
