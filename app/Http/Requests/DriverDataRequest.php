@@ -35,11 +35,11 @@ class DriverDataRequest extends FormRequest
     public function messages ()
     {
         return [
-            'full_name.required'        => 'Не был передан параметр ФИО',
+            'full_name.required'        => 'Не указано: ФИО',
             'full_name.string'          => 'Неверный формат ФИО',
             'full_name.min'             => 'Длина ФИО должна быть не меньше 5 символов',
             'full_name.max'             => 'Длина ФИО должна быть не больше 100 символов',
-            'phone_number.required'     => 'Не был передан параметр номер телефона',
+            'phone_number.required'     => 'Не указано: номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов'
         ];

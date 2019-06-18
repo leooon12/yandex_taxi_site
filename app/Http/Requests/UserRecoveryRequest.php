@@ -33,7 +33,7 @@ class UserRecoveryRequest extends FormRequest
     public function messages ()
     {
         return [
-            'phone_number.required'     => 'Не был передан параметр номер телефона',
+            'phone_number.required'     => 'Не указано: номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
             'phone_number.exists'       => 'Данный номер телефона не зарегистрирован в системе',

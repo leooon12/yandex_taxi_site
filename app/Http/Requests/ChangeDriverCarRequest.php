@@ -38,12 +38,12 @@ class ChangeDriverCarRequest extends FormRequest
     public function messages ()
     {
         return [
-            'car_brand.required'                            => 'Не был передан параметр: марка автомобиля',
-            'car_model.required'                            => 'Не был передан параметр: модель автомобиля',
-            'car_creation_year.required'                    => 'Не был передан параметр: дата выпуска автомобиля',
-            'car_color.required'                            => 'Не был передан параметр: цвет автомобиля',
-            'car_gov_number.required'                       => 'Не был передан параметр: госномер',
-            'car_reg_sertificate.required'                  => 'Не был передан параметр: серия/номер СТС',
+            'car_brand.required'                            => 'Не указано: марка автомобиля',
+            'car_model.required'                            => 'Не указано: модель автомобиля',
+            'car_creation_year.required'                    => 'Не указано: дата выпуска автомобиля',
+            'car_color.required'                            => 'Не указано: цвет автомобиля',
+            'car_gov_number.required'                       => 'Не указано: госномер',
+            'car_reg_sertificate.required'                  => 'Не указано: серия/номер СТС',
             'car_brand.string'                              => 'Неверный формат параметра: марка автомобиля',
             'car_model.string'                              => 'Неверный формат параметра: модель автомобиля',
             'car_creation_year.string'                      => 'Неверный формат параметра: дата выпуска автомобиля',

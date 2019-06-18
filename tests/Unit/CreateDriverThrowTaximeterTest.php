@@ -5,8 +5,6 @@ namespace Tests\Unit;
 use App\AnotherClasses\Builders\DriverInfo;
 use App\AnotherClasses\TaximeterConnector;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateDriverThrowTaximeterTest extends TestCase
 {
@@ -37,11 +35,11 @@ class CreateDriverThrowTaximeterTest extends TestCase
         $driverInfo->getDriverDocumentInfo()
             ->setSerialNumber("0123")
             ->setUniqNumber("456788")
-            ->setCounty("rus")
+            ->setCountry("rus")
             ->setEndDate("2029-09-09")
             ->setIssueDate("2001-09-09");
 
-        //$driverCreationResult = TaximeterConnector::createDriver($driverInfo);
+        $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
 
         $this->assertTrue(true);
     }
