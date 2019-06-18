@@ -4,6 +4,16 @@
 
     <link rel="stylesheet" href="/css/my_loader.css">
 
+	<style>
+		.withdrawal-info {
+			display: inline-block;
+			padding: 10px;
+			margin: 10px;
+			background: #eeeeee;
+			border-radius: 10px;
+		}
+	</style>
+
     <div>
 
         <div id="my_loader" class="my_loader"></div>
@@ -156,7 +166,7 @@
 				});
 
 				function generateCard(paymentInfo, requisites, user) {
-					var html = '<div id="withdrawal_info">' +
+					var html = '<div class="withdrawal-info">' +
 							'<b>Заявка на выплату: ' + paymentInfo.typeRU + '</b>' +
 							'<br>' +
 							'Статус: ' + paymentInfo.status +
@@ -175,11 +185,12 @@
 
 					html += '<b>Пользователь</b>' +
 							'<br>' +
+							'<br>' +
 							'Номер телефона: ' + user.phone +
 							'<br>';
 
 					statuses.forEach(function (status) {
-						html += '<input type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
+						html += '<input value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
 					});
 
 					html += "</div>";
