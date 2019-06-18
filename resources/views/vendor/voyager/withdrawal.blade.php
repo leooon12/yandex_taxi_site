@@ -181,6 +181,8 @@
 						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus('+paymentInfo.type+', '+paymentInfo.id+');" />';
 					});
 
+					html += "</div>";
+
 					return html;
 				}
 			});
