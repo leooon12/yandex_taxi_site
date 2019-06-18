@@ -103,7 +103,7 @@ class DriverController extends Controller
 
         $carCreationResult = TaximeterConnector::createCar($carInfo);
 
-        $carInfo->setId(TaximeterConnector::getCar()['id']);
+        $carInfo->setId(TaximeterConnector::getCar($request->get('car_reg_sertificate'))['id']);
 
         $driverInfo = $this->getFullDriverInfo($user_phone_number);
 
