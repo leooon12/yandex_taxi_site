@@ -13,6 +13,10 @@
 			border-radius: 10px;
 			font-weight: bold;
 		}
+
+		.withdrawal-info .title {
+			text-align: center;
+		}
 	</style>
 
     <div>
@@ -168,7 +172,7 @@
 
 				function generateCard(paymentInfo, requisites, user) {
 					var html = '<div class="withdrawal-info">' +
-									'Заявка на выплату: ' + paymentInfo.typeRU + '<br>' +
+									'<p class="title">Выплата на ' + paymentInfo.typeRU + '</p>' +
 									'Статус: <b>' + paymentInfo.status + '</b><br>' +
 									'Дата создания: <b>' + paymentInfo.date + '</b><br>' +
 									'<br>' +
