@@ -32,6 +32,18 @@
 		input[type="button"]:hover {
 			opacity: 1;
 		}
+
+		.waiting {
+			background: #e8c153;
+		}
+
+		.success {
+			background: #53e888;
+		}
+
+		.error {
+			background: #e85353;
+		}
 	</style>
 
     <div>
@@ -204,7 +216,9 @@
 							'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
 					statuses.forEach(function (status) {
-						html += '<input value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
+						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
+
+						html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
 					});
 
 					html += "</div>";
