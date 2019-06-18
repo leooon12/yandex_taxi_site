@@ -169,21 +169,20 @@
 				function generateCard(paymentInfo, requisites, user) {
 					var html = '<div class="withdrawal-info">' +
 									'Заявка на выплату: ' + paymentInfo.typeRU + '<br>' +
-									'Статус: ' + paymentInfo.status + '<br>' +
-									'Дата создания: ' + paymentInfo.date + '<br>' +
+									'Статус: <b>' + paymentInfo.status + '</b><br>' +
+									'Дата создания: <b>' + paymentInfo.date + '</b><br>' +
 									'<br>' +
 									'Реквизиты и суммы' + '<br>';
 
 					requisites.forEach(function (item) {
-						html += item.name + ': ' + item.valueText + '<br>';
+						html += item.name + ': <b>' + item.valueText + '</b><br>';
 					});
 
-					html += 'Сумма: ' + paymentInfo.sum + "<br>" +
+					html += 'Сумма: <b>' + paymentInfo.sum + "</b><br>" +
 							'<br>' +
 							'Пользователь' +
 							'<br>' +
-							'Номер телефона: ' + user.phone +
-							'<br>';
+							'Номер телефона: <b>' + user.phone + '</b><br>';
 
 					statuses.forEach(function (status) {
 						html += '<input value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
