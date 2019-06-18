@@ -136,7 +136,7 @@ class DriverInfo
         $this->setName($driverProfile["driver"]["first_name"])
             ->setSurname($driverProfile["driver"]["last_name"])
             ->setPatronymic($driverProfile["driver"]["middle_name"])
-            ->setBirthdate($driverProfile["driver"]["license"]['birth_date'])
+            ->setBirthdate(isset($driverProfile["driver"]["license"]['birth_date']) ? $driverProfile["driver"]["license"]['birth_date'] : null)
             ->setPhone($driverProfile['driver']['phones'][0]);
 
         // Тут не заполняются поля, которые были при регистрации, ибо их нет: Vin, Данные ПТС...
