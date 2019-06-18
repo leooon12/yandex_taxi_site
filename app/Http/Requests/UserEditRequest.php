@@ -36,19 +36,19 @@ class UserEditRequest extends FormRequest
     public function messages ()
     {
         return [
-            'name.required'             => 'Не был передан параметр имя',
+            'name.required'             => 'Не указано: имя',
             'name.string'               => 'Неверный формат имени',
             'name.min'                  => 'Длина имени должна быть не меньше 3 символов',
             'name.max'                  => 'Длина имени должна быть не больше 100 символов',
-            'patronymic.required'       => 'Не был передан параметр отчество',
+            'patronymic.required'       => 'Не указано: отчество',
             'patronymic.string'         => 'Неверный формат отчества',
             'patronymic.min'            => 'Длина отчества должна быть не меньше 3 символов',
             'patronymic.max'            => 'Длина отчества должна быть не больше 100 символов',
-            'surname.required'          => 'Не был передан параметр фамилия',
+            'surname.required'          => 'Не указано: фамилия',
             'surname.string'            => 'Неверный формат фамилии',
             'surname.min'               => 'Длина фомилии должна быть не меньше 2 символов',
             'surname.max'               => 'Длина фамилии должна быть не больше 100 символов',
-            'phone_number.required'     => 'Не был передан параметр номер телефона',
+            'phone_number.required'     => 'Не указано: номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
         ];

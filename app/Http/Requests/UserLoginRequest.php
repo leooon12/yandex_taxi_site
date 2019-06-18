@@ -34,10 +34,10 @@ class UserLoginRequest extends FormRequest
     public function messages ()
     {
         return [
-            'password.required'         => 'Не был передан параметр пароль',
+            'password.required'         => 'Не указано: пароль',
             'password.string'           => 'Неверный формат пароля',
             'password.size'             => 'Длина пароля должна быть 6 символа',
-            'phone_number.required'     => 'Не был передан параметр номер телефона',
+            'phone_number.required'     => 'Не указано: номер телефона',
             'phone_number.string'       => 'Неверный формат номера телефона',
             'phone_number.size'         => 'Длина номера телефона должна быть 11 символов',
         ];

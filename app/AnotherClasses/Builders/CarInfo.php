@@ -146,7 +146,7 @@ class CarInfo
     }
 
     public function getCallSign() {
-        return substr($this->getGovNumber(), 1, 3) . $this->getModel();
+        return mb_substr($this->getGovNumber(), 1, 3) . $this->getModel();
     }
 
     /**

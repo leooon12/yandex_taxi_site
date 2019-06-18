@@ -70,8 +70,8 @@ class DriverController extends Controller
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
 
-        if (!$editResponce['reload'])
-            return ResponseHandler::getJsonResponse(500, "Номер телефона не изменен", compact('user', 'token'));
+        if (!isset($editResponce['reload']))
+            return ResponseHandler::getJsonResponse(500, "Номер телефона не изменен", compact('editResponce'));
 
         $user = UserJWT::where('id', $user_id)
             ->update([
@@ -82,8 +82,6 @@ class DriverController extends Controller
 
         UserJWT::where('id', $user_id)
             ->update(['password' => bcrypt($code)]);
-
-        $this->dispatch(new SendRegistrationSms($request->get('phone_number'), $code));
 
         JWTAuth::invalidate(JWTAuth::getToken());
 
@@ -97,7 +95,7 @@ class DriverController extends Controller
         $carInfo = (new CarInfo())
             ->setBrand($request->get('car_brand'))
             ->setModel($request->get('car_model'))
-            ->setGovNumber($request->get('Car_gov_number'))
+            ->setGovNumber($request->get('car_gov_number'))
             ->setColor($request->get('car_color'))
             ->setVin($request->get('car_vin'))
             ->setCreationYear($request->get('car_creation_year'))
@@ -116,8 +114,8 @@ class DriverController extends Controller
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
 
-        if (!$editResponce['reload'])
-            return ResponseHandler::getJsonResponse(500, "Данные автомобиля не были изменены");
+        if (!isset($editResponce['reload']))
+            return ResponseHandler::getJsonResponse(500, "Данные автомобиля не были изменены", compact('editResponce'));
 
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }

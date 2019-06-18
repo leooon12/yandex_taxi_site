@@ -29,7 +29,7 @@ class ChangeDriverThrowTaximeterTest extends TestCase
 
         $driverInfo->setPhone("89143301233");
 
-        TaximeterConnector::editDriver($driverInfo);
+        //TaximeterConnector::editDriver($driverInfo);
         $this->assertTrue(true);
     }
 }

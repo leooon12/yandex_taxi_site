@@ -320,7 +320,7 @@ class TaximeterConnector
         $url = TaximeterConnector::LK_URL . '/create/car?db=' . TaximeterConnector::PARK_ID . '&lang=ru';
 
         $postfields = strtr(
-            "&Car.OwnerId=
+            "Car.OwnerId=
             &Car.PermitNumber=
             &Car.PermitSeries=
             &Car.PermitDocument=
@@ -369,11 +369,11 @@ class TaximeterConnector
             "&Driver.BalanceLimit="           . $driverInfo->getBalanceLimit() .
             "&Driver.HireDate="               . $driverInfo->getHireDate() .
             "&Driver.LicenseSeries="          . $driverInfo->getDriverDocumentInfo()->getSerialNumber() .
-            "&license_issue_date="            . $driverInfo->getDriverDocumentInfo()->getIssueDate() .
+            "&Driver.LicenseIssueDate="       . $driverInfo->getDriverDocumentInfo()->getIssueDate() .
             "&Driver.LicenseNumber="          . $driverInfo->getDriverDocumentInfo()->getUniqNumber() .
-            "&license_expire_date="           . $driverInfo->getDriverDocumentInfo()->getEndDate() .
-            "&LicenseCountry="                . $driverInfo->getBirthdate() .
-            "Driver.LicenseDriverBirthDate="  . $driverInfo->getBirthdate() .
+            "&Driver.LicenseExpireDate="      . $driverInfo->getDriverDocumentInfo()->getEndDate() .
+            "&Driver.LicenseCountryId="       . $driverInfo->getDriverDocumentInfo()->getCountry() .
+            "&Driver.LicenseDriverBirthDate=" . $driverInfo->getBirthdate() .
             "&__RequestVerificationToken="    . $newDriverIdAndToken[1] .
             "&Disabled=false
             &Driver.WorkStatus=2
