@@ -320,7 +320,7 @@ class TaximeterConnector
         $url = TaximeterConnector::LK_URL . '/create/car?db=' . TaximeterConnector::PARK_ID . '&lang=ru';
 
         $postfields = strtr(
-            "&Car.OwnerId=
+            "Car.OwnerId=
             &Car.PermitNumber=
             &Car.PermitSeries=
             &Car.PermitDocument=
