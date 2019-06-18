@@ -93,7 +93,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 
@@ -119,7 +119,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 
@@ -145,7 +145,7 @@
 									phone: 		withdrawal.user.phone_number
 								};
 
-								generateCard(paymentInfo, requisites, user);
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
 						}
