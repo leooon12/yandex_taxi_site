@@ -208,9 +208,11 @@
 				});
 
 				function generateCard(paymentInfo, requisites, user) {
+					var statusClass = paymentInfo.status == "в обработке" ? "waiting" : paymentInfo.status == "выполнен" ? "success" : "error";
+
 					var html = '<div class="withdrawal-info">' +
 									'<p class="title">Выплата на ' + paymentInfo.typeRU + '</p>' +
-									'Статус: <b>' + paymentInfo.status + '</b><br>' +
+									'Статус: <b class="'+statusClass+'">' + paymentInfo.status + '</b><br>' +
 									'Дата создания: <b>' + paymentInfo.date + '</b><br>' +
 									'<br>' +
 									'Реквизиты и суммы' + '<br>';
