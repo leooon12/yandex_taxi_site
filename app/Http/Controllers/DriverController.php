@@ -110,7 +110,7 @@ class DriverController extends Controller
         if (!$driverInfo)
             return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
 
-        $driverInfo->setCarInfo($carCreationResult);
+        $driverInfo->setCarInfo($carInfo);
 
         $editResponce = TaximeterConnector::editDriver($driverInfo);
 
