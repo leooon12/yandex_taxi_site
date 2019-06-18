@@ -186,7 +186,7 @@
 							'<br>' +
 							'Пользователь' +
 							'<br>' +
-							'Номер телефона: <b>' + user.phone + '</b><br>';
+							'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
 					statuses.forEach(function (status) {
 						html += '<input value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
