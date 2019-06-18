@@ -193,7 +193,7 @@
 
 								var requisites = [{
 									name: 		"Номер кошелька",
-									valueText:  withdrawal.wallet_number
+									valueText:  withdrawal.yandex_number
 								}];
 
 								var user = {
