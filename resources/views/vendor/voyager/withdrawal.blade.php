@@ -11,6 +11,7 @@
 			margin: 10px;
 			background: #eeeeee;
 			border-radius: 10px;
+			font-weight: bold;
 		}
 	</style>
 
@@ -167,24 +168,19 @@
 
 				function generateCard(paymentInfo, requisites, user) {
 					var html = '<div class="withdrawal-info">' +
-							'<b>Заявка на выплату: ' + paymentInfo.typeRU + '</b>' +
-							'<br>' +
-							'Статус: ' + paymentInfo.status +
-							'<br>' +
-							'Дата создания: ' + paymentInfo.date +
-							'<br>' +
-							'<br>' +
-							'<b>Реквизиты и суммы</b> ' +
-							'<br>';
+									'Заявка на выплату: ' + paymentInfo.typeRU + '<br>' +
+									'Статус: ' + paymentInfo.status + '<br>' +
+									'Дата создания: ' + paymentInfo.date + '<br>' +
+									'<br>' +
+									'Реквизиты и суммы' + '<br>';
 
 					requisites.forEach(function (item) {
 						html += item.name + ': ' + item.valueText + '<br>';
 					});
 
-					html += 'Сумма: ' + paymentInfo.sum + "<br>";
-
-					html += '<b>Пользователь</b>' +
+					html += 'Сумма: ' + paymentInfo.sum + "<br>" +
 							'<br>' +
+							'Пользователь' +
 							'<br>' +
 							'Номер телефона: ' + user.phone +
 							'<br>';
