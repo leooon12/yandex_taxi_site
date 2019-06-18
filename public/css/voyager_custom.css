@@ -1,12 +1,11 @@
 @font-face {
-	font-family: "Harabara Bold";
-	src: url("css/fonts/Harabara.eot");
+	font-family: voyager;
+	src: url("https://github.com/the-control-group/voyager/blob/1.2/publishable/assets/fonts/voyager.woff");
 	src:
-			url("css/fonts/Harabara.woff") format("woff"),
-			url("css/fonts/Harabara.otf") format("opentype"),
-			url("css/fonts/Harabara.svg#filename") format("svg");
+			url("https://github.com/the-control-group/voyager/raw/1.2/publishable/assets/fonts/voyager.woff") format("woff"),
+			url("https://github.com/the-control-group/voyager/blob/1.2/publishable/assets/fonts/voyager.svg") format("svg");
 }
 
 * {
-	transform: scale(1.1);
+	font-family: voyager !important;
 }
