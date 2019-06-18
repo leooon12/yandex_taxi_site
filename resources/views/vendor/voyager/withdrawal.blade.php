@@ -24,7 +24,13 @@
 			border: 0;
 			border-radius: 5px;
 			margin: 5px;
-			padding: 10px
+			padding: 10px;
+			color: #333333;
+			opacity: 0.9;
+		}
+
+		input[type="button"]:hover {
+			opacity: 1;
 		}
 	</style>
 
