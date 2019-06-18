@@ -153,13 +153,13 @@
 			            'Статус: <b class="'+statusClass+'">' + requestInfo.status + '</b><br>' +
 			            'Дата создания: <b>' + requestInfo.date + '</b><br>' +
 			            '<br>' +
-			            'Реквизиты и суммы' + '<br>';
+			            'Данные' + '<br>';
 
 		            Object.keys(content).forEach(function (item) {
 			            html += item + ': <b>' + content[item] + '</b><br>';
 		            });
 
-		            html += 'Пользователь' +
+		            html += '<br>Пользователь' +
 			            '<br>' +
 			            'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
