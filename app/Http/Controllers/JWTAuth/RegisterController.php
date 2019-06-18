@@ -79,8 +79,8 @@ class RegisterController extends Controller
             ->setIssueDate($request->get('document_issue_date'));
 
         $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
-
-        if (!$driverCreationResult['redirect'])
+        
+        if (!isset($driverCreationResult['redirect']))
             return ResponseHandler::getJsonResponse(500, "Не удалось произвести регистрацию в таксометре", compact('driverCreationResult'));
 
 
