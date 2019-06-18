@@ -124,16 +124,14 @@
                     requests.forEach(function (request) {
 	                    var data = JSON.parse(request.content);
 
-	                    var paymentInfo = {
+	                    var requestInfo = {
 		                    type:		data.type,
 		                    status: 	request.status.name,
 		                    date: 		request.created_at,
 		                    id:			request.id
 	                    };
 
-	                    var requisites = data;
-
-	                    console.log(data);
+	                    var content = data.data;
 
 	                    var user = {
 		                    surname: 	request.user.surname,
@@ -142,7 +140,7 @@
 		                    phone: 		request.user.phone_number
 	                    };
 
-	                    requests_html.innerHTML += generateCard(paymentInfo, requisites, user);
+	                    requests_html.innerHTML += generateCard(requestInfo, content, user);
                     });
 
                 });
@@ -150,7 +148,7 @@
             });
         }
 
-        function generateCard(requestInfo, requisites, user) {
+        function generateCard(requestInfo, content, user) {
 	        var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
 
 	        var html = '<div class="withdrawal-info">' +
@@ -160,13 +158,11 @@
 		        '<br>' +
 		        'Реквизиты и суммы' + '<br>';
 
-	        requisites.forEach(function (item) {
-		        html += item.name + ': <b>' + item.valueText + '</b><br>';
+	        content.keys().forEach(function (item) {
+		        html += item + ': <b>' + content[item] + '</b><br>';
 	        });
 
-	        html += 'Сумма: <b>' + requestInfo.sum + "</b><br>" +
-		        '<br>' +
-		        'Пользователь' +
+	        html += 'Пользователь' +
 		        '<br>' +
 		        'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
