@@ -83,8 +83,6 @@ class DriverController extends Controller
         UserJWT::where('id', $user_id)
             ->update(['password' => bcrypt($code)]);
 
-        $this->dispatch(new SendRegistrationSms($request->get('phone_number'), $code));
-
         JWTAuth::invalidate(JWTAuth::getToken());
 
         return ResponseHandler::getJsonResponse(228, "Номер телефона изменен", compact('user', 'token'));
