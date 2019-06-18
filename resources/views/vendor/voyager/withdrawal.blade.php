@@ -12,6 +12,7 @@
 			background: #eeeeee;
 			border-radius: 10px;
 			font-weight: bold;
+			color: #333333;
 		}
 
 		.withdrawal-info .title {
@@ -21,8 +22,9 @@
 		input[type="button"] {
 			background: #dddddd;
 			border: 0;
-			border-radius: 0;
+			border-radius: 5px;
 			margin: 5px;
+			padding: 10px
 		}
 	</style>
 
