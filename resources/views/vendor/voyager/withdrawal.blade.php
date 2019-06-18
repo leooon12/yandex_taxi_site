@@ -84,6 +84,9 @@
 								var requisites = [{
 									name: 		"Номер счета",
 									valueText: 	withdrawal.account_number
+								}, {
+									name: 		"ФИО",
+									valueText: 	withdrawal.surname + " " + withdrawal.name + " " + withdrawal.patronymic
 								}];
 
 								var user = {
