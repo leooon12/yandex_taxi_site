@@ -1,0 +1,6 @@
+@font-face {
+	font-family: voyager;
+	src: url("/fonts/voyager.woff");
+	src:
+			url("/fonts/voyager.woff") format("woff"),
+}

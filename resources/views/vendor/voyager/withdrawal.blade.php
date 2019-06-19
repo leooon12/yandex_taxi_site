@@ -4,15 +4,67 @@
 
     <link rel="stylesheet" href="/css/my_loader.css">
 
+	<style>
+		.tabs {
+			text-align: center;
+			color: #333333;
+			font-weight: bold;
+		}
+
+		.withdrawal-info {
+			display: inline-block;
+			padding: 10px;
+			margin: 10px;
+			background: #eeeeee;
+			border-radius: 10px;
+			font-weight: bold;
+			color: #333333;
+		}
+
+		.withdrawal-info .title {
+			text-align: center;
+		}
+
+		input[type="button"] {
+			background: #dddddd;
+			border: 0;
+			border-radius: 5px;
+			margin: 5px;
+			padding: 10px;
+			color: #333333;
+			opacity: 0.9;
+		}
+
+		input[type="button"]:hover {
+			opacity: 1;
+		}
+
+		.all {
+			background: #53aae8 !important;;
+		}
+
+		.waiting {
+			background: #e8c153 !important;;
+		}
+
+		.success {
+			background: #53e888 !important;;
+		}
+
+		.error {
+			background: #e85353 !important;
+		}
+	</style>
+
     <div>
 
         <div id="my_loader" class="my_loader"></div>
 
-        <div>
-            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);"/>
-            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);"/>
-
+        <div class="tabs">
+            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting" />
+            <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" class="all" />
         </div>
+
         <div id="withdrawals"></div>
     </div>
 
@@ -69,6 +121,9 @@
 						return;
 					}
 
+					if (type == ALL_WITHDRAWALS)
+						withdrawals.reverse();
+
 					withdrawals.forEach(function (withdrawal) {
 						switch (withdrawal.type) {
 							case "WithdrawalBankAccount":
@@ -83,7 +138,10 @@
 
 								var requisites = [{
 									name: 		"Номер счета",
-									value: 		withdrawal.account_number
+									valueText: 	withdrawal.account_number
+								}, {
+									name: 		"ФИО",
+									valueText: 	withdrawal.surname + " " + withdrawal.name + " " + withdrawal.patronymic
 								}];
 
 								var user = {
@@ -109,7 +167,7 @@
 
 								var requisites = [{
 									name: 		"Номер карты",
-									value: 		withdrawal.card_number
+									valueText: 	withdrawal.card_number
 								}];
 
 								var user = {
@@ -135,7 +193,7 @@
 
 								var requisites = [{
 									name: 		"Номер кошелька",
-									value: 		withdrawal.card_number
+									valueText:  withdrawal.yandex_number
 								}];
 
 								var user = {
@@ -153,32 +211,29 @@
 				});
 
 				function generateCard(paymentInfo, requisites, user) {
-					var html = '<div id="withdrawal_info">' +
-							'<b>Заявка на выплату</b>' +
-							'<br>' +
-							'Тип: ' + paymentInfo.typeRU +
-							'<br>' +
-							'Статус: ' + paymentInfo.status +
-							'<br>' +
-							'Дата создания: ' + paymentInfo.date +
-							'<br>' +
-							'<br>' +
-							'<b>Реквизиты и суммы</b> ' +
-							'<br>';
+					var statusClass = paymentInfo.status == "в обработке" ? "waiting" : paymentInfo.status == "выполнен" ? "success" : "error";
+
+					var html = '<div class="withdrawal-info">' +
+									'<p class="title">Выплата на ' + paymentInfo.typeRU + '</p>' +
+									'Статус: <b class="'+statusClass+'">' + paymentInfo.status + '</b><br>' +
+									'Дата создания: <b>' + paymentInfo.date + '</b><br>' +
+									'<br>' +
+									'Реквизиты и суммы' + '<br>';
 
 					requisites.forEach(function (item) {
-						html += requisites.name + ': ' + requisites.value + '<br>';
+						html += item.name + ': <b>' + item.valueText + '</b><br>';
 					});
 
-					html += 'Сумма: ' + paymentInfo.sum;
-
-					html += '<b>Пользователь</b>' +
+					html += 'Сумма: <b>' + paymentInfo.sum + "</b><br>" +
 							'<br>' +
-							'Номер телефона: ' + user.phone +
-							'<br>';
+							'Пользователь' +
+							'<br>' +
+							'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
 					statuses.forEach(function (status) {
-						html += '<input id="' + status.id + '" type="button" value="' + status.name + '" onclick="changeStatus('+paymentInfo.type+', '+paymentInfo.id+');" />';
+						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
+
+						html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';
 					});
 
 					html += "</div>";
@@ -189,9 +244,7 @@
 		}
 
 		//Изменение статуса заявки
-		function changeStatus(parent_node_name, status_id) {
-			var model_name = parent_node_name.split("_")[2];
-			var withdrawal_id = parent_node_name.split("_")[3];
+		function changeStatus(model_name, withdrawal_id, status_id) {
 
 			$.ajax({
 				type: "POST",
