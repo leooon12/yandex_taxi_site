@@ -47,12 +47,13 @@ class DriverController extends Controller
         if (!$profile)
             return null;
 
-        $versionAndImei = TaximeterConnector::getAdditionalDriverInfo($user_phone_number);
+        $versionImeiPassword = TaximeterConnector::getAdditionalDriverInfo($user_phone_number);
 
         $driverInfo = new FullDriverInfo();
         $driverInfo->setAllFromTaximeterDriverProfile($profile);
-        $driverInfo->setImei($versionAndImei[1]);
-        $driverInfo->setTaximeterVesion($versionAndImei[0]);
+        $driverInfo->setImei($versionImeiPassword[1]);
+        $driverInfo->setTaximeterVesion($versionImeiPassword[0]);
+        $driverInfo->setPassword($versionImeiPassword[2]);
 
         return $driverInfo;
     }

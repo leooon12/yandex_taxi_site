@@ -219,8 +219,9 @@ class TaximeterConnector
 
         $version = explode("\"", explode("name=\"Version\" readonly=\"True\" type=\"text\" value=\"", $html)[1])[0];
         $imei = explode("\"", explode("name=\"Imei\" readonly=\"True\" type=\"text\" value=\"", $html)[1])[0];
+        $password = explode("\"", explode("name=\"Driver.Password\" type=\"text\" value=\"", $html)[1])[0];
 
-        return [$version, $imei];
+        return [$version, $imei, $password];
     }
 
 
