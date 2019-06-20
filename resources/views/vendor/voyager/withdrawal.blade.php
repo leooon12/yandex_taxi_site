@@ -224,11 +224,12 @@
 						html += item.name + ': <b>' + item.valueText + '</b><br>';
 					});
 
-					html += 'Сумма: <b>' + paymentInfo.sum + "</b><br>" +
+					html += 'Сумма: <b>' + paymentInfo.sum + " руб</b><br>" +
+                            ('Комиссия: <b>35 руб</b><br>' + paymentInfo.typeRU == "Банковская карта" ? 'Сумма без комиссии: ' + (paymentInfo.sum - 35) + " руб<br>" : "") +
 							'<br>' +
-							'Пользователь' +
-							'<br>' +
-							'Номер телефона: <b>' + user.phone + '</b><br><br>';
+							'Пользователь<br>' +
+							'Номер телефона: <b>' + user.phone + '</b><br>' +
+                            '<br>';
 
 					statuses.forEach(function (status) {
 						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
