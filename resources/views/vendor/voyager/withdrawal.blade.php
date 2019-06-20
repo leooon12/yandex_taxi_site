@@ -225,7 +225,7 @@
 					});
 
 					html += 'Сумма: <b>' + paymentInfo.sum + " руб</b><br>" +
-                            (paymentInfo.typeRU == "Банковская карта" ? 'Комиссия: <b>35 руб</b><br>Сумма без комиссии: ' + (paymentInfo.sum - 35) + " руб<br>" : "") +
+                            (paymentInfo.typeRU == "Банковская карта" ? 'Комиссия: <b>35 руб</b><br>Сумма к выплате: ' + (paymentInfo.sum - 35) + " руб<br>" : "") +
 							'<br>' +
 							'Пользователь<br>' +
 							'Номер телефона: <b>' + user.phone + '</b><br>' +
