@@ -295,6 +295,7 @@ class TaximeterConnector
             &Car.Category.Comfort=true
             &Car.Category.ComfortPlus=true
             &Car.Category.Start=true
+            &Car.Category.Standard=true
             &Car.Transmission=Unknown
             &Car.BoosterCount=0
             &__chairCount=0" .
