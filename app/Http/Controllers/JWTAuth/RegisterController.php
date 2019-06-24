@@ -25,6 +25,8 @@ use JWTAuth;
 class RegisterController extends Controller
 {
 
+    const MAIL_ADDRESS = "ParkDriver@yandex.ru";
+
     function __construct()
     {
         Config::set('auth.providers', ['users' => [
@@ -92,7 +94,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        Mail::to("adgfq121519@yandex.ru")->send(new TaximeterRegistrationMail($request));
+        Mail::to(self::MAIL_ADDRESS)->send(new TaximeterRegistrationMail($request));
         return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы", compact('user'));
     }
 }
