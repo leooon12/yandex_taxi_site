@@ -92,7 +92,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        Mail::to("adgfq121519@yandex.ru")->send(new TaximeterRegistrationMail());
+        Mail::to("adgfq121519@yandex.ru")->send(new TaximeterRegistrationMail($request));
         return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы", compact('user'));
     }
 }
