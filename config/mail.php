@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'skoblic@yandex.ru'),//'info@yandex-taxi.com'),
-        'name' => env('MAIL_FROM_NAME', 'Info'),
+        'address' => env('MAIL_FROM_ADDRESS', 'ParkCarDisp@yandex.ru'),//'info@yandex-taxi.com'),
+        'name' => env('MAIL_FROM_NAME', 'Yandex Taxi Info'),
     ],
 
     /*
@@ -88,9 +88,9 @@ return [
 
     //'password' => "taxi2402",
 
-    'username' => "skoblic@yandex.ru",
+    'username' => "ParkCarDisp@yandex.ru",
 
-    'password' => "s5a5f5e5",
+    'password' => "change_password_on_prod",
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path

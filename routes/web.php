@@ -13,6 +13,7 @@
 
 use App\AnotherClasses\Builders\DriverInfo;
 use App\AnotherClasses\TaximeterConnector;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
