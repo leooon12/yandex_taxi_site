@@ -32,3 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit_request/', 'AdminRequestController@index');
     });
 });
+
+if (App::environment('production', 'staging')) {
+    URL::forceScheme('https');
+}
