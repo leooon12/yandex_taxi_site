@@ -119,7 +119,7 @@
 						});
 
 						notification.onclick = function () {
-							window.open('http://stackoverflow.com/a/13328397/1269037');
+							window.open('https://taxiyour.ru/admin/edit_request');
 						};
 
 						requests_count = requests.length;
@@ -144,14 +144,14 @@
 							Notification.requestPermission();
 
 						var notification = new Notification('Новая заявка на выплату', {
-							icon: 'https://cdn1.iconfinder.com/data/icons/hawcons/32/698873-icon-136-document-edit-512.png',
+							icon: 'https://taxiyour.ru/storage/settings/June2019/tLGF2nmNYP1Kd130Ta3V.png',
 							body: 'Создана новая заявка на выплату средств Сервис Таксометр',
 							requireInteraction: true,
 							silent: false
 						});
 
 						notification.onclick = function () {
-							window.open('http://stackoverflow.com/a/13328397/1269037');
+							window.open('https://taxiyour.ru/admin/withdrawal');
 						};
 
 						withdrawals_count = withdrawals.length;
