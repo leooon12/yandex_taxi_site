@@ -76,11 +76,12 @@
 		const IN_WORK_WITHDRAWAL = "in_work";
 		const ALL_WITHDRAWALS = "all";
 
-		var audio = new Audio('/new_withdrawal_sound.mp3');
 		var last_state = "";
 		var withdrawals_html = document.getElementById('withdrawals');
 		var withdrawals_count = 0;
 		var loader = true;
+
+		var requests_count = 0;
 
 		//Инициирование страницы
 		getWithdrawals(IN_WORK_WITHDRAWAL);
@@ -100,6 +101,31 @@
 
 			$.ajax("/api/withdrawal_statuses").done(function (statuses) {
 
+
+				$.get("/api/edit_request/in_work" + type, function (requests) {
+
+					if (requests_count < requests.length) {
+						var audio = new Audio('/new_withdrawal_sound.mp3');
+						audio.play();
+
+						if (Notification.permission !== 'granted')
+							Notification.requestPermission();
+
+						var notification = new Notification('Новая заявка на изменение данных', {
+							icon: 'https://cdn1.iconfinder.com/data/icons/hawcons/32/698873-icon-136-document-edit-512.png',
+							body: 'Создана новая заявка на изменение данных Сервис Таксометр',
+							requireInteraction: true,
+							silent: false
+						});
+
+						notification.onclick = function () {
+							window.open('http://stackoverflow.com/a/13328397/1269037');
+						};
+
+						requests_count = requests.length;
+					}
+				};
+
 				$.get("/api/withdrawal/" + type, function (withdrawals) {
 
 					//Чтобы не было коллизии при переключении между типами заявок
@@ -110,9 +136,7 @@
 
 					withdrawals_html.innerHTML = "";
 
-
 					if (withdrawals_count < withdrawals.length) {
-
 						var audio = new Audio('/new_withdrawal_sound.mp3');
 						audio.play();
 
