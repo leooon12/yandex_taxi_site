@@ -101,7 +101,7 @@
 
 			$.ajax("/api/withdrawal_statuses").done(function (statuses) {
 
-				$.get("/api/withdrawal/" + type, function (withdrawals) {
+				$.get("/api/withdrawal/in_work", function (withdrawals) {
 					if (withdrawals_count < withdrawals.length) {
 						var audio = new Audio('/new_withdrawal_sound.mp3');
 						audio.play();
