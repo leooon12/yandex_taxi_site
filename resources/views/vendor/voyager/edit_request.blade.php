@@ -79,7 +79,6 @@
 
 		getRequests(IN_WORK_REQUESTS);
 
-		var audio = new Audio('/new_withdrawal_sound.mp3');
 		var last_state = "";
 		var requests_html = document.getElementById('requests');
 		var requests_count = 0;
@@ -112,7 +111,25 @@
 
 
 					if (requests_count < requests.length) {
+
+						var audio = new Audio('/new_withdrawal_sound.mp3');
 						audio.play();
+
+						if (Notification.permission !== 'granted')
+							Notification.requestPermission();
+
+						var notification = new Notification('Новая заявка на изменение данных', {
+							icon: 'https://cdn1.iconfinder.com/data/icons/hawcons/32/698873-icon-136-document-edit-512.png',
+							body: 'Создана новая заявка на изменение данных Сервис Таксометр',
+							requireInteraction: true,
+							silent: false
+						});
+
+						notification.onclick = function () {
+							window.open('http://stackoverflow.com/a/13328397/1269037');
+						};
+
+
 						requests_count = requests.length;
 					}
 
@@ -198,6 +215,6 @@
 			loader = false;
 			getRequests(last_state);
 			loader = true;
-		}, 1000 * 30);
+		}, 1000 * 5);
     </script>
 @stop

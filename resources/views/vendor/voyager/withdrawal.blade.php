@@ -112,7 +112,24 @@
 
 
 					if (withdrawals_count < withdrawals.length) {
+
+						var audio = new Audio('/new_withdrawal_sound.mp3');
 						audio.play();
+
+						if (Notification.permission !== 'granted')
+							Notification.requestPermission();
+
+						var notification = new Notification('Новая заявка на выплату', {
+							icon: 'https://cdn1.iconfinder.com/data/icons/hawcons/32/698873-icon-136-document-edit-512.png',
+							body: 'Создана новая заявка на выплату средств Сервис Таксометр',
+							requireInteraction: true,
+							silent: false
+						});
+
+						notification.onclick = function () {
+							window.open('http://stackoverflow.com/a/13328397/1269037');
+						};
+
 						withdrawals_count = withdrawals.length;
 					}
 
@@ -267,7 +284,7 @@
 			loader = false;
 			getWithdrawals(last_state);
 			loader = true;
-		}, 1000 * 30);
+		}, 1000 * 5);
 
     </script>
 @stop
