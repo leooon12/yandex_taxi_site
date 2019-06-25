@@ -52,7 +52,7 @@ $(document).ready(function () {
         var name = $("input[name=full_name]").val();
 
         $.post(
-            "http://taxiyour.ru/api/driver",
+            "/api/driver",
             {
                 full_name: name,
                 phone_number: phone
