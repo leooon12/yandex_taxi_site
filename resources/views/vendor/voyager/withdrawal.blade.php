@@ -124,7 +124,7 @@
 
 						requests_count = requests.length;
 					}
-				};
+				});
 
 				$.get("/api/withdrawal/" + type, function (withdrawals) {
 
