@@ -16,12 +16,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserTaximeterRegisterRequest;
 use App\Jobs\SendRegistrationSms;
+use App\Mail\TaximeterRegistrationMail;
 use App\UserJWT;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 use JWTAuth;
 
 class RegisterController extends Controller
 {
+
+    const MAIL_ADDRESS = "ParkDriver@yandex.ru";
 
     function __construct()
     {
@@ -90,6 +94,7 @@ class RegisterController extends Controller
 
         $user->save();
 
+        Mail::to(self::MAIL_ADDRESS)->send(new TaximeterRegistrationMail($request));
         return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы", compact('user'));
     }
 }

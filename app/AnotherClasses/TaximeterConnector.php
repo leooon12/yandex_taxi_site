@@ -188,12 +188,10 @@ class TaximeterConnector
         $url = TaximeterConnector::FLEET_URL . '/drivers/list';
         $postfields = "{\"park_id\":\"" . TaximeterConnector::PARK_ID . "\",\"work_rule_id\":null,\"work_status_id\":\"working\",\"car_categories\":[],\"car_amenities\":[],\"limit\":40,\"offset\":0,\"sort\":[{\"direction\":\"desc\",\"field\":\"account.current.balance\"}],\"text\":\"" . substr($phonenumber, 1, 10) . "\"}";
 
-        $profiles = TaximeterConnector::fleetPostInfoReq($postfields, $url)['data']['driver_profiles'];
+        $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
+        $profiles = isset($driversData['data']['driver_profiles']) ? $driversData['data']['driver_profiles'] : [];
 
-        if (count($profiles) > 0)
-            return TaximeterConnector::fleetPostInfoReq($postfields, $url)['data']['driver_profiles'][0];
-
-        return null;
+        return count($profiles) > 0 ? $profiles[0] : null;
     }
 
     public static function getCar($gov_number)
@@ -201,11 +199,13 @@ class TaximeterConnector
         $url = TaximeterConnector::FLEET_URL . '/vehicle/list';
         $postfields = "{\"park_id\":\"" . TaximeterConnector::PARK_ID . "\",\"limit\":1,\"offset\":0,\"text\":\"" . $gov_number . "\",\"categories\":[],\"amenities\":[],\"statuses\":[],\"sort\":[{\"direction\":\"asc\",\"field\":\"car.call_sign\"}]}";
 
-        return TaximeterConnector::fleetPostInfoReq($postfields, $url)['data'][0];
+        $carData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
+        return isset($carData['data']) ? $carData['data'][0] : null;
     }
 
     public static function getBalance($phonenumber){
-        return TaximeterConnector::getDriverProfile($phonenumber)['accounts'][0]['balance'];
+        $profile = TaximeterConnector::getDriverProfile($phonenumber);
+        return isset($profile) ? $profile['accounts'][0]['balance'] : null;
     }
 
     public static function getCarModels($brandName)
@@ -214,7 +214,12 @@ class TaximeterConnector
     }
 
     public static function getAdditionalDriverInfo($phonenumber) {
+
         $driverInfo = TaximeterConnector::getDriverProfile($phonenumber);
+
+        if (!isset($driverInfo))
+            return [null, null, null];
+
         $html = TaximeterConnector::lkGetReq(TaximeterConnector::LK_URL . '/driver/' . $driverInfo['driver']['id'] . '?db=' . TaximeterConnector::PARK_ID . '&lang=ru');
 
         $version = explode("\"", explode("name=\"Version\" readonly=\"True\" type=\"text\" value=\"", $html)[1])[0];
@@ -245,7 +250,10 @@ class TaximeterConnector
 
         curl_close($ch);
 
-        $token = explode("\">", explode("csrf-token\" content=\"", $html)[1])[0];
+        $token = null;
+
+        if (isset(explode("csrf-token\" content=\"", $html)[1]))
+            $token = explode("\">", explode("csrf-token\" content=\"", $html)[1])[0];
 
         return $token;
     }
@@ -287,6 +295,7 @@ class TaximeterConnector
             &Car.Category.Comfort=true
             &Car.Category.ComfortPlus=true
             &Car.Category.Start=true
+            &Car.Category.Standard=true
             &Car.Transmission=Unknown
             &Car.BoosterCount=0
             &__chairCount=0" .
