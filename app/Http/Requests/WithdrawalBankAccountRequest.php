@@ -26,7 +26,7 @@ class WithdrawalBankAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_number'    => 'required|string|size:16',
+            'account_number'    => 'required|string',
             'surname'           => 'required|string',
             'patronymic'        => 'required|string',
             'name'              => 'required|string',
@@ -39,7 +39,6 @@ class WithdrawalBankAccountRequest extends FormRequest
         return [
             'account_number.required'   => 'Не был передан параметр номер банковской карты',
             'account_number.string'     => 'Неверный формат банковской карты',
-            'account_number.size'       => 'Номер банковской карты должен состоять из 16 символов',
             'surname.required'          => 'Не был передан параметр фамилия',
             'surname.string'            => 'Неверный формат фамилии',
             'patronymic.required'       => 'Не был передан параметр отчество',
