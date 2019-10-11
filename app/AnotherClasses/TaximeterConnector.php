@@ -275,7 +275,7 @@ class TaximeterConnector
     {
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
-        echo $driverInfo;
+        dd($driverInfo);
         return;
 
         $data = ''.
