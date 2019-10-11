@@ -90,7 +90,7 @@ return [
 
     'username' => "ParkCarDisp@yandex.ru",
 
-    'password' => "change_password_on_prod",
+    'password' => "park188",
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path

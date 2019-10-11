@@ -84,7 +84,7 @@ class RegisterController extends Controller
 
         $driverCreationResult = TaximeterConnector::createDriver($driverInfo);
         
-        if (!isset($driverCreationResult['redirect']))
+        if (!isset($driverCreationResult['id']))
             return ResponseHandler::getJsonResponse(500, "Не удалось произвести регистрацию в таксометре", compact('driverCreationResult'));
 
 
