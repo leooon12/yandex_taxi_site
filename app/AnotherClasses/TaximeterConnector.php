@@ -56,6 +56,10 @@ class TaximeterConnector
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
 
+
+        echo $url;
+        return;
+        
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_URL, $url);
