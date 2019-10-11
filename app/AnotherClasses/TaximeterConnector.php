@@ -275,27 +275,24 @@ class TaximeterConnector
     {
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
-        dd($driverInfo);
-        return;
-
         $data = ''.
             '{'.
                 '"accounts":{'.
-                    '"balance_limit":"5"'.
+                    '"balance_limit":"-50"'.
                 '},'.
                 '"driver_profile":{'.
                     '"driver_license":{'.
-                        '"country":"rus",'.
-                        '"number":"wqedfatqrw",'.
-                        '"expiration_date":"2019-10-01",'.
-                        '"issue_date":"2019-10-03",'.
-                        '"birth_date":null'.
+                        '"country":"'.$driverInfo->getDriverDocumentInfo()->getCountry().'",'.
+                        '"number":"'.$driverInfo->getDriverDocumentInfo()->getSerialNumber().'",'.
+                        '"expiration_date":"'.$driverInfo->getDriverDocumentInfo()->getIssueDate().'",'.
+                        '"issue_date":"'.$driverInfo->getDriverDocumentInfo()->getEndDate().'",'.
+                        '"birth_date":"'.$driverInfo->getBirthdate().'"'.
                     '},'.
-                    '"first_name":"wqedazx",'.
-                    '"last_name":"wqda",'.
-                    '"middle_name":null,'.
-                    '"phones":["+231"],'.
-                    '"work_rule_id":"51626e8a196847ee8b040ac72c980c8a",'.
+                    '"first_name":"'. $driverInfo->getName() .'",'.
+                    '"last_name":"'.$driverInfo->getSurname().'",'.
+                    '"middle_name":'. $driverInfo->getPatronymic() .','.
+                    '"phones":["'. $driverInfo->getPhone() . '"],'.
+                    '"work_rule_id":"e26a3cf21acfe01198d50030487e046b",'. //"51626e8a196847ee8b040ac72c980c8a",'.
                     '"providers":["yandex"],'.
                     '"hire_date":"2019-10-11",'.
                     '"deaf":null,'.
