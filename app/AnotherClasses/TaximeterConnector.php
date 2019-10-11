@@ -275,6 +275,9 @@ class TaximeterConnector
     {
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
+        echo $driverInfo;
+        return;
+
         $data = ''.
             '{'.
                 '"accounts":{'.
@@ -367,16 +370,10 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         $html = curl_exec($ch);
-
-        echo $html;
-        return;
         
         curl_close($ch);
 
         return json_decode($html, true);
-
-
-        //return TaximeterConnector::lkPostRequest($data, $url);
     }
 
     public static function createCar(CarInfo $carInfo) {
