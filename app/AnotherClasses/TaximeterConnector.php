@@ -77,7 +77,7 @@ class TaximeterConnector
         $html = curl_exec($ch);
 
         curl_close($ch);
-
+        
         return $html;
     }
 
@@ -261,9 +261,6 @@ class TaximeterConnector
     public static function getNewDriverIdAndLkToken()
     {
         $html = TaximeterConnector::lkGetReq(TaximeterConnector::LK_URL . '/create/driver?db=' . TaximeterConnector::PARK_ID);
-
-        echo $html;
-        return;
         
         $id = explode("\"", explode("value=\"", $html)[1])[0];
         $token = explode("\"", explode("__RequestVerificationToken\" type=\"hidden\" value=\"", $html)[1])[0];
@@ -323,7 +320,10 @@ class TaximeterConnector
             "&__RequestVerificationToken="                . $newDriverIdAndToken[1] .
             "&X-Requested-With=XMLHttpRequest",
             array("\n" => "", " " => ""));
-
+        
+        echo $postfields;
+        return;
+        
         return TaximeterConnector::lkPostRequest($postfields, $url);
     }
 
