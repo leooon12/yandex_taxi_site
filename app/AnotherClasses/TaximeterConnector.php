@@ -311,6 +311,9 @@ class TaximeterConnector
                 '}'.
             '}';
         
+        echo $data;
+        return;
+        
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
 
