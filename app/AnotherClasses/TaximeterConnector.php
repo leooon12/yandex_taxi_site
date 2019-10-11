@@ -283,7 +283,7 @@ class TaximeterConnector
                 '"driver_profile":{'.
                     '"driver_license":{'.
                         '"country":"'.$driverInfo->getDriverDocumentInfo()->getCountry().'",'.
-                        '"number":"'.$driverInfo->getDriverDocumentInfo()->getSerialNumber().'",'.
+                        '"number":"'.$driverInfo->getDriverDocumentInfo()->getSerialNumber().$driverInfo->getDriverDocumentInfo()->getUniqNumber().'",'.
                         '"expiration_date":"'.$driverInfo->getDriverDocumentInfo()->getIssueDate().'",'.
                         '"issue_date":"'.$driverInfo->getDriverDocumentInfo()->getEndDate().'",'.
                         '"birth_date":"'.$driverInfo->getBirthdate().'"'.
