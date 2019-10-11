@@ -289,17 +289,27 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json;charset=UTF-8;',
-            'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . '; sessionid2=' . $yandexDataForAuth[2] . ';yandex_login=ParkCarDisp; _ym_isad=1; user_login=ParkCarDisp; user_db=' . TaximeterConnector::PARK_ID . ';',
-            'accept: */*;',
-            'accept-encoding: gzip, deflate, br;',
-            'accept-language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7;',
-            'x-requested-with: XMLHttpRequest',
-            'dnt: 1',
-            ':authority: lk.taximeter.yandex.ru',
-            ':method: POST',
-            ':path: /create/driver?db=' . TaximeterConnector::PARK_ID . '&hide_menu=true&lang=ru',
-            ':scheme: https'
+            'Host: fleet.taxi.yandex.ru',
+            'Connection: keep-alive',
+            'Origin: https://fleet.taxi.yandex.ru',
+            'X-Park-Id: f25f9892dd5c457394733ffe83fcccab',
+            'Content-Type: application/json;charset=UTF-8',
+            'Accept: application/json, text/plain, */*',
+            'X-Requested-With: XMLHttpRequest',
+            'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+            'Sec-Fetch-Site: same-origin',
+            'Referer: https://fleet.taxi.yandex.ru/drivers/create?park=f25f9892dd5c457394733ffe83fcccab',
+            'Accept-Encoding: gzip, deflate, br',
+            'Accept-Language: en-US,en;q=0.9,ru;q=0.8',
+            'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; mda=0; yandex_gid=56; '.
+                'my=YwA=; _ym_wasSynced=%7B%22time%22%3A1570794684076%2C%22params%22%3A%7B%22eu%22%3A0%7D%2C%22bkParams%22%3A%7B%7D%7D; '.
+                '_ym_uid=1570794684591778930; _ym_d=1570794684; yabs-frequency=/4/0000000000000000/6huzRSWt9uY4Sd38Do40/; '.
+                'zm=m-white_bender.webp.css-https%3As3home-static_IK3XQn5kUbulXjsuV2Fx5xfV4nQ%3Al; _ym_isad=2; '.'_ym_visorc_784657=b; '.
+                'Session_id=' . $yandexDataForAuth[0] . '; sessionid2=' . $yandexDataForAuth[2] . '; yp=1573386682.ygu.1#1886154877.udn.cDpQYXJrQ2FyRGlzcA%3D%3D; '.
+                'ys=udn.cDpQYXJrQ2FyRGlzcA%3D%3D; L=fA8Je1ABQUh4e1FVcwgCV2BaXlJjBnd+OAMEBHQFEAY+Hx0=.1570794877.14015.348718.87ece85627ae912e22a8ed7c7e676f5e; '.
+                'yandex_login=ParkCarDisp; i=3KpCDCTnCtbSuSi4yD+ZW9C7WkLeCa2SYy+hpsBiYvgZUhvGzczY4p8W4mjjV2XTBcBQhrbS8IUmB4cBPkCO5Vvs/L4=; '.
+                'cycada=BmitPq4LpOJni8brYHL4iJupRAJ7N+/wIGgr0XPVauw=; park_id=f25f9892dd5c457394733ffe83fcccab; _ym_visorc_51171164=w; '.
+                'user_lang=ru'
         ));
 
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
