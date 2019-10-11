@@ -55,10 +55,6 @@ class TaximeterConnector
     public static function lkGetReq($url) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
-
-
-        echo $url;
-        return;
         
         $ch = curl_init($url);
 
@@ -277,58 +273,53 @@ class TaximeterConnector
 
     public static function createDriver(DriverInfo $driverInfo)
     {
-        $newDriverIdAndToken = TaximeterConnector::getNewDriverIdAndLkToken();
+        $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
-        $url = TaximeterConnector::LK_URL . '/create/driver?db=' . TaximeterConnector::PARK_ID . '&hide_menu=true&lang=ru';
+        $data = '{"accounts":{"balance_limit":"5"},"driver_profile":{"driver_license":{"country":"rus","number":"wqedfatqrw","expiration_date":"2019-10-01","issue_date":"2019-10-03","birth_date":null},"first_name":"wqedazx","last_name":"wqda","middle_name":null,"phones":["+231"],"work_rule_id":"51626e8a196847ee8b040ac72c980c8a","providers":["yandex"],"hire_date":"2019-10-11","deaf":null,"email":null,"address":null,"comment":null,"check_message":null,"car_id":null,"fire_date":null,"identifications":[],"bank_accounts":[],"tax_identification_number":null,"primary_state_registration_number":null,"emergency_person_contacts":[],"balance_deny_onlycard":false}}';
 
-        $postfields = strtr(
-            "DriverModel.Driver.Password="                . $newDriverIdAndToken[0] .
-            "&Car.OwnerId=
-            &Car.PermitNumber=
-            &Car.PermitSeries=
-            &Car.PermitDocument=
-            &DriverModel.Driver.Address=
-            &DriverModel.Driver.Email=
-            &Car.EuroCarSegment=
-            &Car.Description=
-            &DriverModel.Driver.RuleId=e26a3cf21acfe01198d50030487e046b
-            &DriverModel.Driver.BalanceLimit=-50
-            &DriverModel.Driver.Providers=1
-            &DriverModel.Driver.Providers=2
-            &Car.Category.Econom=true
-            &Car.Category.Comfort=true
-            &Car.Category.ComfortPlus=true
-            &Car.Category.Start=true
-            &Car.Category.Standard=true
-            &Car.Transmission=Unknown
-            &Car.BoosterCount=0
-            &__chairCount=0" .
-            "&DriverModel.Driver.LicenseDriverBirthDate=" . $driverInfo->getBirthdate() .
-            "&DriverModel.Driver.FirstName="              . $driverInfo->getName() .
-            "&DriverModel.Driver.LastName="               . $driverInfo->getSurname() .
-            "&DriverModel.Driver.MiddleName="             . $driverInfo->getPatronymic() .
-            "&DriverModel.Driver.PhonesFormatted="        . $driverInfo->getPhone() .
-            "&DriverModel.Driver.LicenseSeries="          . $driverInfo->getDriverDocumentInfo()->getSerialNumber() .
-            "&DriverModel.Driver.LicenseNumber="          . $driverInfo->getDriverDocumentInfo()->getUniqNumber() .
-            "&DriverModel.Driver.LicenseIssueDate="       . $driverInfo->getDriverDocumentInfo()->getIssueDate() .
-            "&DriverModel.Driver.LicenseExpireDate="      . $driverInfo->getDriverDocumentInfo()->getEndDate() .
-            "&DriverModel.Driver.LicenseCountryId="       . $driverInfo->getDriverDocumentInfo()->getCountry() .
-            "&Car.Callsign="                              . $driverInfo->getCarInfo()->getCallSign() .
-            "&Car.Brand="                                 . $driverInfo->getCarInfo()->getBrand() .
-            "&Car.Model="                                 . $driverInfo->getCarInfo()->getModel() .
-            "&Car.Year="                                  . $driverInfo->getCarInfo()->getCreationYear() .
-            "&Car.Color="                                 . $driverInfo->getCarInfo()->getColor() .
-            "&Car.Number="                                . $driverInfo->getCarInfo()->getGovNumber() .
-            "&Car.Vin="                                   . $driverInfo->getCarInfo()->getVin() .
-            "&Car.RegistrationCertificate="               . $driverInfo->getCarInfo()->getRegSertificate() .
-            "&__RequestVerificationToken="                . $newDriverIdAndToken[1] .
-            "&X-Requested-With=XMLHttpRequest",
-            array("\n" => "", " " => ""));
-        
-        echo $postfields;
+
+        TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
+        $yandexDataForAuth = TaximeterConnector::auth();
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json;charset=UTF-8;',
+            'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . '; sessionid2=' . $yandexDataForAuth[2] . ';yandex_login=ParkCarDisp; _ym_isad=1; user_login=ParkCarDisp; user_db=' . TaximeterConnector::PARK_ID . ';',
+            'accept: */*;',
+            'accept-encoding: gzip, deflate, br;',
+            'accept-language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7;',
+            'x-requested-with: XMLHttpRequest',
+            'dnt: 1',
+            ':authority: lk.taximeter.yandex.ru',
+            ':method: POST',
+            ':path: /create/driver?db=' . TaximeterConnector::PARK_ID . '&hide_menu=true&lang=ru',
+            ':scheme: https'
+        ));
+
+        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
+        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
+
+        curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
+
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        $html = curl_exec($ch);
+
+        echo $html;
         return;
         
-        return TaximeterConnector::lkPostRequest($postfields, $url);
+        curl_close($ch);
+
+        return json_decode($html, true);
+
+
+        //return TaximeterConnector::lkPostRequest($data, $url);
     }
 
     public static function createCar(CarInfo $carInfo) {
