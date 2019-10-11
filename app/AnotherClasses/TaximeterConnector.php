@@ -275,7 +275,41 @@ class TaximeterConnector
     {
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
-        $data = '{"accounts":{"balance_limit":"5"},"driver_profile":{"driver_license":{"country":"rus","number":"wqedfatqrw","expiration_date":"2019-10-01","issue_date":"2019-10-03","birth_date":null},"first_name":"wqedazx","last_name":"wqda","middle_name":null,"phones":["+231"],"work_rule_id":"51626e8a196847ee8b040ac72c980c8a","providers":["yandex"],"hire_date":"2019-10-11","deaf":null,"email":null,"address":null,"comment":null,"check_message":null,"car_id":null,"fire_date":null,"identifications":[],"bank_accounts":[],"tax_identification_number":null,"primary_state_registration_number":null,"emergency_person_contacts":[],"balance_deny_onlycard":false}}';
+        $data = ''.
+            '{'.
+                '"accounts":{'.
+                    '"balance_limit":"5"'.
+                '},'.
+                '"driver_profile":{'.
+                    '"driver_license":{'.
+                        '"country":"rus",'.
+                        '"number":"wqedfatqrw",'.
+                        '"expiration_date":"2019-10-01",'.
+                        '"issue_date":"2019-10-03",'.
+                        '"birth_date":null'.
+                    '},'.
+                    '"first_name":"wqedazx",'.
+                    '"last_name":"wqda",'.
+                    '"middle_name":null,'.
+                    '"phones":["+231"],'.
+                    '"work_rule_id":"51626e8a196847ee8b040ac72c980c8a",'.
+                    '"providers":["yandex"],'.
+                    '"hire_date":"2019-10-11",'.
+                    '"deaf":null,'.
+                    '"email":null,'.
+                    '"address":null,'.
+                    '"comment":null,'.
+                    '"check_message":null,'.
+                    '"car_id":null,'.
+                    '"fire_date":null,'.
+                    '"identifications":[],'.
+                    '"bank_accounts":[],'.
+                    '"tax_identification_number":null,'.
+                    '"primary_state_registration_number":null,'.
+                    '"emergency_person_contacts":[],'.
+                    '"balance_deny_onlycard":false'.
+                '}'.
+            '}';
         
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
