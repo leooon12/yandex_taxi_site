@@ -55,10 +55,6 @@ class TaximeterConnector
     public static function lkGetReq($url) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
-
-
-        echo $url;
-        return;
         
         $ch = curl_init($url);
 
@@ -277,12 +273,12 @@ class TaximeterConnector
 
     public static function createDriver(DriverInfo $driverInfo)
     {
-        $newDriverIdAndToken = TaximeterConnector::getNewDriverIdAndLkToken();
+        //$newDriverIdAndToken = TaximeterConnector::getNewDriverIdAndLkToken();
 
         $url = TaximeterConnector::LK_URL . '/create/driver?db=' . TaximeterConnector::PARK_ID . '&hide_menu=true&lang=ru';
 
         $postfields = strtr(
-            "DriverModel.Driver.Password="                . $newDriverIdAndToken[0] .
+            "DriverModel.Driver.Password="                ."743rtgvfrt4rf". //$newDriverIdAndToken[0] .
             "&Car.OwnerId=
             &Car.PermitNumber=
             &Car.PermitSeries=
@@ -321,7 +317,7 @@ class TaximeterConnector
             "&Car.Number="                                . $driverInfo->getCarInfo()->getGovNumber() .
             "&Car.Vin="                                   . $driverInfo->getCarInfo()->getVin() .
             "&Car.RegistrationCertificate="               . $driverInfo->getCarInfo()->getRegSertificate() .
-            "&__RequestVerificationToken="                . $newDriverIdAndToken[1] .
+            "&__RequestVerificationToken="                . 'vdhy4htdfd4erdg4erge4ytgrety4'.//$newDriverIdAndToken[1] .
             "&X-Requested-With=XMLHttpRequest",
             array("\n" => "", " " => ""));
         
