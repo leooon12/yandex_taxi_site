@@ -262,6 +262,9 @@ class TaximeterConnector
     {
         $html = TaximeterConnector::lkGetReq(TaximeterConnector::LK_URL . '/create/driver?db=' . TaximeterConnector::PARK_ID);
 
+        echo $html;
+        return;
+        
         $id = explode("\"", explode("value=\"", $html)[1])[0];
         $token = explode("\"", explode("__RequestVerificationToken\" type=\"hidden\" value=\"", $html)[1])[0];
 
