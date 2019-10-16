@@ -34,13 +34,12 @@ class UserTaximeterRegisterRequest extends FormRequest
             'document_issue_date'       => 'required|string',
             'document_end_date'         => 'required|string',
             'document_country'          => 'required|string',
-            'car_brand'                 => 'required|string',
-            'car_model'                 => 'required|string',
-            'car_creation_year'         => 'required|string',
-            'car_color'                 => 'required|string',
-            'car_gov_number'            => 'required|string',
-            'car_reg_sertificate'       => 'required|string'
-
+            'car_brand'                 => 'string',
+            'car_model'                 => 'string',
+            'car_creation_year'         => 'string',
+            'car_color'                 => 'string',
+            'car_gov_number'            => 'string',
+            'car_reg_sertificate'       => 'string'
         ];
     }
 
