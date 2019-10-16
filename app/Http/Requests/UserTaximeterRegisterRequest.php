@@ -40,7 +40,6 @@ class UserTaximeterRegisterRequest extends FormRequest
             'car_color'                 => 'string',
             'car_gov_number'            => 'string',
             'car_reg_sertificate'       => 'string'
-
         ];
     }
 
