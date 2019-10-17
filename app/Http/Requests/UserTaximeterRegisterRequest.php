@@ -33,13 +33,7 @@ class UserTaximeterRegisterRequest extends FormRequest
             'document_uniq_number'      => 'required|string',
             'document_issue_date'       => 'required|string',
             'document_end_date'         => 'required|string',
-            'document_country'          => 'required|string',
-//            'car_brand'                 => 'string',
-//            'car_model'                 => 'string',
-//            'car_creation_year'         => 'string',
-//            'car_color'                 => 'string',
-//            'car_gov_number'            => 'string',
-//            'car_reg_sertificate'       => 'string'
+            'document_country'          => 'required|string'
         ];
     }
 
@@ -62,24 +56,11 @@ class UserTaximeterRegisterRequest extends FormRequest
             'document_issue_date.required'                  => 'Не указано: дата выдачи прав',
             'document_end_date.required'                    => 'Не указано: дата окончания действия прав',
             'document_country.required'                     => 'Не указано: страна, выдавшая права',
-//            'car_brand.required'                            => 'Не указано: марка автомобиля',
-//            'car_model.required'                            => 'Не указано: модель автомобиля',
-//            'car_creation_year.required'                    => 'Не указано: год выпуска автомобиля',
-//            'car_color.required'                            => 'Не указано: цвет автомобиля',
-//            'car_gov_number.required'                       => 'Не указано: госномер',
-//            'car_reg_sertificate.required'                  => 'Не указано: серия/номер СТС',
             'document_serial_number.string'                 => 'Неверный формат параметра: серия прав',
             'document_uniq_number.string'                   => 'Неверный формат параметра: номер прав',
             'document_issue_date.string'                    => 'Неверный формат параметра: дата выдачи прав',
             'document_end_date.string'                      => 'Неверный формат параметра: дата окончания действия прав',
-            'document_country.string'                       => 'Неверный формат параметра: страна, выдавшая права',
-//            'car_brand.string'                              => 'Неверный формат параметра: марка автомобиля',
-//            'car_model.string'                              => 'Неверный формат параметра: модель автомобиля',
-//            'car_creation_year.string'                      => 'Неверный формат параметра: год выпуска автомобиля',
-//            'car_color.string'                              => 'Неверный формат параметра: цвет автомобиля',
-//            'car_gov_number.string'                         => 'Неверный формат параметра: госномер',
-//            'car_reg_sertificate.string'                    => 'Неверный формат параметра: серия/номер СТС',
-
+            'document_country.string'                       => 'Неверный формат параметра: страна, выдавшая права'
         ];
     }
 
