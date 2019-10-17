@@ -407,6 +407,18 @@ class TaximeterConnector
         
         return TaximeterConnector::newPost($url, $data);
     }
+    
+    public static function changeCar($driverId, $carId) {
+        $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/car-bindings';
+
+        $data = ''.
+            '{'.
+                '"driver_id":"'. $driverId .'",'.
+                '"car_id":"'. $carId .'"'.
+            '}';
+        
+        return TaximeterConnector::newPost($url, $data);
+    }
 
     public static function editDriver(FullDriverInfo $driverInfo) {
         $newDriverIdAndToken = TaximeterConnector::getNewDriverIdAndLkToken();
