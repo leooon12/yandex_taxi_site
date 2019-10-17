@@ -314,13 +314,17 @@ class TaximeterConnector
         return TaximeterConnector::newPost($url, $data);
     }
     
-    public static function newPost($url, $data) {
+    public static function newPost($url, $data, $method=null) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
 
         $ch = curl_init($url);
 
-        curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
+        if (!$method)
+            curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
+        else if ($method == "PUT")
+            curl_setopt($ch, CURLOPT_PUT, 1); //Будем отправлять PUT запрос
+
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -417,9 +421,7 @@ class TaximeterConnector
                 '"car_id":"'. $carId .'"'.
             '}';
         
-        dd($data);
-        
-        return TaximeterConnector::newPost($url, $data);
+        return TaximeterConnector::newPost($url, $data, "PUT");
     }
 
     public static function editDriver(FullDriverInfo $driverInfo) {
