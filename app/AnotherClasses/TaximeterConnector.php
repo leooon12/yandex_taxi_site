@@ -311,6 +311,10 @@ class TaximeterConnector
                 '}'.
             '}';
         
+        return TaximeterConnector::newPost($url, $data);
+    }
+    
+    public static function newPost($url, $data) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
 
@@ -331,32 +335,32 @@ class TaximeterConnector
             'X-Requested-With: XMLHttpRequest',
             'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
             'Sec-Fetch-Site: same-origin',
-            'Referer: https://fleet.taxi.yandex.ru/drivers/create?park=' . TaximeterConnector::PARK_ID,
+            //'Referer: https://fleet.taxi.yandex.ru/drivers/create?park=' . TaximeterConnector::PARK_ID,
             'Accept-Encoding: gzip, deflate, br',
             'Accept-Language: en-US,en;q=0.9,ru;q=0.8',
             'Cookie: '.
-                'yandexuid=' . $yandexDataForAuth[1] . '; '.
-                'mda=0; '.
-                'yandex_gid=56; '.
-                'my=YwA=; '.
-                '_ym_wasSynced=%7B%22time%22%3A1570794684076%2C%22params%22%3A%7B%22eu%22%3A0%7D%2C%22bkParams%22%3A%7B%7D%7D; '.
-                '_ym_uid=1570794684591778930; '.
-                '_ym_d=1570794684; '.
-                'yabs-frequency=/4/0000000000000000/6huzRSWt9uY4Sd38Do40/; '.
-                'zm=m-white_bender.webp.css-https%3As3home-static_IK3XQn5kUbulXjsuV2Fx5xfV4nQ%3Al; '.
-                '_ym_isad=2; '.
-                '_ym_visorc_784657=b; '.
-                'Session_id=' . $yandexDataForAuth[0] . '; '.
-                'sessionid2=' . $yandexDataForAuth[2] . '; '.
-                'yp=1573386682.ygu.1#1886154877.udn.cDpQYXJrQ2FyRGlzcA%3D%3D; '.
-                'ys=udn.cDpQYXJrQ2FyRGlzcA%3D%3D; '.
-                'L=fA8Je1ABQUh4e1FVcwgCV2BaXlJjBnd+OAMEBHQFEAY+Hx0=.1570794877.14015.348718.87ece85627ae912e22a8ed7c7e676f5e; '.
-                'yandex_login=ParkCarDisp; '.
-                'i=3KpCDCTnCtbSuSi4yD+ZW9C7WkLeCa2SYy+hpsBiYvgZUhvGzczY4p8W4mjjV2XTBcBQhrbS8IUmB4cBPkCO5Vvs/L4=; '.
-                'cycada=BmitPq4LpOJni8brYHL4iJupRAJ7N+/wIGgr0XPVauw=; '.
-                'park_id=' . TaximeterConnector::PARK_ID . '; '.
-                '_ym_visorc_51171164=w; '.
-                'user_lang=ru'
+            'yandexuid=' . $yandexDataForAuth[1] . '; '.
+            'mda=0; '.
+            'yandex_gid=56; '.
+            'my=YwA=; '.
+            '_ym_wasSynced=%7B%22time%22%3A1570794684076%2C%22params%22%3A%7B%22eu%22%3A0%7D%2C%22bkParams%22%3A%7B%7D%7D; '.
+            '_ym_uid=1570794684591778930; '.
+            '_ym_d=1570794684; '.
+            'yabs-frequency=/4/0000000000000000/6huzRSWt9uY4Sd38Do40/; '.
+            'zm=m-white_bender.webp.css-https%3As3home-static_IK3XQn5kUbulXjsuV2Fx5xfV4nQ%3Al; '.
+            '_ym_isad=2; '.
+            '_ym_visorc_784657=b; '.
+            'Session_id=' . $yandexDataForAuth[0] . '; '.
+            'sessionid2=' . $yandexDataForAuth[2] . '; '.
+            'yp=1573386682.ygu.1#1886154877.udn.cDpQYXJrQ2FyRGlzcA%3D%3D; '.
+            'ys=udn.cDpQYXJrQ2FyRGlzcA%3D%3D; '.
+            'L=fA8Je1ABQUh4e1FVcwgCV2BaXlJjBnd+OAMEBHQFEAY+Hx0=.1570794877.14015.348718.87ece85627ae912e22a8ed7c7e676f5e; '.
+            'yandex_login=ParkCarDisp; '.
+            'i=3KpCDCTnCtbSuSi4yD+ZW9C7WkLeCa2SYy+hpsBiYvgZUhvGzczY4p8W4mjjV2XTBcBQhrbS8IUmB4cBPkCO5Vvs/L4=; '.
+            'cycada=BmitPq4LpOJni8brYHL4iJupRAJ7N+/wIGgr0XPVauw=; '.
+            'park_id=' . TaximeterConnector::PARK_ID . '; '.
+            '_ym_visorc_51171164=w; '.
+            'user_lang=ru'
         ));
 
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
@@ -367,33 +371,14 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         $html = curl_exec($ch);
-        
+
         curl_close($ch);
 
         return json_decode($html, true);
     }
 
     public static function createCar(CarInfo $carInfo) {
-        $newDriverIdAndToken = TaximeterConnector::getNewDriverIdAndLkToken();
-
-        $url = TaximeterConnector::LK_URL . '/create/car?db=' . TaximeterConnector::PARK_ID . '&lang=ru';
-
-        $postfields = strtr(
-            "Car.OwnerId=
-            &Car.PermitNumber=
-            &Car.PermitSeries=
-            &Car.PermitDocument=
-            &DriverModel.Driver.Address=
-            &DriverModel.Driver.Email=
-            &Car.EuroCarSegment=
-            &Car.Description=
-            &Car.Category.Econom=true
-            &Car.Category.Comfort=true
-            &Car.Category.ComfortPlus=true
-            &Car.Category.Start=true
-            &Car.Transmission=Unknown
-            &Car.BoosterCount=0
-            &__chairCount=0" .
+/*
             "&Car.Callsign="                              . $carInfo->getCallSign() .
             "&Car.Brand="                                 . $carInfo->getBrand() .
             "&Car.Model="                                 . $carInfo->getModel() .
@@ -402,11 +387,36 @@ class TaximeterConnector
             "&Car.Number="                                . $carInfo->getGovNumber() .
             "&Car.Vin="                                   . $carInfo->getVin() .
             "&Car.RegistrationCertificate="               . $carInfo->getRegSertificate() .
-            "&__RequestVerificationToken="                . $newDriverIdAndToken[1] .
-            "&X-Requested-With=XMLHttpRequest",
-            array("\n" => "", " " => ""));
+*/
 
-        return TaximeterConnector::lkPostRequest($postfields, $url);
+        $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
+
+        $data = ''.
+            '{'.
+                '"status":                  "working",'.
+                '"brand":                   "'. $carInfo->getBrand()            .'",'.
+                '"model":                   "'. $carInfo->getModel()            .'",'.
+                '"color":                   "'. $carInfo->getColor()            .'",'.
+                '"year":                     '. $carInfo->getCreationYear()     .','.
+                '"number":                  "'. $carInfo->getGovNumber()        .'",'.
+                '"callsign":                "'. $carInfo->getCallSign()         .'",'.
+                '"vin":                     "'. $carInfo->getVin()              .'",'.
+                '"registration_cert":       "'. $carInfo->getRegSertificate()   .'",'.
+                '"booster_count":           0,'.
+                '"categories":              [],'.
+                '"carrier_permit_owner_id": null,'.
+                '"transmission":            "unknown",'.
+                '"rental":                  null,'.
+                '"chairs":                  [],'.
+                '"tariffs":                 [],'.
+                '"cargo_loaders":           0,'.
+                '"carrying_capacity":       null,'.
+                '"body_number":             null,'.
+                '"amenities":               [],'.
+                '"permit_num":              null'.
+            '}';
+
+        return TaximeterConnector::newPost($url, $data);
     }
 
     public static function editDriver(FullDriverInfo $driverInfo) {
