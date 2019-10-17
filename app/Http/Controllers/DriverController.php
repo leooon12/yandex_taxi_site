@@ -91,6 +91,8 @@ class DriverController extends Controller
     }
 
     public function changeCar(ChangeDriverCarRequest $request) {
+        dd(TaximeterConnector::changeCar("41666107d24ed70ff30bfdb167dc4acb", "62b52c99edae641cff6a8fd37b67a1ed"));
+        
         $user_id = JWTAuth::parseToken()->authenticate()->id;
         $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
 
