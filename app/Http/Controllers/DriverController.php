@@ -111,7 +111,7 @@ class DriverController extends Controller
         // Машина сохранена
         $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
-        dd($driverInfo);
+        dd($driverInfo["driver"]["id"]);
         dd(TaximeterConnector::changeCar($driverInfo["driver"]["id"], "62b52c99edae641cff6a8fd37b67a1ed"));
 
         if (!$driverInfo)
