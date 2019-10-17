@@ -417,6 +417,8 @@ class TaximeterConnector
                 '"car_id":"'. $carId .'"'.
             '}';
         
+        dd($data);
+        
         return TaximeterConnector::newPost($url, $data);
     }
 
