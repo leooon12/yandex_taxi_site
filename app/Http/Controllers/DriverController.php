@@ -109,21 +109,14 @@ class DriverController extends Controller
             return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));
         
         // Машина сохранена
-
-        $carInfo->setId($carCreationResult['id']);
-
         $driverInfo = $this->getFullDriverInfo($user_phone_number);
+
+        TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
 
         if (!$driverInfo)
             return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
 
-        $driverInfo->setCarInfo($carInfo);
-
-        $editResponce = TaximeterConnector::editDriver($driverInfo);
-
-        if (!isset($editResponce['reload']))
-            return ResponseHandler::getJsonResponse(500, "Данные автомобиля не были изменены", compact('editResponce'));
-
+        
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }
 }
