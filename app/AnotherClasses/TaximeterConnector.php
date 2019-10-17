@@ -322,8 +322,10 @@ class TaximeterConnector
 
         if (!$method)
             curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
-        else if ($method == "PUT")
+        else if ($method == "PUT") {
             curl_setopt($ch, CURLOPT_PUT, 1); //Будем отправлять PUT запрос
+            dd($method);
+        }
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
