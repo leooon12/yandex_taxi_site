@@ -109,7 +109,7 @@ class DriverController extends Controller
             return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));
         
         // Машина сохранена
-        $driverInfo = $this->getFullDriverInfo($user_phone_number);
+        $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
         TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
 
