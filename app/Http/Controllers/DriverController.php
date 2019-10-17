@@ -91,8 +91,6 @@ class DriverController extends Controller
     }
 
     public function changeCar(ChangeDriverCarRequest $request) {
-        dd(TaximeterConnector::changeCar("41666107d24ed70ff30bfdb167dc4acb", "62b52c99edae641cff6a8fd37b67a1ed"));
-        
         $user_id = JWTAuth::parseToken()->authenticate()->id;
         $user_phone_number = UserJWT::where('id', $user_id)->first()->phone_number;
 
@@ -105,19 +103,15 @@ class DriverController extends Controller
             ->setCreationYear($request->get('car_creation_year'))
             ->setRegSertificate($request->get('car_reg_sertificate'));
 
-/*        $carCreationResult = TaximeterConnector::createCar($carInfo);
+        $carCreationResult = TaximeterConnector::createCar($carInfo);
 
         if (!isset($carCreationResult['id']))
-            return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));*/
+            return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));
         
         // Машина сохранена
         $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
-        dd(TaximeterConnector::changeCar($driverInfo["driver"]["id"], "62b52c99edae641cff6a8fd37b67a1ed"));
-
-        if (!$driverInfo)
-            return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
-
+        TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
         
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }
