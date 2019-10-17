@@ -375,13 +375,22 @@ class TaximeterConnector
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        $html = curl_exec($ch);
 
-        curl_close($ch);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+
+        $html = curl_exec($ch);
 
         if ($method == "PUT") {
             dd($html);
         }
+
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+        curl_close($ch);
+
+        $header = substr($html, 0, $header_size);
+        $html = substr($html, $header_size);
 
         return json_decode($html, true);
     }
