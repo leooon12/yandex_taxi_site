@@ -44,6 +44,9 @@ class DriverController extends Controller
 
     protected function getFullDriverInfo($user_phone_number) {
         $profile = TaximeterConnector::getDriverProfile($user_phone_number);
+        
+        dd($profile);
+        
         if (!$profile)
             return null;
 
