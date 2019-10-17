@@ -378,17 +378,6 @@ class TaximeterConnector
     }
 
     public static function createCar(CarInfo $carInfo) {
-/*
-            "&Car.Callsign="                              . $carInfo->getCallSign() .
-            "&Car.Brand="                                 . $carInfo->getBrand() .
-            "&Car.Model="                                 . $carInfo->getModel() .
-            "&Car.Year="                                  . $carInfo->getCreationYear() .
-            "&Car.Color="                                 . $carInfo->getColor() .
-            "&Car.Number="                                . $carInfo->getGovNumber() .
-            "&Car.Vin="                                   . $carInfo->getVin() .
-            "&Car.RegistrationCertificate="               . $carInfo->getRegSertificate() .
-*/
-
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/create';
 
         $data = ''.
@@ -415,6 +404,8 @@ class TaximeterConnector
                 '"amenities":               [],'.
                 '"permit_num":              null'.
             '}';
+        
+        $data = '{"status":"working","brand":"Mitsubishi","model":"Lancer Evolution","color":"Оранжевый","year":1997,"number":"2426754","callsign":"2426754","vin":"1G6KD54Y9WU813890","registration_cert":"2456245646421","booster_count":0,"categories":[],"carrier_permit_owner_id":null,"transmission":"unknown","rental":null,"chairs":[],"tariffs":[],"cargo_loaders":0,"carrying_capacity":null,"body_number":null,"amenities":[],"permit_num":null}';
 
         return TaximeterConnector::newPost($url, $data);
     }
