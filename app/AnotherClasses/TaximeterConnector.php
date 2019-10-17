@@ -382,7 +382,7 @@ class TaximeterConnector
         $html = curl_exec($ch);
 
         if ($method == "PUT") {
-            dd($html);
+            dd($ch);
         }
 
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
