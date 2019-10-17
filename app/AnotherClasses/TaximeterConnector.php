@@ -416,8 +416,6 @@ class TaximeterConnector
                 '"permit_num":              null'.
             '}';
 
-        dd($data);
-        
         return TaximeterConnector::newPost($url, $data);
     }
 
