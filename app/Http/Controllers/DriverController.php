@@ -103,15 +103,15 @@ class DriverController extends Controller
             ->setCreationYear($request->get('car_creation_year'))
             ->setRegSertificate($request->get('car_reg_sertificate'));
 
-        $carCreationResult = TaximeterConnector::createCar($carInfo);
+/*        $carCreationResult = TaximeterConnector::createCar($carInfo);
 
         if (!isset($carCreationResult['id']))
-            return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));
+            return ResponseHandler::getJsonResponse(500, "Не удалось добавить автомобиль в таксометр", compact('carCreationResult'));*/
         
         // Машина сохранена
         $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
-        TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
+        dd(TaximeterConnector::changeCar($driverInfo["driver"]["id"], "62b52c99edae641cff6a8fd37b67a1ed"));
 
         if (!$driverInfo)
             return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
