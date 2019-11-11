@@ -406,7 +406,9 @@ class TaximeterConnector
                 '"carrying_capacity":       null,'.
                 '"body_number":             null,'.
                 '"amenities":               [],'.
-                '"permit_num":              null'.
+                '"permit_num":              null,'.
+                '"categories":              ["econom","comfort","comfort_plus","start","standart","express"],'.
+                '"amenities":               ["conditioner","animals","delivery","cargo_clean"]'.
             '}';
         
         return TaximeterConnector::newPost($url, $data);
