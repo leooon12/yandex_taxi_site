@@ -18,12 +18,9 @@ class CreateUserCarsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('user_taximeter_id');
             $table->string('car_taximeter_id');
+            $table->string('car_brand');
             $table->string('car_model');
             $table->string('car_gov_number');
-            $table->string('car_color');
-            $table->string('car_vin');
-            $table->string('car_creation_year');
-            $table->string('car_reg_sertificate');
 
             $table->timestamps();
 
