@@ -118,13 +118,10 @@ class DriverController extends Controller
         UserCar::create([
             'user_id' => $user_id,
             'user_taximeter_id' => $driverInfo["driver"]["id"],
-            'car_taximeter_id' => $carCreationResult['id'],
-            'car_model' => $carInfo->getBrand(),
-            'car_gov_number' => $carInfo->getGovNumber(),
-            'car_color' => $carInfo->getCreationYear(),
-            'car_vin' => $carInfo->getVin(),
-            'car_creation_year' => $carInfo->getCreationYear(),
-            'car_reg_sertificate' => $carInfo->getRegSertificate()
+            'car_taximeter_id'  => $carCreationResult['id'],
+            'car_brand'         => $carInfo->getBrand(),
+            'car_model'         => $carInfo->getModel(),
+            'car_gov_number'    => $carInfo->getGovNumber(),
         ]);
         
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
