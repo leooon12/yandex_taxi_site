@@ -10,6 +10,7 @@ use App\Http\Requests\ChangeDriverPhoneRequest;
 use App\Http\Requests\DriverDataRequest;
 use App\Jobs\SendRegistrationSms;
 use App\Mail\DriverRequestMail;
+use App\UserCar;
 use Illuminate\Support\Facades\Mail;
 use App\AnotherClasses\ResponseHandler;
 use JWTAuth;
@@ -112,7 +113,28 @@ class DriverController extends Controller
         $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
         TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
+
+        //Сохранение авто в промежуточную бд
+        UserCar::create([
+            'user_id' => $user_id,
+            'user_taximeter_id' => $driverInfo["driver"]["id"],
+            'car_taximeter_id' => $carCreationResult['id'],
+            'car_model' => $carInfo->getBrand(),
+            'car_gov_number' => $carInfo->getGovNumber(),
+            'car_color' => $carInfo->getCreationYear(),
+            'car_vin' => $carInfo->getVin(),
+            'car_creation_year' => $carInfo->getCreationYear(),
+            'car_reg_sertificate' => $carInfo->getRegSertificate()
+        ]);
         
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
+    }
+
+    public  function getUserCars($user_id) {
+        $cars = UserCar::orderBy('created_at', 'desc')
+            ->where('user_id', $user_id)
+            ->get();
+
+        return ResponseHandler::getJsonResponse(200, "Данные успешно получены", $cars);
     }
 }
