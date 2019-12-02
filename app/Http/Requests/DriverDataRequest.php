@@ -28,7 +28,7 @@ class DriverDataRequest extends FormRequest
     {
         return [
             'full_name'         => 'required|string|min:5|max:100',
-            'phone_number'              => 'required|string|size:11'
+            'phone_number'      => 'required|string|size:11'
         ];
     }
 
