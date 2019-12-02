@@ -7,6 +7,7 @@ use App\AnotherClasses\Builders\FullDriverInfo;
 use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\ChangeDriverCarRequest;
 use App\Http\Requests\ChangeDriverPhoneRequest;
+use App\Http\Requests\ChangeExistingDriverCarRequest;
 use App\Http\Requests\DriverDataRequest;
 use App\Jobs\SendRegistrationSms;
 use App\Mail\DriverRequestMail;
@@ -124,6 +125,20 @@ class DriverController extends Controller
             'car_gov_number'    => $carInfo->getGovNumber(),
         ]);
         
+        return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
+    }
+
+    public function changeExistingCar(ChangeExistingDriverCarRequest $request) {
+
+        if (! $user = JWTAuth::parseToken()->authenticate()) {
+            return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
+        }
+
+        $user_car = UserCar::where('user_id', $user->id)
+            ->first();
+
+        TaximeterConnector::changeCar($user_car->user_taximeter_id, $user_car->car_taximeter_id);
+
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }
 
