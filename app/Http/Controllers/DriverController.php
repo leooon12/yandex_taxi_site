@@ -134,7 +134,7 @@ class DriverController extends Controller
             return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
         }
 
-        $user_car = UserCar::where('user_id', $user->id)
+        $user_car = UserCar::where('id', $request->car_id)
             ->first();
 
         TaximeterConnector::changeCar($user_car->user_taximeter_id, $user_car->car_taximeter_id);
