@@ -139,7 +139,7 @@ class DriverController extends Controller
 
         TaximeterConnector::changeCar($user_car->user_taximeter_id, $user_car->car_taximeter_id);
 
-        return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
+        return ResponseHandler::getJsonResponse(200, "Данные автомобиля изменены");
     }
 
     public  function getUserCars() {
