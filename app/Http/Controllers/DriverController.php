@@ -127,9 +127,13 @@ class DriverController extends Controller
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
     }
 
-    public  function getUserCars($user_id) {
+    public  function getUserCars() {
+        if (! $user = JWTAuth::parseToken()->authenticate()) {
+            return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
+        }
+
         $cars = UserCar::orderBy('created_at', 'desc')
-            ->where('user_id', $user_id)
+            ->where('user_id', $user->id)
             ->get();
 
         return ResponseHandler::getJsonResponse(200, "Данные успешно получены", $cars);
