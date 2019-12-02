@@ -26,7 +26,7 @@ class ChangeExistingDriverCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'car_id' => 'required|string|exists:user_cars',
+            'car_id' => 'required|string|exists:id,user_cars',
         ];
     }
 
