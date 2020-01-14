@@ -7,9 +7,11 @@ use App\AnotherClasses\Builders\FullDriverInfo;
 use App\AnotherClasses\TaximeterConnector;
 use App\Http\Requests\ChangeDriverCarRequest;
 use App\Http\Requests\ChangeDriverPhoneRequest;
+use App\Http\Requests\ChangeExistingDriverCarRequest;
 use App\Http\Requests\DriverDataRequest;
 use App\Jobs\SendRegistrationSms;
 use App\Mail\DriverRequestMail;
+use App\UserCar;
 use Illuminate\Support\Facades\Mail;
 use App\AnotherClasses\ResponseHandler;
 use JWTAuth;
@@ -112,7 +114,43 @@ class DriverController extends Controller
         $driverInfo = TaximeterConnector::getDriverProfile($user_phone_number);
 
         TaximeterConnector::changeCar($driverInfo["driver"]["id"], $carCreationResult['id']);
+
+        //Сохранение авто в промежуточную бд
+        UserCar::create([
+            'user_id' => $user_id,
+            'user_taximeter_id' => $driverInfo["driver"]["id"],
+            'car_taximeter_id'  => $carCreationResult['id'],
+            'car_brand'         => $carInfo->getBrand(),
+            'car_model'         => $carInfo->getModel(),
+            'car_gov_number'    => $carInfo->getGovNumber(),
+        ]);
         
         return ResponseHandler::getJsonResponse(228, "Данные автомобиля изменены");
+    }
+
+    public function changeExistingCar(ChangeExistingDriverCarRequest $request) {
+
+        if (! $user = JWTAuth::parseToken()->authenticate()) {
+            return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
+        }
+
+        $user_car = UserCar::where('id', $request->car_id)
+            ->first();
+
+        TaximeterConnector::changeCar($user_car->user_taximeter_id, $user_car->car_taximeter_id);
+
+        return ResponseHandler::getJsonResponse(200, "Данные автомобиля изменены");
+    }
+
+    public  function getUserCars() {
+        if (! $user = JWTAuth::parseToken()->authenticate()) {
+            return ResponseHandler::getJsonResponse(404, "Пользователь не найден");
+        }
+
+        $cars = UserCar::orderBy('created_at', 'desc')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return ResponseHandler::getJsonResponse(200, "Данные успешно получены", $cars);
     }
 }
