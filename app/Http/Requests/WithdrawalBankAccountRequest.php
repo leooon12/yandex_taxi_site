@@ -30,6 +30,7 @@ class WithdrawalBankAccountRequest extends FormRequest
             'surname'           => 'required|string',
             'patronymic'        => 'required|string',
             'name'              => 'required|string',
+            'bik'               => 'required|string',
             'sum'               => 'required|integer'
         ];
     }
@@ -45,6 +46,8 @@ class WithdrawalBankAccountRequest extends FormRequest
             'patronymic.string'         => 'Неверный формат отчества',
             'name.required'             => 'Не был передан параметр имя',
             'name.string'               => 'Неверный формат имени',
+            'bik.required'              => 'Не был передан параметр БИК',
+            'bik.string'                => 'Неверный формат БИК',
             'sum.required'              => 'Не был передан параметр сумма вывода',
             'sum.integer'               => 'Неверный формат суммы вывода',
         ];
