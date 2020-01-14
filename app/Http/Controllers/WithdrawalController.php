@@ -51,6 +51,7 @@ class WithdrawalController extends Controller
             "surname"           => $request->get("surname"),
             "patronymic"        => $request->get("patronymic"),
             "name"              => $request->get("name"),
+            "bik"               => $request->get("bik"),
         ]);
 
         return ResponseHandler::getJsonResponse(200, "Заявка на вывод средств успешно отправлена");
