@@ -26,6 +26,10 @@ class TaximeterConnector
 
         $token = TaximeterConnector::getFleetToken();
 
+
+        var_dump($yandexDataForAuth);
+        var_dump($token);
+        return;
         //////////////////////////////////////////////////
         $options = array(
             'http' => array(
