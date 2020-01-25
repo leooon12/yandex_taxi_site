@@ -37,8 +37,8 @@ class TaximeterConnector
 
         $context  = stream_context_create($options);
 
-        $result = file_get_contents($url, false, $context);
-        //$result = fopen($url, 'r', false, $context);
+        //$result = file_get_contents($url, false, $context);
+        $result = fopen($url, 'r', false, $context);
 
         if ($result === FALSE) {
             var_dump("ERRRRRROROROROROROROOROROROROR");
