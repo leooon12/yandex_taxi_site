@@ -30,9 +30,7 @@ class TaximeterConnector
         $options = array(
             'http' => array(
                 'method'  => "POST",
-                'header'  => "Content-Type: application/json;charset=UTF-8
-Cookie: yandexuid=577925891579920464; Session_id=3:1579937919.5.0.1579920464249:8f34aA:41.1|824038420.17455.2.2:17455|211547.215528.BFVs40sdAniZh63cowAQNB9Pq2g;
-X-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922",
+                'header'  => "Content-Type: application/json;charset=UTF-8\r\nCookie: yandexuid=577925891579920464; Session_id=3:1579937919.5.0.1579920464249:8f34aA:41.1|824038420.17455.2.2:17455|211547.215528.BFVs40sdAniZh63cowAQNB9Pq2g;\r\nX-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922",
                 'content' => "{\"park_id\":\"f25f9892dd5c457394733ffe83fcccab\",\"text\":\"9143301234\"}"
             )
         );
