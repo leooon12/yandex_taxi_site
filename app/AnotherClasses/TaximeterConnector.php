@@ -40,20 +40,30 @@ class TaximeterConnector
             'X-CSRF-TOKEN: ' . $token
         ));
 
-        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
-        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
+
+        //curl -H "Content-Type: application/json;charset=UTF-8" -H "Cookie: yandexuid=577925891579920464; Session_id=3:1579937919.5.0.1579920464249:8f34aA:41.1|824038420.17455.2.2:17455|211547.215528.BFVs40sdAniZh63cowAQNB9Pq2g;" -H "X-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922" -d '{"park_id":"f25f9892dd5c457394733ffe83fcccab","text":"9143301234"}' -X POST https://fleet.taxi.yandex.ru/drivers/list
+        
+//        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
+//        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
         curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        
+//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+
         $html = curl_exec($ch);
 
-        var_dump($html);
-        return;
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
-        
+
+        $header = substr($html, 0, $header_size);
+        $html = substr($html, $header_size);
+
+        var_dump($header . "\n\n\n\________________________n\n\n" . $html);
+        return;
 
         return json_decode($html, true);
     }
