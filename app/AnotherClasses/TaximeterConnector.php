@@ -25,17 +25,13 @@ class TaximeterConnector
         $yandexDataForAuth = TaximeterConnector::auth();
 
         $token = TaximeterConnector::getFleetToken();
-
-
-        var_dump($yandexDataForAuth);
-        var_dump($token);
-        return;
+        
         //////////////////////////////////////////////////
         $options = array(
             'http' => array(
                 'method'  => 'POST',
-                'header'  => "Content-Type: application/json;charset=UTF-8".
-                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";" .
+                'header'  => "Content-Type: application/json;charset=UTF-8\r\n".
+                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";\r\n" .
                              "X-CSRF-TOKEN: " . $token,
                 'content' => $postfields
             )
