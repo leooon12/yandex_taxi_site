@@ -47,11 +47,11 @@ class TaximeterConnector
 
         $html = curl_exec($ch);
 
-        var_dump($ch);
+        var_dump(json_encode($ch));
+        return;
 
         curl_close($ch);
         
-        return;
 
         return json_decode($html, true);
     }
