@@ -39,9 +39,6 @@ X-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922\r\n",
 
         $context  = stream_context_create($options);
 
-      var_dump(stream_context_get_params($context));
-      //return;
-
         //$result = file_get_contents($url, false, $context);
         $result = fopen($url, 'r', false, $context);
 
@@ -49,6 +46,9 @@ X-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922\r\n",
             var_dump("ERRRRRROROROROROROROOROROROROR");
         }
 
+        var_dump($result);
+        return;
+        
         //////////////////////////////////////////////////////////////////////
         
         
