@@ -26,9 +26,4 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function getPhoneNumberAttribute($value)
-    {
-        return substr($value, 1);
-    }
 }
