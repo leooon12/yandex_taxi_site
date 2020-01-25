@@ -37,8 +37,7 @@ class DriverController extends Controller
         }
 
         $taximeter_user_data = TaximeterConnector::getDriverProfile($user->phone_number);
-        return $user->phone_number;
-
+        
         if ($taximeter_user_data)
             return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
 
