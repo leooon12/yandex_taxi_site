@@ -203,7 +203,7 @@ class TaximeterConnector
 
         $postfields = '{'.
             '"park_id":"' . TaximeterConnector::PARK_ID . '",'.
-            '"text":"' . $phonenumber . '"'.
+            '"text":"' . substr($phonenumber, 1, 10) . '"'.
         '}';
 
         $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
@@ -223,7 +223,6 @@ class TaximeterConnector
 
     public static function getBalance($phonenumber){
         $profile = TaximeterConnector::getDriverProfile($phonenumber);
-        dd($profile);
         return isset($profile) ? $profile['accounts'][0]['balance'] : null;
     }
 
