@@ -223,6 +223,7 @@ class TaximeterConnector
 
     public static function getBalance($phonenumber){
         $profile = TaximeterConnector::getDriverProfile($phonenumber);
+        dd($profile);
         return isset($profile) ? $profile['accounts'][0]['balance'] : null;
     }
 
