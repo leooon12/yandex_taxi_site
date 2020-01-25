@@ -40,6 +40,14 @@ class TaximeterConnector
             'X-CSRF-TOKEN: ' . $token
         ));
 
+
+        var_dump(array(
+            'Content-Type: application/json;charset=UTF-8',
+            'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . ';',
+            'X-CSRF-TOKEN: ' . $token
+        ));
+        return;
+
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
@@ -51,10 +59,6 @@ class TaximeterConnector
         $html = curl_exec($ch);
 
         curl_close($ch);
-
-        var_dump($postfields);
-        return;
-
 
         return json_decode($html, true);
     }
@@ -193,7 +197,11 @@ class TaximeterConnector
     public static function getDriverProfile($phonenumber)
     {
         $url = TaximeterConnector::FLEET_URL . '/drivers/list';
-        $postfields = "{\"park_id\":\"" . TaximeterConnector::PARK_ID . "\",\"work_rule_id\":null,\"work_status_id\":\"working\",\"car_categories\":[],\"car_amenities\":[],\"limit\":40,\"offset\":0,\"sort\":[{\"direction\":\"desc\",\"field\":\"account.current.balance\"}],\"text\":\"" . substr($phonenumber, 1, 10) . "\"}";
+
+        $postfields = '{'.
+            '"park_id":"' . TaximeterConnector::PARK_ID . '",'.
+            '"text":"' . $phonenumber . '"'.
+        '}';
 
         $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
         $profiles = isset($driversData['data']['driver_profiles']) ? $driversData['data']['driver_profiles'] : [];
