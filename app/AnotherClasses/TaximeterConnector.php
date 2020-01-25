@@ -31,14 +31,15 @@ class TaximeterConnector
             'http' => array(
                 'method'  => 'POST',
                 'header'  => "Content-Type: application/json;charset=UTF-8\r\n".
-                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";\r\n" .
+                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";" .
                              "X-CSRF-TOKEN: " . $token,
                 'content' => $postfields
             )
         );
 
         $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
+        //$result = file_get_contents($url, false, $context);
+        $result = fopen($url, 'r', false, $context);
 
         if ($result === FALSE) {
             var_dump("ERRRRRROROROROROROROOROROROROR");
