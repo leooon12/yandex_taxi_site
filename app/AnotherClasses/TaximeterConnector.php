@@ -43,8 +43,10 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
-//        curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
+        curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        
         $html = curl_exec($ch);
 
         var_dump($html);
