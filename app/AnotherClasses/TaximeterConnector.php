@@ -125,6 +125,8 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        
+        curl_setopt($ch, CURLOPT_POSTREDIR, 3);
 
         $html = curl_exec($ch);
 
