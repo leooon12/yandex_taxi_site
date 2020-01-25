@@ -39,7 +39,7 @@ class TaximeterConnector
 
         $context  = stream_context_create($options);
 
-        var_dump($context);
+        var_dump(stream_context_get_params($context));
         return;
 
         //$result = file_get_contents($url, false, $context);
