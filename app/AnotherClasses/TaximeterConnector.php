@@ -40,14 +40,6 @@ class TaximeterConnector
             'X-CSRF-TOKEN: ' . $token
         ));
 
-
-        var_dump(array(
-            'Content-Type: application/json;charset=UTF-8',
-            'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . ';',
-            'X-CSRF-TOKEN: ' . $token
-        ));
-        return;
-
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
@@ -59,6 +51,9 @@ class TaximeterConnector
         $html = curl_exec($ch);
 
         curl_close($ch);
+        
+        var_dump($html);
+        return;
 
         return json_decode($html, true);
     }
