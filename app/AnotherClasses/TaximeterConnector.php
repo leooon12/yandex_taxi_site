@@ -25,7 +25,11 @@ class TaximeterConnector
         $yandexDataForAuth = TaximeterConnector::auth();
 
         $token = TaximeterConnector::getFleetToken();
-
+        
+        var_dump($yandexDataForAuth);
+        var_dump($token);
+        return;
+        
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
@@ -48,9 +52,6 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch, CURLOPT_URL, $url); $html = curl_exec($ch);
 
         curl_close($ch);
-        
-        var_dump($html);
-        return;
 
         return json_decode($html, true);
     }
