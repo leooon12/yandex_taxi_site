@@ -30,7 +30,7 @@ class TaximeterConnector
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
         curl_setopt($ch, CURLOPT_URL, $url);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
 
@@ -45,8 +45,6 @@ class TaximeterConnector
 
         curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-        
         $html = curl_exec($ch);
 
         curl_close($ch);
