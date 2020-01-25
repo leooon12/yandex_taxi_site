@@ -10,7 +10,7 @@ class WithdrawalBankAccount extends Model
     use WithdrawalTrait;
 
     protected $fillable = [
-        'user_id', 'account_number', 'patronymic', 'surname', 'name', 'sum', 'status_id'
+        'user_id', 'account_number', 'patronymic', 'surname', 'name', 'sum', 'status_id', 'bik'
     ];
 
 }

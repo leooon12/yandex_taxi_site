@@ -183,6 +183,9 @@
 								}, {
 									name: 		"ФИО",
 									valueText: 	withdrawal.surname + " " + withdrawal.name + " " + withdrawal.patronymic
+								}, {
+									name: 		"БИК",
+									valueText: 	withdrawal.bik
 								}];
 
 								var user = {
