@@ -41,7 +41,7 @@ class DriverController extends Controller
         if ($taximeter_user_data)
             return ResponseHandler::getJsonResponse(200, "данные успешно получены", compact('taximeter_user_data'));
 
-        return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером не зарегистрирован в таксометре");
+        return ResponseHandler::getJsonResponse(404, "Пользователь с таким номером (".$user->phone_number.") не зарегистрирован в таксометре");
     }
 
     protected function getFullDriverInfo($user_phone_number) {
