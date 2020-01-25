@@ -39,21 +39,27 @@ class TaximeterConnector
             'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . ';',
             'X-CSRF-TOKEN: ' . $token
         ));
-
-        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
-        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
+        
+//        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
+//        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
         curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+
+        curl_setopt($ch, CURLOPT_POSTREDIR, 3);
         
         $html = curl_exec($ch);
 
-        var_dump($html);
-        return;
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
-        
+
+        $header = substr($html, 0, $header_size);
+        $html = substr($html, $header_size);
 
         return json_decode($html, true);
     }
