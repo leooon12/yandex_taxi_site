@@ -191,7 +191,7 @@ class TaximeterConnector
         $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
         $profiles = isset($driversData['data']['driver_profiles']) ? $driversData['data']['driver_profiles'] : [];
 
-        return $profiles;
+        dd($profiles);
         
         return count($profiles) > 0 ? $profiles[0] : null;
     }
