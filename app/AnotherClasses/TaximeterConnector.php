@@ -26,36 +26,11 @@ class TaximeterConnector
 
         $token = TaximeterConnector::getFleetToken();
         
-        //////////////////////////////////////////////////
-        $options = array(
-            'http' => array(
-                'method'  => "POST",
-                'header'  => "Content-Type: application/json;charset=UTF-8\r\nCookie: yandexuid=577925891579920464; Session_id=3:1579937919.5.0.1579920464249:8f34aA:41.1|824038420.17455.2.2:17455|211547.215528.BFVs40sdAniZh63cowAQNB9Pq2g;\r\nX-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922",
-                'content' => "{\"park_id\":\"f25f9892dd5c457394733ffe83fcccab\",\"text\":\"9143301234\"}"
-            )
-        );
-
-        $context  = stream_context_create($options);
-
-        //$result = file_get_contents($url, false, $context);
-        $result = fopen($url, 'r', false, $context);
-
-        if ($result === FALSE) {
-            var_dump("ERRRRRROROROROROROROOROROROROR");
-        }
-
-        var_dump($result);
-        return;
-        
-        //////////////////////////////////////////////////////////////////////
-        
-        
-
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
 
@@ -68,11 +43,11 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
         curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
-        curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
+//        curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
         $html = curl_exec($ch);
 
-        var_dump(json_encode($ch));
+        var_dump($html);
         return;
 
         curl_close($ch);
