@@ -52,7 +52,7 @@ class TaximeterConnector
 
         curl_close($ch);
 
-        var_dump($html);
+        var_dump($postfields);
         return;
 
 
