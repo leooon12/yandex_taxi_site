@@ -30,9 +30,9 @@ class TaximeterConnector
         $options = array(
             'http' => array(
                 'method'  => "POST",
-                'header'  => "Content-Type: application/json;charset=UTF-8\r\n".
-                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";\r\n" .
-                             "X-CSRF-TOKEN: " . $token . "\r\n",
+                'header'  => "Content-Type: application/json;charset=UTF-8\r\n
+Cookie: yandexuid=577925891579920464; Session_id=3:1579937919.5.0.1579920464249:8f34aA:41.1|824038420.17455.2.2:17455|211547.215528.BFVs40sdAniZh63cowAQNB9Pq2g;\r\n
+X-CSRF-TOKEN: f2f50187a2cb267080332aaea84fbd7d91691bc4:1579937922\r\n",
                 'content' => http_build_query(
                     array(
                         "park_id" => "f25f9892dd5c457394733ffe83fcccab", 
@@ -44,8 +44,8 @@ class TaximeterConnector
 
         $context  = stream_context_create($options);
 
-//      var_dump(stream_context_get_params($context));
-//      return;
+      var_dump(stream_context_get_params($context));
+      return;
 
         //$result = file_get_contents($url, false, $context);
         $result = fopen($url, 'r', false, $context);
