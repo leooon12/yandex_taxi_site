@@ -34,7 +34,7 @@ class TaximeterConnector
                              "X-CSRF-TOKEN: " . $token . "\r\n",
                            //"Content-type: application/x-www-form-urlencoded\r\n",
                 'method'  => 'POST',
-                'content' => http_build_query($postfields)
+                'content' => $postfields
             )
         );
 
