@@ -33,7 +33,12 @@ class TaximeterConnector
                 'header'  => "Content-Type: application/json;charset=UTF-8\r\n".
                              "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";\r\n" .
                              "X-CSRF-TOKEN: " . $token . "\r\n",
-                'content' => $postfields
+                'content' => http_build_query(
+                    array(
+                        "park_id" => "f25f9892dd5c457394733ffe83fcccab", 
+                        "text" => "9143301234"
+                    )
+                )   
             )
         );
 
