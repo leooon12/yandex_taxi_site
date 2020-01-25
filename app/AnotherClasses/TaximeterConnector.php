@@ -51,7 +51,7 @@ class TaximeterConnector
 
         curl_close($ch);
         
-        var_dump($html);
+        var_dump("html(".$html.")");
         return;
 
         return json_decode($html, true);
