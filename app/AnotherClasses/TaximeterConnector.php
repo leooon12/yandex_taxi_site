@@ -48,6 +48,9 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch, CURLOPT_URL, $url); $html = curl_exec($ch);
 
         curl_close($ch);
+        
+        var_dump($html);
+        return;
 
         return json_decode($html, true);
     }
@@ -190,9 +193,6 @@ class TaximeterConnector
 
         $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
         $profiles = isset($driversData['data']['driver_profiles']) ? $driversData['data']['driver_profiles'] : [];
-
-        var_dump($driversData);
-        return;
         
         return count($profiles) > 0 ? $profiles[0] : null;
     }
