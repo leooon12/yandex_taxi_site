@@ -26,6 +26,31 @@ class TaximeterConnector
 
         $token = TaximeterConnector::getFleetToken();
 
+        //////////////////////////////////////////////////
+        $options = array(
+            'http' => array(
+                'header'  => "Content-Type: application/json;charset=UTF-8\r\n".
+                             "Cookie: yandexuid=" . $yandexDataForAuth[1] . "; Session_id=" . $yandexDataForAuth[0] . ";\r\n" .
+                             "X-CSRF-TOKEN: " . $token . "\r\n",
+                           //"Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($postfields)
+            )
+        );
+
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+
+        if ($result === FALSE) {
+            var_dump("ERRRRRROROROROROROROOROROROROR");
+        }
+
+        var_dump($result);
+        return;
+        //////////////////////////////////////////////////////////////////////
+        
+        
+
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
