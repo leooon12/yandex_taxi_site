@@ -94,7 +94,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        Mail::to(self::MAIL_ADDRESS)->send(new TaximeterRegistrationMail($request));
+        Mail::to(self::MAIL_ADDRESS)->send(new TaximeterRegistrationMail($request, $user->phone_number));
         return ResponseHandler::getJsonResponse(200, "Вы успешно зарегистрированы", compact('user'));
     }
 }
