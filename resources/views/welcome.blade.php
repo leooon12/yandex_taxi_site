@@ -176,7 +176,7 @@ $(document).ready(function () {
                     <div class="grid_4" style="margin-top: 10vh;">
                         <div class="booking-box">
 
-                            <p style="color: black; padding: 10px; border-radius: 5px;">
+                            <p style="color: black; padding: 10px 0; border-radius: 5px;">
                                 <strong style="font-size: 200%; display: block; margin-bottom: 1rem; font-weight: bold; line-height: 120%;">
                                     Заявка на подключение
                                 </strong>
