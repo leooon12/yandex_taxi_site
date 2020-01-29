@@ -206,7 +206,7 @@ $(document).ready(function () {
 
                                 <small style="font-size: 10px; line-height: 10px; color: rgba(0,0,0,0.7);">
                                     Нажимая кнопку "Отправить!" вы <br>
-                                    соглашаетесь с условиями <a href="/oferta.docx">публичной оферты</a>
+                                    соглашаетесь с условиями <a href="/oferta.docx" style="color: blue">публичной оферты</a>
                                 </small>
 
                             </p>
