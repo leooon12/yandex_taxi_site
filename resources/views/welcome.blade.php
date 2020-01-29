@@ -6,7 +6,7 @@
 
     <link rel="icon" href="/Home_files/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="/Home_files/grid.css">
-    <link rel="stylesheet" href="/Home_files/style.css">
+    <link rel="stylesheet" href="Home_files/style.css?v=12">
     <link rel="stylesheet" href="/Home_files/booking.css">
 
     <script src="/Home_files/jquery.js"></script>
