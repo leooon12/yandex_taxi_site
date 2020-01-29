@@ -485,6 +485,7 @@ a[href^="tel:"] {
     left: 0;
     right: 0;
     pointer-events: none;
+    
     -webkit-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
     -moz-box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35);
     box-shadow: inset 0px 100px 25px -100px rgba(0, 0, 0, 0.35); }
