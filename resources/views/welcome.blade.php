@@ -175,7 +175,14 @@ $(document).ready(function () {
                     </div>
                     <div class="grid_4" style="margin-top: 10vh;">
                         <div class="booking-box">
-                            <h2>Заявка на подключение</h2>
+
+                            <p style="background: rgba(255, 255, 255, 0.4);color: black;padding: 10px;border-radius: 5px;">
+                                <strong style="font-size: 200%; display: block; margin-bottom: 1rem; font-weight: bold; line-height: 120%;">
+                                    Заявка на подключение
+                                </strong>
+                                Подключение к Яндекс.Такси за 15 минут: заполняйте заявку и ожидайте звонка
+                            </p>
+                            
                             <form id="bookingForm" class="booking-form" method="POST" action="{{ url('/driver') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="controlHolder">
@@ -195,9 +202,14 @@ $(document).ready(function () {
                                    data-type="submit" onclick="sendForm()">Отправить!</a>
                                    -->
                             </form>
-                            <p>Подключение к Яндекс.Такси
-                                за 15 минут
-                                заполняйте заявку и ожидайте звонка </p>
+                            <p style="background: rgba(255, 255, 255, 0.4); color: black; padding: 10px; text-align: center; border-radius: 5px;">
+
+                                <small style="font-size: 10px; line-height: 10px; color: rgba(0,0,0,0.7);">
+                                    Нажимая кнопку "Отправить!" вы <br>
+                                    соглашаетесь с условиями <a href="/oferta.docx">публичной оферты</a>
+                                </small>
+
+                            </p>
                         </div>
                         <br/>
                         <p style="text-align: center; color: white; font-size: 1.2rem; text-shadow: 0 0 5px black; opacity: 0.8">Официальный партнер Яндекс.Такси</p>
@@ -333,8 +345,11 @@ $(document).ready(function () {
                         </li>
                     </ul>
                 </div>
+                <div>
+                    
+                </div>
                 <div class="copyright">
-                    Разработано компанией <a href="http://awake.su">Awake!</a> © <span id="copyright-year">2019</span>
+                    Разработано в <a href="http://awake.su">Awake!</a> © <span id="copyright-year">2019</span>
                     <!-- {%FOOTER_LINK} -->
                 </div>
             </div>
