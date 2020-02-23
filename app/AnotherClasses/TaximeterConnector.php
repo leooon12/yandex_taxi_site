@@ -23,9 +23,9 @@ class TaximeterConnector
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
 
         $yandexDataForAuth = TaximeterConnector::auth();
-
+//dd($yandexDataForAuth);
         $token = TaximeterConnector::getFleetToken();
-        
+//dd($token);        
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
@@ -53,7 +53,7 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_POSTREDIR, 3);
         
         $html = curl_exec($ch);
-
+dd($html);
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 
         curl_close($ch);
