@@ -33,6 +33,6 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-if (App::environment('production', 'staging')) {
+/* if (App::environment('production', 'staging')) {
     URL::forceScheme('https');
-}
+} */
