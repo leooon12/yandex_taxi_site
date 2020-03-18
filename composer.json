@@ -15,7 +15,8 @@
         "laravel/tinker": "~1.0",
         "tcg/voyager": "^1.2",
         "tymon/jwt-auth": "dev-develop",
-        "zelenin/smsru": "~4"
+        "zelenin/smsru": "~4",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
