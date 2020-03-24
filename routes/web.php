@@ -29,8 +29,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'admin.user'], function () {
         Route::get('withdrawal/', 'AdminPanelWithdrawalController@index');
+        Route::get('withdrawal/topUp/', 'AdminPanelWithdrawalController@get_top_up_withdrawal');
         Route::get('edit_request/', 'AdminRequestController@index');
+
+        //Нужен мидлварь от админа, а из api он не работает
+        Route::post('withdrawal/topUp/', 'AdminPanelWithdrawalController@top_up_withdrawal');
     });
+
 });
 
 /* if (App::environment('production', 'staging')) {

@@ -35,9 +35,9 @@ Route::namespace('JWTAuth')->group(function () {
 Route::get('/taximetr', 'UserController@taximetr');
 
 Route::group(['prefix' => 'topup'], function() {
-    Route::get('make_payment/{account_number}/{amount}', 'TopUpController@makePayment');
     Route::get('check_payment/{account_number}/{transaction_number}', 'TopUpController@checkPayment');
     Route::get('check_balance', 'TopUpController@checkBalance');
+
 });
 
 Route::group(['middleware' => ['jwt.verify']], function() {

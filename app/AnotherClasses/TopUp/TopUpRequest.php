@@ -7,7 +7,7 @@ class TopUpRequest extends RequestHelper
 {
     public function __construct($type, $terminal_id, $password)
     {
-        parent::__construct(TopupConstants::REQUEST_TEMPLATE);
+        parent::__construct(TopUpConstants::REQUEST_TEMPLATE);
 
         $this->setValue("request_type", $type);
         $this->setValue("terminal_id", $terminal_id);

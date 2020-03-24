@@ -54,6 +54,10 @@
 		.error {
 			background: #e85353 !important;
 		}
+
+		.topUp {
+			background: #16CEDB !important;
+		}
 	</style>
 
     <div>
@@ -275,6 +279,9 @@
 							'Номер телефона: <b>' + user.phone + '</b><br>' +
                             '<br>';
 
+					if (paymentInfo.type === "WithdrawalBankCard" && paymentInfo.status === "в обработке")
+						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+');" />';
+
 					statuses.forEach(function (status) {
 						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
 
@@ -298,6 +305,19 @@
 					withdrawal_id: withdrawal_id,
 					status_id: status_id,
 					model_name: model_name
+				},
+				success: function () {
+					getWithdrawals(last_state);
+				}
+			});
+		}
+
+		function topUpWithdrawal(withdrawal_id) {
+			$.ajax({
+				type: "POST",
+				url: "/admin/withdrawal/topUp",
+				data: {
+					withdrawal_id: withdrawal_id
 				},
 				success: function () {
 					getWithdrawals(last_state);

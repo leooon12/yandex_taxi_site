@@ -8,23 +8,31 @@ use Illuminate\Support\Facades\Config;
 
 class TopUpController extends Controller
 {
-    public function makePayment($account_number, $amount)
+    public static function makePayment($account_number, $amount)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $response = $this->parseResponse($request_manager->makePayment($account_number, $amount));
+        $response = self::parseResponse($request_manager->makePayment($account_number, $amount));
 
-        return response()->json($response);
+        return $response;
     }
 
-    public function checkPayment($account_number, $transaction_number)
+    public static function checkPayment($account_number, $transaction_number)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $response = $this->parseResponse($request_manager->checkPayment($account_number, $transaction_number));
+        $response = self::parseResponse($request_manager->checkPayment($account_number, $transaction_number));
 
-        return response()->json($response);
+        return $response;
     }
 
-    private function parseResponse($response)
+    public static function checkBalance()
+    {
+        $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
+        $response = $request_manager->checkBalance();
+
+        return $response;
+    }
+
+    private static function parseResponse($response)
     {
         $result = array();
         $parsed_xml = simplexml_load_string($response);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\AnotherClasses\ResponseHandler;
 use App\Http\Requests\WithdrawalStatusRequest;
+use App\TopUpWithdrawal;
 use App\WithdrawalBankAccount;
 use App\WithdrawalBankCard;
 use App\WithdrawalStatus;
@@ -51,6 +53,45 @@ class AdminPanelWithdrawalController extends Controller
     }
 
     public function get_all_statuses() {
-        return WithdrawalStatus::get();
+        return WithdrawalStatus::take(100)->get();
+    }
+
+    public function top_up_withdrawal(Request $request)
+    {
+
+        $withdrawal_info = WithdrawalBankCard::find($request->withdrawal_id);
+        $sum = $withdrawal_info->sum - WithdrawalBankCard::COMMISSION;
+
+        if ($sum < 0)
+            return ResponseHandler::getJsonResponse(400, "Сумма выплаты с учетом комиссии составляет меньше рубля");
+
+        if ($sum > WithdrawalBankCard::MAX_SUM)
+            return ResponseHandler::getJsonResponse(400, "Сумма автовыплаты не может быть больше ".WithdrawalBankCard::MAX_SUM." рублей");
+
+        //$result = TopUpController::makePayment('4276500020914493', '1');
+        $result = TopUpController::makePayment($withdrawal_info->card_number, $sum);
+
+        if ($result['status'] == 0) {
+            $withdrawal_info->update(['status_id' => WithdrawalStatus::COMPLETED]);
+
+            TopUpWithdrawal::create([
+                'transaction_number' => $result['payment']['transaction_number'],
+                'card_number' => $withdrawal_info->card_number,
+                'sum' => $sum,
+                'status' => $result['payment']['status'],
+                'withdrawal_bank_card_id' => $withdrawal_info->id,
+
+            ]);
+
+        return ResponseHandler::getJsonResponse(200, "Автовыплата успешно начата");
+        }
+        else return ResponseHandler::getJsonResponse(400, "Произошла ошибка, попробуйте еще раз");
+
+    }
+
+    public function get_top_up_withdrawal() {
+        $topUps = TopUpWithdrawal::orderBy('created_at', 'desc')->paginate(25);
+
+        return view('/vendor/voyager/top_up_withdrawal', ['topUps' => $topUps]);
     }
 }
