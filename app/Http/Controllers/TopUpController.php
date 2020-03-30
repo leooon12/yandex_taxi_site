@@ -11,17 +11,17 @@ class TopUpController extends Controller
     public static function makePayment($account_number, $amount)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $response = self::parseResponse($request_manager->makePayment($account_number, $amount));
+        $topup_response = $request_manager->makePayment($account_number, $amount);
 
-        return $response;
+        return self::parseResponse($topup_response);
     }
 
     public static function checkPayment($account_number, $transaction_number)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $response = self::parseResponse($request_manager->checkPayment($account_number, $transaction_number));
+        $topup_response = $request_manager->checkPayment($account_number, $transaction_number);
 
-        return $response;
+        return self::parseResponse($topup_response);
     }
 
     public static function checkBalance()

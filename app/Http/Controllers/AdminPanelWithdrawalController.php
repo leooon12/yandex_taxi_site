@@ -58,7 +58,6 @@ class AdminPanelWithdrawalController extends Controller
 
     public function top_up_withdrawal(Request $request)
     {
-
         $withdrawal_info = WithdrawalBankCard::find($request->withdrawal_id);
         $sum = $withdrawal_info->sum - WithdrawalBankCard::COMMISSION;
 
@@ -68,7 +67,6 @@ class AdminPanelWithdrawalController extends Controller
         if ($sum > WithdrawalBankCard::MAX_SUM)
             return ResponseHandler::getJsonResponse(400, "Сумма автовыплаты не может быть больше ".WithdrawalBankCard::MAX_SUM." рублей");
 
-        //$result = TopUpController::makePayment('4276500020914493', '1');
         $result = TopUpController::makePayment($withdrawal_info->card_number, $sum);
 
         if ($result['status'] == 0) {
@@ -80,12 +78,12 @@ class AdminPanelWithdrawalController extends Controller
                 'sum' => $sum,
                 'status' => $result['payment']['status'],
                 'withdrawal_bank_card_id' => $withdrawal_info->id,
-
             ]);
 
-        return ResponseHandler::getJsonResponse(200, "Автовыплата успешно начата");
+            return ResponseHandler::getJsonResponse(200, "Автовыплата успешно начата");
         }
-        else return ResponseHandler::getJsonResponse(400, "Произошла ошибка, попробуйте еще раз");
+        else 
+            return ResponseHandler::getJsonResponse(400, "Произошла ошибка, попробуйте еще раз");
 
     }
 
