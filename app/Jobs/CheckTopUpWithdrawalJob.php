@@ -26,7 +26,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
     /**
      * Время, через которое необходимо выполнить задачу
      */
-    const DELAY_TIME_IN_MINUTES = 1;
+    const DELAY_TIME_IN_MINUTES = 10;
 
     /**
      * @var integer Идентификатор запроса платежа в базе данных
@@ -54,7 +54,6 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
      */
     public function handle()
     {
-        //dd('CheckTopWithdrawwalJob::handle()');
         //Получение необходимых данных из базы данных
         $top_up_withdrawal = $this->getTopUpWithdrawal();
         $withdrawal_bank_card = $this->getWithdrawalBankCard($top_up_withdrawal->withdrawal_bank_card_id);

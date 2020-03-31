@@ -115,11 +115,11 @@ class AdminPanelWithdrawalController extends Controller
         );
 
         //Выплата проведена успешно
-        /*if ($top_up_response['payment']['status'] == TopUpController::PAYMENT_RESULT_SUCCESS)
+        if ($top_up_response['payment']['status'] == TopUpController::PAYMENT_RESULT_SUCCESS)
         {
             $withdrawal_bank_card->update(['status_id' => WithdrawalStatus::COMPLETED]);
             return ResponseHandler::getJsonResponse(200, "Автовыплата успешно выполнена");
-        }*/
+        }
 
         //Выплата в обработке
         $withdrawal_bank_card->update(['status_id' => WithdrawalStatus::IN_WORK]);
