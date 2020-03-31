@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Config;
 
 class TopUpController extends Controller
 {
+    const REQUEST_RESULT_SUCCESS = 0;
+
+    const PAYMENT_RESULT_MIN_POSSIBLE_VALUE = 50;
+
+    const PAYMENT_RESULT_MAX_POSSIBLE_VALUE = 60;
+
+    const PAYMENT_RESULT_SUCCESS = 60;
+
+    const PAYMENT_RESULT_FAILED = 160;
+
     public static function makePayment($account_number, $amount)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));

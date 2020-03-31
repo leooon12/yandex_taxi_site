@@ -279,7 +279,7 @@
 							'Номер телефона: <b>' + user.phone + '</b><br>' +
                             '<br>';
 
-					if (paymentInfo.type === "WithdrawalBankCard" && paymentInfo.status === "в обработке")
+					if (paymentInfo.type === "WithdrawalBankCard" && paymentInfo.status === "ожидает подтверждения")
 						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+');" />';
 
 					statuses.forEach(function (status) {
