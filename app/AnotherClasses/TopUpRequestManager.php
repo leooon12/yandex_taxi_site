@@ -2,10 +2,10 @@
 
 namespace App\AnotherClasses;
 
-use App\AnotherClasses\TopUp\TopUpRequest;
-use App\AnotherClasses\TopUp\CheckUserRequestBody;
-use App\AnotherClasses\TopUp\CheckPaymentRequestBody;
-use App\AnotherClasses\TopUp\MakePaymentRequestBody;
+use App\AnotherClasses\Api\TopUp\CheckPaymentTopUpRequestBody;
+use App\AnotherClasses\Api\TopUp\CheckUserTopUpRequestBody;
+use App\AnotherClasses\Api\TopUp\MakePaymentTopUpRequestBody;
+use App\AnotherClasses\Api\TopUp\TopUpRequest;
 
 class TopUpRequestManager
 {
@@ -30,7 +30,7 @@ class TopUpRequestManager
     public function checkPayment($account_number, $transaction_number)
     {
         $request = new TopUpRequest("pay", $this->_terminal_id, $this->_password);
-        $request->requestBody(new CheckPaymentRequestBody($account_number, $transaction_number));
+        $request->requestBody((new CheckPaymentTopUpRequestBody($account_number, $transaction_number))->toString());
 
         return $request->getResponse();
     }
@@ -38,7 +38,7 @@ class TopUpRequestManager
     public function checkUser($phone_number)
     {
         $request = new TopUpRequest("check-user", $this->_terminal_id, $this->_password);
-        $request->requestBody(new CheckUserRequestBody($phone_number));
+        $request->requestBody((new CheckUserTopUpRequestBody($phone_number))->toString());
 
         return $request->getResponse();
     }
@@ -46,7 +46,7 @@ class TopUpRequestManager
     public function makePayment($account_number, $amount)
     {
         $request = new TopUpRequest("pay", $this->_terminal_id, $this->_password);
-        $request->requestBody(new MakePaymentRequestBody($account_number, $amount));
+        $request->requestBody((new MakePaymentTopUpRequestBody($account_number, $amount))->toString());
 
         return $request->getResponse();
     }

@@ -17,7 +17,8 @@
         "tymon/jwt-auth": "dev-develop",
         "zelenin/smsru": "~4",
         "ext-simplexml": "*",
-      "ext-http": "*"
+      "ext-http": "*",
+      "ext-json": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
