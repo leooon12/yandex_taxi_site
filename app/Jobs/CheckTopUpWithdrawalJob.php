@@ -26,7 +26,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
     /**
      * Время, через которое необходимо выполнить задачу
      */
-    const DELAY_TIME_IN_MINUTES = 1;
+    const DELAY_TIME_IN_MINUTES = 10;
 
     /**
      * @var integer Идентификатор запроса платежа в базе данных
