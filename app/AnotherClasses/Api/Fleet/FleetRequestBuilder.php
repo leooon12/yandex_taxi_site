@@ -31,16 +31,12 @@ class FleetRequestBuilder implements IRequestBuilder
      */
     public function setValue($name, $value)
     {
-        file_put_contents("/Users/leooon12/output.txt", "setValue is called\n");
-
         $exploded_name = explode('/', $name);
         $exploded_name_length = count($exploded_name);
         $current_value = &$this->request;
 
         for ($i = 0; $i < $exploded_name_length; ++$i)
         {
-            file_put_contents("/Users/leooon12/output.txt", "i = ".$i."\n", FILE_APPEND);
-
             //Если значение не последнее
             if ($i < $exploded_name_length - 1)
             {
@@ -56,8 +52,6 @@ class FleetRequestBuilder implements IRequestBuilder
                 //Последнее значение
                 $current_value[$exploded_name[$i]] = $value;
             }
-
-            file_put_contents("/Users/leooon12/output.txt", "Request: ".print_r($this->request, true)."\n", FILE_APPEND);
         }
     }
 
