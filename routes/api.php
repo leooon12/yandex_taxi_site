@@ -71,6 +71,7 @@ Route::get('withdrawal_statuses','AdminPanelWithdrawalController@get_all_statuse
 Route::group(['prefix' => 'withdrawal'], function() {
     Route::get('/{type?}','AdminPanelWithdrawalController@get_withdrawals');
     Route::post('/status','AdminPanelWithdrawalController@change_status');
+    Route::get('{id}/info','AdminPanelWithdrawalController@get_withdrawal');
 });
 
 Route::group(['prefix' => 'edit_request'], function() {
@@ -83,3 +84,5 @@ Route::group(['prefix' => 'edit_request'], function() {
 Route::group(['prefix' => 'info'], function() {
     Route::get('cars/{brandName}', 'CarModelsController@show');
 });
+
+

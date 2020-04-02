@@ -21,6 +21,13 @@ class AdminPanelWithdrawalController extends Controller
         return view('/vendor/voyager/withdrawal');
     }
 
+    public function get_withdrawal($id) {
+        return WithdrawalBankCard::where('id', $id)
+            ->with('status')
+            ->with('user')
+            ->get();
+    }
+
     public function get_withdrawals($type = null)
     {
         $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
