@@ -202,7 +202,7 @@ dd($html);
 
         $postfields = '{'.
             '"park_id":"' . TaximeterConnector::PARK_ID . '",'.
-            '"text":"' . substr($phonenumber, 1, 10) . '"'.
+            '"text":"' . substr($phonenumber, 2, 10) . '"'.
         '}';
 
         $driversData = TaximeterConnector::newPost($url, $postfields);
