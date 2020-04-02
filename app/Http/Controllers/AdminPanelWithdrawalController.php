@@ -28,6 +28,7 @@ class AdminPanelWithdrawalController extends Controller
 
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
             $query = $models[$i]::with('status')
+                ->take(100)
                 ->with('user');
 
             if ($type == "in_work")
@@ -57,7 +58,7 @@ class AdminPanelWithdrawalController extends Controller
     }
 
     public function get_all_statuses() {
-        return WithdrawalStatus::take(100)->get();
+        return WithdrawalStatus::get();
     }
 
     public function top_up_withdrawal(Request $request)
