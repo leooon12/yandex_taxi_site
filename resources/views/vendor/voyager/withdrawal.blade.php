@@ -65,7 +65,7 @@
         <div id="my_loader" class="my_loader"></div>
 
         <div class="tabs">
-            <input id="in_work" type="button" value="Заявки в обработкe" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting" />
+            <input id="in_work" type="button" value="Необработанные заявки" onclick="getWithdrawals(IN_WORK_WITHDRAWAL);" class="waiting" />
             <input id="all" type="button" value="Все заявки" onclick="getWithdrawals(ALL_WITHDRAWALS);" class="all" />
         </div>
 
@@ -283,6 +283,9 @@
 						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+');" />';
 
 					statuses.forEach(function (status) {
+						if (status.id == 4)
+							return;
+
 						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
 
 						html += '<input class="' + className + '" value="'+status.name+'" type="button" onclick="changeStatus(\''+paymentInfo.type+'\', '+paymentInfo.id+', '+status.id+');" />';

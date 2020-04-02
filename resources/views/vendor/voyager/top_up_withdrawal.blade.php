@@ -56,16 +56,63 @@
         }
     </style>
 
-    @foreach ($topUps as $topUp)
-        <div class="withdrawal-info">
-            <p class="title">Информация</p>
-            Дата выплаты: <b>{{ $topUp->created_at }}</b></br>
-            Номер транзакции: <b>{{ $topUp->transaction_number }}</b><br>
-            Номер карты: <b>{{ $topUp->card_number }}</b><br>
-            Сумма к выплате: {{ $topUp->sum }} руб<br><br>
-            <input class="topUp" value="Проверить статус" type="button" onclick="">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="dataTable" class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата выплаты</th>
+                                <th>Номер транзакции</th>
+                                <th>Номер карты</th>
+                                <th>Статус</th>
+                                <th>Выплаченная сумма</th>
+                            </tr>
+                            </thead>
+
+                            @foreach ($topUps as $topUp)
+                                <tr>
+                                    <td>{{ $loop->index }}</td>
+                                    <td>{{ $topUp->created_at }}</td>
+                                    <td>{{ $topUp->transaction_number }}</td>
+                                    <td>{{ $topUp->card_number }}</td>
+                                    @switch($topUp->status)
+                                        @case(50)
+                                        <td>Платеж принят в обработку</td>
+                                        @break
+                                        @case(52)
+                                        <td>Средства зачисляются на счет Клиента</td>
+                                        @break
+                                        @case(60)
+                                        <td>Платеж проведен</td>
+                                        @break
+                                        @case(150)
+                                        <td>Платеж не принят</td>
+                                        @break
+                                        @case(160)
+                                        <td>Платеж не проведен или отменен</td>
+                                        @break
+                                        @default
+                                        <td>Платеж принят в обработку</td>
+                                        @break
+                                    @endswitch
+
+                                    <td>{{ $topUp->sum }} руб</td>
+                                </tr>
+                            @endforeach
+
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endforeach
+    </div>
 
     <br>
     {{ $topUps->links() }}
