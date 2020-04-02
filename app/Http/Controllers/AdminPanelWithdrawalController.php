@@ -28,7 +28,7 @@ class AdminPanelWithdrawalController extends Controller
 
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
             $query = $models[$i]::with('status')
-                ->take(100)
+                ->take(45)
                 ->with('user');
 
             if ($type == "in_work")
