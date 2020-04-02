@@ -3,7 +3,6 @@
 namespace App\AnotherClasses\Api;
 
 use App\Http\Controllers\FleetController;
-use TCG\Voyager\Models\User;
 
 /**
  * Содержит вспомогательные функции для работы с выплатами
@@ -21,7 +20,7 @@ class WithdrawalUtils
     public static function getDriverProfile($user_id)
     {
         //Находим пользователя, который запросил выплату
-        $user = User::find($user_id);
+        $user = \App\User::find($user_id);
 
         if ($user == null)
         {
