@@ -84,5 +84,3 @@ Route::group(['prefix' => 'edit_request'], function() {
 Route::group(['prefix' => 'info'], function() {
     Route::get('cars/{brandName}', 'CarModelsController@show');
 });
-
-

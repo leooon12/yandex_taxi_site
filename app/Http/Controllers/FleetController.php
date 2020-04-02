@@ -29,7 +29,6 @@ class FleetController extends Controller
         $fleet_request = new FleetRequest(FleetConstants::DRIVER_PROFILES_URL, Config::get('fleet.api_key'), Config::get('fleet.client_id'));
         $fleet_request->requestBody((new DriverProfilesFleetRequestBody(Config::get('fleet.park_id'), $filter_string))->toString());
 
-        return $fleet_request->getResponse();
         return self::parseResponse($fleet_request->getResponse(), 'parseGetDriverProfilesResponse');
     }
 
