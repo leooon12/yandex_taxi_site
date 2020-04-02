@@ -25,7 +25,6 @@ class TaximeterConnector
         $yandexDataForAuth = TaximeterConnector::auth();
 //dd($yandexDataForAuth);
         $token = TaximeterConnector::getFleetToken();
-//dd($token);        
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_POST, 1); //Будем отправлять POST запрос
@@ -39,7 +38,7 @@ class TaximeterConnector
             'Cookie: yandexuid=' . $yandexDataForAuth[1] . '; Session_id=' . $yandexDataForAuth[0] . ';',
             'X-CSRF-TOKEN: ' . $token
         ));
-        
+
 //        curl_setopt($ch, CURLOPT_COOKIEFILE, TaximeterConnector::$user_cookie_file); //Подставляем куки раз
 //        curl_setopt($ch, CURLOPT_COOKIEJAR, TaximeterConnector::$user_cookie_file); //Подставляем куки два
 
@@ -51,7 +50,7 @@ class TaximeterConnector
         curl_setopt($ch, CURLOPT_HEADER, 1);
 
         curl_setopt($ch, CURLOPT_POSTREDIR, 3);
-        
+
         $html = curl_exec($ch);
 dd($html);
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -67,7 +66,7 @@ dd($html);
     public static function lkGetReq($url) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
-        
+
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -89,7 +88,7 @@ dd($html);
         $html = curl_exec($ch);
 
         curl_close($ch);
-        
+
         return $html;
     }
 
@@ -125,7 +124,7 @@ dd($html);
         curl_setopt($ch, CURLOPT_ENCODING, "utf-8");
 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        
+
         curl_setopt($ch, CURLOPT_POSTREDIR, 3);
 
         $html = curl_exec($ch);
@@ -171,8 +170,8 @@ dd($html);
         $yandexuid = explode("\n", explode("yandexuid\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
         $sessionId2 = explode("\n", explode("sessionid2\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
 
-        
-        
+
+
         return [$sessionId, $yandexuid, $sessionId2];
     }
 
@@ -282,7 +281,7 @@ dd($html);
     public static function getNewDriverIdAndLkToken()
     {
         $html = TaximeterConnector::lkGetReq(TaximeterConnector::LK_URL . '/create/driver?db=' . TaximeterConnector::PARK_ID);
-        
+
         $id = explode("\"", explode("value=\"", $html)[1])[0];
         $token = explode("\"", explode("__RequestVerificationToken\" type=\"hidden\" value=\"", $html)[1])[0];
 
@@ -312,7 +311,7 @@ dd($html);
                     '"first_name":"'. $driverInfo->getName() .'",'.
                     '"last_name":"'.$driverInfo->getSurname().'",'.
                     '"middle_name":"'. $driverInfo->getPatronymic() .'",'.
-                    '"phones":["+7'. substr($driverInfo->getPhone(), 1) . '"],'.
+                    '"phones":["'.$driverInfo->getPhone().'"],'.
                     '"work_rule_id":"e26a3cf21acfe01198d50030487e046b",'.
                     '"providers":["yandex", "park"],'.
                     '"hire_date":"2019-10-11",'.
@@ -331,10 +330,10 @@ dd($html);
                     '"balance_deny_onlycard":false'.
                 '}'.
             '}';
-        
+
         return TaximeterConnector::newPost($url, $data);
     }
-    
+
     public static function newPost($url, $data, $method=null) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
@@ -434,10 +433,10 @@ dd($html);
                 '"categories":              ["econom","comfort","comfort_plus","start","standart","express"],'.
                 '"amenities":               ["conditioner","animals","delivery","cargo_clean"]'.
             '}';
-        
+
         return TaximeterConnector::newPost($url, $data);
     }
-    
+
     public static function changeCar($driverId, $carId) {
         $url = 'https://fleet.taxi.yandex.ru/api/v1/drivers/car-bindings';
 
@@ -446,7 +445,7 @@ dd($html);
                 '"driver_id":"'. $driverId .'",'.
                 '"car_id":"'. $carId .'"'.
             '}';
-        
+
         return TaximeterConnector::newPost($url, $data, "PUT");
     }
 
