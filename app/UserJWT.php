@@ -50,4 +50,8 @@ class UserJWT extends Authenticatable implements JWTSubject
     }
 
     protected $table = 'users';
+
+    public function getPhoneNumberAttribute($value) {
+        return "+7".substr($value, 1);
+    }
 }
