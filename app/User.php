@@ -28,6 +28,6 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     public function getPhoneNumberAttribute($value) {
-        return "+7".substr($value, 1);
+        return substr($value, 1);
     }
 }
