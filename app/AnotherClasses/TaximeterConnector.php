@@ -171,6 +171,8 @@ dd($html);
         $yandexuid = explode("\n", explode("yandexuid\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
         $sessionId2 = explode("\n", explode("sessionid2\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
 
+        
+        
         return [$sessionId, $yandexuid, $sessionId2];
     }
 
@@ -206,7 +208,8 @@ dd($html);
             '"text":"' . substr($phonenumber, 1, 10) . '"'.
         '}';
 
-        $driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
+        $driversData = TaximeterConnector::newPost($url, $postfields);
+        //$driversData = TaximeterConnector::fleetPostInfoReq($postfields, $url);
         $profiles = isset($driversData['data']['driver_profiles']) ? $driversData['data']['driver_profiles'] : [];
 
         return count($profiles) > 0 ? $profiles[0] : null;
