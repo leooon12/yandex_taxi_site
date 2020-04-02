@@ -27,7 +27,8 @@ class AdminPanelWithdrawalController extends Controller
         $withdrawals = [];
 
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
-            $query = $models[$i]::with('status')
+            $query = $models[$i]::orderBy('updated_at', 'desc')
+                ->with('status')
                 ->take(45)
                 ->with('user');
 
