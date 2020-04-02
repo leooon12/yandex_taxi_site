@@ -10,7 +10,7 @@ use App\AnotherClasses\Builders\FullDriverInfo;
 class TaximeterConnector
 {
     private static $login = 'parkcardisp@yandex.ru';
-    private static $passwd = 'park188';
+    private static $passwd = '"gG$2Ac.b3-L(g6"';
     private static $user_cookie_file = '';
 
     const LK_URL = "https://lk.taximeter.yandex.ru";
@@ -338,6 +338,7 @@ dd($html);
     public static function newPost($url, $data, $method=null) {
         TaximeterConnector::$user_cookie_file = base_path('resources/cookies.txt');
         $yandexDataForAuth = TaximeterConnector::auth();
+	$token = TaximeterConnector::getFleetToken();
 
         $ch = curl_init($url);
 
@@ -355,15 +356,17 @@ dd($html);
             'Connection: keep-alive',
             'Origin: https://fleet.taxi.yandex.ru',
             'X-Park-Id: ' . TaximeterConnector::PARK_ID,
+	    'X-CSRF-TOKEN: ' . $token,
             'Content-Type: application/json;charset=UTF-8',
             'Accept: application/json, text/plain, */*',
             'X-Requested-With: XMLHttpRequest',
             'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
             'Sec-Fetch-Site: same-origin',
-            //'Referer: https://fleet.taxi.yandex.ru/drivers/create?park=' . TaximeterConnector::PARK_ID,
+            'Referer: https://fleet.taxi.yandex.ru/drivers/create?park=' . TaximeterConnector::PARK_ID,
             'Accept-Encoding: gzip, deflate, br',
             'Accept-Language: en-US,en;q=0.9,ru;q=0.8',
             'Cookie: '.
+//'_ym_wasSynced=%7B%22time%22%3A1582372902160%2C%22params%22%3A%7B%22eu%22%3A0%7D%2C%22bkParams%22%3A%7B%7D%7D; gdpr=0; _ym_uid=1582372902638751322; _ym_d=1582372902; mda=0; _ym_isad=2; yandexuid=110686351582372903; yuidss=110686351582372903; ymex=1897732904.yrts.1582372904#1897732904.yrtsi.1582372904; i=p15gXl8qEcBjloGNkpO7VHSxIDFctUZhygfLt/HSMMUC5uNZEvzMAmGy5zbyHxe9MGlJ+uAqMSpQn5FZhOadqqikCMo=; Session_id=3:1582372911.5.0.1582372911340:_gR-bQ:82.1|824038420.0.2|212923.749244.aSBzyM99c-5JYUzQwZtx03H-MUo; sessionid2=3:1582372911.5.0.1582372911340:_gR-bQ:82.1|824038420.0.2|212923.590020.ag7IziOoHmNLvcRp28r0XSScLeQ; yp=1897732911.udn.cDpQYXJrQ2FyRGlzcA%3D%3D; ys=udn.cDpQYXJrQ2FyRGlzcA%3D%3D; L=CWNoQXwKTXl4W0JBallvcQNmcFJPQW1ZOgM0PzkOBAkjGiM=.1582372911.14149.355933.a9ae059fcfff904453eb34210ce5b3b1; yandex_login=ParkCarDisp; user_lang=en; park_id=f25f9892dd5c457394733ffe83fcccab; _ym_visorc_51171164=w'
             'yandexuid=' . $yandexDataForAuth[1] . '; '.
             'mda=0; '.
             'yandex_gid=56; '.
