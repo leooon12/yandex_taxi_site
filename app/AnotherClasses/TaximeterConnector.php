@@ -5,12 +5,16 @@ namespace App\AnotherClasses;
 use App\AnotherClasses\Builders\CarInfo;
 use App\AnotherClasses\Builders\DriverInfo;
 use App\AnotherClasses\Builders\FullDriverInfo;
+use Illuminate\Support\Facades\Config;
 
 
 class TaximeterConnector
 {
     private static $login = 'parkcardisp@yandex.ru';
+<<<<<<< HEAD
     private static $passwd = '"gG$2Ac.b3-L(g6"';
+=======
+>>>>>>> 366a1f978d1de27fecd3cf614de4d7ad95a85f5c
     private static $user_cookie_file = '';
 
     const LK_URL = "https://lk.taximeter.yandex.ru";
@@ -150,7 +154,7 @@ dd($html);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "login=" . TaximeterConnector::$login . "&passwd=" . TaximeterConnector::$passwd);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "login=" . TaximeterConnector::$login . "&passwd=" . Config::get('fleet.password'));
 
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
