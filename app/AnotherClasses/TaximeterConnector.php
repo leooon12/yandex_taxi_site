@@ -170,8 +170,6 @@ dd($html);
         $yandexuid = explode("\n", explode("yandexuid\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
         $sessionId2 = explode("\n", explode("sessionid2\t", file_get_contents(base_path('resources/cookies.txt')))[1])[0];
 
-
-
         return [$sessionId, $yandexuid, $sessionId2];
     }
 
