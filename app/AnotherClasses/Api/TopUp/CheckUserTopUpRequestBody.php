@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AnotherClasses\TopUp;
+namespace App\AnotherClasses\Api\TopUp;
 
-class CheckUserRequestBody extends RequestHelper
+class CheckUserTopUpRequestBody extends TopUpRequestBuilder
 {
     public function __construct($phone_number, $currency = "RUB")
     {

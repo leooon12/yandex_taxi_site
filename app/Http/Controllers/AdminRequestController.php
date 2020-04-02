@@ -37,7 +37,7 @@ class AdminRequestController extends Controller
             ->with('user');
 
         if ($type == "in_work")
-            $query->where('status_id', WithdrawalStatus::INWORK);
+            $query->where('status_id', WithdrawalStatus::WAITING_FOR_CONFIRMATION);
 
         $result = $query->get();
 

@@ -34,11 +34,13 @@ Route::namespace('JWTAuth')->group(function () {
 
 Route::get('/taximetr', 'UserController@taximetr');
 
-Route::group(['prefix' => 'topup'], function() {
-    Route::get('check_payment/{account_number}/{transaction_number}', 'TopUpController@checkPayment');
-    Route::get('check_balance', 'TopUpController@checkBalance');
 
-});
+
+/*Route::group(['prefix' => 'test'], function() {
+    Route::get('get_driver_profiles/{filter_string}', 'FleetController@getDriverProfiles');
+    Route::get('get_driver_profiles_without_filter', 'FleetController@getDriverProfilesWithoutFilter');
+    Route::get('create_transaction/{amount}/{driver_id}', 'FleetController@createTransaction');
+});*/
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');

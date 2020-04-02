@@ -10,7 +10,7 @@ class WithdrawalBankCard extends Model
     use WithdrawalTrait;
 
     const COMMISSION = 35;
-    const MAX_SUM    = 5;
+    const MAX_SUM    = 100;
 
     protected $fillable = [
         'user_id', 'card_number', 'sum', 'status_id'

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\AnotherClasses\TopUp;
+namespace App\AnotherClasses\Api\TopUp;
 
+use App\AnotherClasses\Api\ApiPostRequest;
 
-class TopUpRequest extends RequestHelper
+class TopUpRequest extends TopUpRequestBuilder
 {
+    use ApiPostRequest;
+
     public function __construct($type, $terminal_id, $password)
     {
         parent::__construct(TopUpConstants::REQUEST_TEMPLATE);
@@ -16,24 +19,11 @@ class TopUpRequest extends RequestHelper
 
     public function getResponse()
     {
-        $curl = curl_init();
-
         $headers = array();
         $headers[] = 'Accept: application/xml';
         $headers[] = 'Content-Type: application/xml';
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.qiwi.com/xml/topup.jsp',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST => true,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => strval($this)
-        ));
-
-        $response = curl_exec($curl);
-        curl_close($curl);
-
-        return $response;
+        return $this->getResponseBase('https://api.qiwi.com/xml/topup.jsp', $headers, $this->toString());
     }
 
     public function requestBody($value)

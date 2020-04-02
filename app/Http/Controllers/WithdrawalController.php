@@ -77,7 +77,7 @@ class WithdrawalController extends Controller
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
             $result =
                 $models[$i]::where("user_id", $user_id)
-                    ->where("status_id", WithdrawalStatus::INWORK)
+                    ->where("status_id", WithdrawalStatus::WAITING_FOR_CONFIRMATION)
                     ->first();
 
             if ($result)

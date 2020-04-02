@@ -11,7 +11,7 @@ class WithdrawalStatusSeeder extends Seeder
      */
     public function run()
     {
-        $statuses_names = [['name'=>'в обработке'], ['name'=>'выполнен'], ['name'=>'отклонен']];
+        $statuses_names = [['name'=>'ожидает подтверждения'], ['name'=>'выполнен'], ['name'=>'отклонен'], ['name'=>'в обработке']];
         \App\WithdrawalStatus::insert($statuses_names);
     }
 }

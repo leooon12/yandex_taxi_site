@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AnotherClasses\TopUp;
+namespace App\AnotherClasses\Api\TopUp;
 
-class CheckPaymentRequestBody extends RequestHelper
+class CheckPaymentTopUpRequestBody extends TopUpRequestBuilder
 {
     public function __construct($account_number, $transaction_number)
     {

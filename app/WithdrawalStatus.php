@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class WithdrawalStatus extends Model
 {
-    const INWORK = 1;
+    const WAITING_FOR_CONFIRMATION = 1;
     const COMPLETED = 2;
     const CANCELED = 3;
+    const IN_WORK = 4;
 
     protected $fillable = [
         'name'

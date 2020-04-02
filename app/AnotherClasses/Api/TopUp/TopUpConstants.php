@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AnotherClasses\TopUp;
+namespace App\AnotherClasses\Api\TopUp;
 
 class TopUpConstants
 {

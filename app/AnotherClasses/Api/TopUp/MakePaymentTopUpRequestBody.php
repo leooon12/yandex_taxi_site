@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AnotherClasses\TopUp;
+namespace App\AnotherClasses\Api\TopUp;
 
-class MakePaymentRequestBody extends RequestHelper
+class MakePaymentTopUpRequestBody extends TopUpRequestBuilder
 {
     public function __construct($account_number, $amount, $currency = "RUB")
     {
