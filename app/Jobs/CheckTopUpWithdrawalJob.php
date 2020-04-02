@@ -2,17 +2,18 @@
 
 namespace App\Jobs;
 
+use App\AnotherClasses\Api\WithdrawalUtils;
 use App\Http\Controllers\TopUpController;
 use App\TopUpWithdrawal;
 use App\WithdrawalBankCard;
 use App\WithdrawalStatus;
+use BadMethodCallException;
 use http\Exception\UnexpectedValueException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use TCG\Voyager\Models\User;
 
 /**
  * Выполняет проверку выплаты
@@ -54,10 +55,32 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
      */
     public function handle()
     {
-        //Получение необходимых данных из базы данных
-        $top_up_withdrawal = $this->getTopUpWithdrawal();
-        $withdrawal_bank_card = $this->getWithdrawalBankCard($top_up_withdrawal->withdrawal_bank_card_id);
-        $user = $this->getUser($withdrawal_bank_card->user_id);
+        //Получение выплаты из базы данных
+        $top_up_withdrawal = TopUpWithdrawal::find($this->top_up_withdrawal_id);
+
+        if ($top_up_withdrawal == null)
+        {
+            $this->rollbackPayment($top_up_withdrawal, TopUpController::PAYMENT_RESULT_FAILED, $top_up_withdrawal);
+            throw new UnexpectedValueException('Не удалось найти выплату с идентификатором '.$this->top_up_withdrawal_id);
+        }
+
+        //Получение запроса на выплату из базы данных
+        $withdrawal_bank_card = WithdrawalBankCard::find($top_up_withdrawal->withdrawal_bank_card_id);
+
+        if ($withdrawal_bank_card == null)
+        {
+            $this->rollbackPayment($top_up_withdrawal, TopUpController::PAYMENT_RESULT_FAILED, $top_up_withdrawal);
+            throw new UnexpectedValueException('Не удалось найти запрос на выплату с идентификатором '.$top_up_withdrawal->withdrawal_bank_card_id);
+        }
+
+        //Поиск водителя, запросившего выплату
+        $driver_profile = WithdrawalUtils::getDriverProfile($withdrawal_bank_card->user_id);
+
+        if ($driver_profile == null)
+        {
+            $this->rollbackPayment($top_up_withdrawal, TopUpController::PAYMENT_RESULT_FAILED, $top_up_withdrawal);
+            throw new UnexpectedValueException('Не удалось найти водителя с идентификатором пользователя '.$withdrawal_bank_card->user_id);
+        }
 
         //Обращение к TopUp API для получения статуса платежа
         $top_up_response = TopUpController::checkPayment($top_up_withdrawal->card_number, $top_up_withdrawal->transaction_number);
@@ -65,13 +88,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
         //Ошибка ПРОВЕРКИ платежа. Не знаю, как это может произойти, но, подозреваю, что это стоит предусмотреть
         if ($top_up_response['status'] != TopUpController::REQUEST_RESULT_SUCCESS)
         {
-            //Установка статуса запроса платежа "Отклонен" и ручная установка статуса платежа
-            $withdrawal_bank_card->update(['status_id' => WithdrawalStatus::CANCELED]);
-            $top_up_withdrawal->update(['status' => TopUpController::PAYMENT_RESULT_FAILED]);
-
-            //Отката выплаты в яндексе
-            //TODO
-
+            $this->rollbackPayment($top_up_withdrawal, TopUpController::PAYMENT_RESULT_FAILED, $withdrawal_bank_card, $driver_profile);
             return;
         }
 
@@ -80,13 +97,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
         if ($top_up_response['payment']['status'] < TopUpController::PAYMENT_RESULT_MIN_POSSIBLE_VALUE ||
             $top_up_response['payment']['status'] > TopUpController::PAYMENT_RESULT_MAX_POSSIBLE_VALUE)
         {
-            //Установка статуса запроса платежа "Отклонен" и установка статуса платежа из запроса
-            $withdrawal_bank_card->update(['status_id' => WithdrawalStatus::CANCELED]);
-            $top_up_withdrawal->update(['status' => $top_up_response['payment']['status']]);
-
-            //Отката выплаты в яндексе
-            //TODO
-
+            $this->rollbackPayment($top_up_withdrawal, $top_up_response['payment']['status'], $withdrawal_bank_card, $driver_profile);
             return;
         }
 
@@ -106,65 +117,31 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
     }
 
     /**
-     * Находит выплату с top_up_withdrawal_id, указанным в констурукторе
+     * Осуществляет откат платежа
      *
-     * @throws UnexpectedValueException не удалось найти запись с указанным id в базе данных
-     *
-     * @return TopUpWithdrawalValue
+     * @param mixed $top_up_withdrawal Выплата
+     * @param mixed $top_up_withdrawal_status Статус выплаты после отката
+     * @param mixed $withdrawal Запрос на выплату
+     * @param mixed $driver_profile Профиль водителя
      */
-    private function getTopUpWithdrawal()
+    private function rollbackPayment($top_up_withdrawal, $top_up_withdrawal_status, $withdrawal, $driver_profile = null)
     {
-        $top_up_withdrawal = TopUpWithdrawal::find($this->top_up_withdrawal_id);
-
-        if ($top_up_withdrawal == null)
+        if ($top_up_withdrawal != null)
         {
-            throw new UnexpectedValueException('Не удалось получить запись из TopUpWithdrawal с id = '.$this->top_up_withdrawal_id);
+            $top_up_withdrawal->update(['status' => $top_up_withdrawal_status]);
         }
 
-        return $top_up_withdrawal;
-    }
-
-    /**
-     * Находит запрос на выплату
-     *
-     * @param $withdrawal_bank_card_id integer Идентификатор запроса на выплату в базе данных
-     *
-     * @throws UnexpectedValueException не удалось найти запись с указанным id в базе данных
-     *
-     * @return WithdrawalBankCardValue
-     */
-    private function getWithdrawalBankCard($withdrawal_bank_card_id)
-    {
-        $withdrawal_bank_card = WithdrawalBankCard::find($withdrawal_bank_card_id);
-
-        if ($withdrawal_bank_card == null)
+        if ($withdrawal != null)
         {
-            throw new UnexpectedValueException('Не удалось получить запись из WithdrawalBankCard с id = '.$withdrawal_bank_card_id);
+            $withdrawal->update(['status_id' => WithdrawalStatus::CANCELED]);
+
+            if ($driver_profile != null)
+            {
+                if (!WithdrawalUtils::addToBalance($driver_profile, $withdrawal->sum))
+                {
+                    throw new BadMethodCallException('Произошла ошибка проведения автовыплаты, не удалось вернуть '.$withdrawal->sum.' рублей водителю с идентификатором "'.$driver_profile['driver_profile']['id'].'"');
+                }
+            }
         }
-
-        return $withdrawal_bank_card;
     }
-
-    /**
-     * Находит пользователя, совершившего запрос на выплату
-     *
-     * @param $user_id integer Идентификатор пользователя в базе данных
-     *
-     * @throws UnexpectedValueException не удалось найти запись с указанным id в базе данных
-     *
-     * @return UserValue
-     */
-    private function getUser($user_id)
-    {
-        $user = User::find($user_id);
-
-        if ($user == null)
-        {
-            throw new UnexpectedValueException('Не удалось получить запись из User с id = '.$this->user_id);
-        }
-
-        return $user;
-    }
-
-
 }

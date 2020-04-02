@@ -37,8 +37,9 @@ Route::get('/taximetr', 'UserController@taximetr');
 
 
 Route::group(['prefix' => 'test'], function() {
-    Route::get('get_driver_profiles/{filter_string}', 'TaximeterController@getDriverProfiles');
-    Route::get('get_driver_profiles_without_filter', 'TaximeterController@getDriverProfilesWithoutFilter');
+    Route::get('get_driver_profiles/{filter_string}', 'FleetController@getDriverProfiles');
+    Route::get('get_driver_profiles_without_filter', 'FleetController@getDriverProfilesWithoutFilter');
+    Route::get('create_transaction/{amount}/{driver_id}', 'FleetController@createTransaction');
 });
 
 Route::group(['middleware' => ['jwt.verify']], function() {

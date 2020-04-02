@@ -61,13 +61,21 @@ class FleetRequest extends FleetRequestBuilder
     /**
      * Осуществляет запрос к Fleet-API
      *
+     * @param bool $is_idempotency_token_needed Определяет, необходимо ли добавлять токен идемпотентности в заголовок запроса
+     *
      * @return string Строковое представление ответа на запрос
      */
-    public function getResponse()
+    public function getResponse($is_idempotency_token_needed = false)
     {
         $headers = array();
         $headers[] = 'X-Api-Key: '.$this->api_key;
         $headers[] = 'X-Client-ID: '.$this->client_id;
+
+        //Добавления токена идемпотентности при необходимости
+        if ($is_idempotency_token_needed)
+        {
+            $headers[] = 'X-Idempotency-Token: '.$this->createIdempotencyToken();
+        }
 
         return $this->getResponseBase($this->url, $headers, $this->request_body);
     }
@@ -78,5 +86,27 @@ class FleetRequest extends FleetRequestBuilder
     public function toString()
     {
         return  $this->request_body;
+    }
+
+    /**
+     * Генеририрует токен идемпотентности в виде hex-строки из 16 байт
+     *
+     * @return string Токен идемпотентности
+     */
+    private function createIdempotencyToken()
+    {
+        //Алгоритм может показаться немного сумеречным, такой он и есть на самом деле
+        //Основная проблема в том, что я не особо знаю php ¯\_(ツ)_/¯
+        $idempotency_token_length_in_bytes = 16;
+        $size_of_int = count(unpack("C*", pack("L", 0)));
+
+        $idempotency_token_bytes = array();
+
+        for ($i = 0; $i < $idempotency_token_length_in_bytes / $size_of_int; ++$i)
+        {
+            $idempotency_token_bytes = array_merge($idempotency_token_bytes, unpack("C*", pack("L", rand(1, getrandmax()))));
+        }
+
+        return bin2hex(join(array_map("chr", $idempotency_token_bytes)));
     }
 }
