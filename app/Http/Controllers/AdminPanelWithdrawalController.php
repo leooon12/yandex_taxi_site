@@ -87,7 +87,7 @@ class AdminPanelWithdrawalController extends Controller
         //Запрошенная сумма выплаты больше максимально возможной
         if ($withdrawal_bank_card-> sum > WithdrawalBankCard::MAX_SUM)
         {
-            return $this->setWithdrawalStatusAndResponse($withdrawal_bank_card, WithdrawalStatus::CANCELED, 400, 'Сумма автовыплаты не может быть больше '.WithdrawalBankCard::MAX_SUM.' рублей');
+            return ResponseHandler::getJsonResponse(400, 'Сумма автовыплаты не может быть больше '.WithdrawalBankCard::MAX_SUM.' рублей');
         }
 
         //Сумма к выплате с учетом комиссии
