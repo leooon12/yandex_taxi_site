@@ -113,7 +113,5 @@
             </div>
         </div>
     </div>
-
-    <br>
     {{ $topUps->links() }}
 @stop
