@@ -34,12 +34,34 @@ class TopUpController extends Controller
         return self::parseResponse($topup_response);
     }
 
-    public static function checkBalance()
+    public static function getBalance()
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $response = $request_manager->checkBalance();
+        $parsed_response = simplexml_load_string($request_manager->checkBalance());
 
-        return $response;
+        $result = array();
+
+        if ((string) $parsed_response->{'result-code'} != "0")
+        {
+            $result['status'] = (string) $parsed_response->{'result-code'};
+        }
+        else
+        {
+            $result['status'] = 0;
+            $result['balances'] = array();
+            $balances_counter = 0;
+
+            foreach ($parsed_response->balances->children() as $balance)
+            {
+                $result['balances'][$balances_counter] = array
+                (
+                    'currency_code' => strval($balance->attributes()[0]),
+                    'balance' => strval($balance)
+                );
+            }
+        }
+
+        return print_r($result, true);
     }
 
     private static function parseResponse($response)
