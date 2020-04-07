@@ -309,7 +309,7 @@ dd($html);
                     '"first_name":"'. $driverInfo->getName() .'",'.
                     '"last_name":"'.$driverInfo->getSurname().'",'.
                     '"middle_name":"'. $driverInfo->getPatronymic() .'",'.
-                    '"phones":["'.$driverInfo->getPhone().'"],'.
+                    '"phones":["+7'.$driverInfo->getPhone().'"],'.
                     '"work_rule_id":"e26a3cf21acfe01198d50030487e046b",'.
                     '"providers":["yandex", "park"],'.
                     '"hire_date":"2019-10-11",'.
