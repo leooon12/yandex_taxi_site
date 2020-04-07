@@ -34,6 +34,7 @@ class AdminRequestController extends Controller
 
         $query = EditRequest::orderBy('created_at', 'asc')
             ->with('status')
+            ->take(45)
             ->with('user');
 
         if ($type == "in_work")

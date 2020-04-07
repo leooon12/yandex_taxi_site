@@ -17,7 +17,6 @@ class EditRequest extends Model
 
     public function user()
     {
-        return $this->hasOne('App\User', 'phone_number', 'phone_number')->select(['id', 'surname', 'name', 'patronymic', 'phone_number']);
+        return $this->hasOne('\TCG\Voyager\Models\User', 'phone_number', 'phone_number')->select(['id', 'surname', 'name', 'patronymic', 'phone_number']);
     }
-
 }
