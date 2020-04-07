@@ -149,7 +149,9 @@ return [
         ],
 
         'widgets' => [
-
+            'App\\Voyager\\Widgets\\WithdrawalDimmer',
+            'App\\Voyager\\Widgets\\TopUpDimmer',
+            'App\\Voyager\\Widgets\\EditRequestDimmer',
         ],
 
     ],
