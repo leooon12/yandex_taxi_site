@@ -21,6 +21,7 @@ Route::resource('/driver', 'DriverController', ['only' => [
     'index', 'store'
 ]]);
 
+Route::get('withdrawal/topUp/getBalance', 'TopUpController@getBalance');
 
 Route::namespace('JWTAuth')->group(function () {
     Route::post('/register',    'RegisterController@register');
