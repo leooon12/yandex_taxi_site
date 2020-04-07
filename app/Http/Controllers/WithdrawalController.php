@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\AnotherClasses\ResponseHandler;
 use App\Http\Requests\WithdrawalBankAccountRequest;
 use App\Http\Requests\WithdrawalBankCardRequest;
+use App\Http\Requests\WithdrawalQiwiRequest;
 use App\Http\Requests\WithdrawalYandexRequest;
 use App\WithdrawalBankAccount;
 use App\WithdrawalBankCard;
+use App\WithdrawalQiwi;
 use App\WithdrawalStatus;
 use App\WithdrawalYandex;
 use Illuminate\Http\Request;
@@ -37,6 +39,17 @@ class WithdrawalController extends Controller
         );
     }
 
+    public function withdrawalQiwi(WithdrawalQiwiRequest $request)
+    {
+        return $this->withdrawal(
+            WithdrawalQiwi::class,
+            JWTAuth::parseToken()->authenticate()->id,
+            $request->get("sum"),
+            $request->get("qiwi_number"),
+            "qiwi_number"
+        );
+    }
+
     public function withdrawalBankAccount(WithdrawalBankAccountRequest $request)
     {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
@@ -63,16 +76,16 @@ class WithdrawalController extends Controller
             return ResponseHandler::getJsonResponse(400, "У вас уже находится заявка в обработке");
 
         $model::create([
-            "user_id"     => $user_id,
-            $field_name => $number,
-            "sum"         => $sum
+            "user_id"       => $user_id,
+            $field_name     => $number,
+            "sum"           => $sum
         ]);
 
         return ResponseHandler::getJsonResponse(200, "Заявка на вывод средств успешно отправлена");
     }
 
     public function checkOldWithdrawal($user_id) {
-        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
+        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class, WithdrawalQiwi::class];
 
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
             $result =
@@ -91,7 +104,7 @@ class WithdrawalController extends Controller
     public function getLastWithdrawal() {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
 
-        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
+        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class, WithdrawalQiwi::class];
 
         $lastWithdrawal = null;
 

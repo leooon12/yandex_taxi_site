@@ -254,6 +254,32 @@
 								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
 
 								break;
+
+							case "WithdrawalQiwi":
+								var paymentInfo = {
+									type:		withdrawal.type,
+									typeRU: 	"Киви",
+									status: 	withdrawal.status.name,
+									date: 		withdrawal.created_at,
+									id:			withdrawal.id,
+									sum: 		withdrawal.sum
+								};
+
+								var requisites = [{
+									name: 		"Номер кошелька",
+									valueText:  withdrawal.qiwi_number
+								}];
+
+								var user = {
+									surname: 	withdrawal.user.surname,
+									name: 		withdrawal.user.name,
+									patronymic: withdrawal.user.patronymic,
+									phone: 		withdrawal.user.phone_number
+								};
+
+								withdrawals_html.innerHTML += generateCard(paymentInfo, requisites, user);
+
+								break;
 						}
 					});
 				});
@@ -280,7 +306,10 @@
                             '<br>';
 
 					if (paymentInfo.type === "WithdrawalBankCard" && paymentInfo.status === "ожидает подтверждения")
-						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+');" />';
+						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+', \''+paymentInfo.type+'\');" />';
+
+					if (paymentInfo.type === "WithdrawalQiwi" && paymentInfo.status === "ожидает подтверждения")
+						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+', \''+paymentInfo.type+'\');" disabled/>';
 
 					statuses.forEach(function (status) {
 						if (status.id == 4)
@@ -315,10 +344,20 @@
 			});
 		}
 
-		function topUpWithdrawal(withdrawal_id) {
+		function topUpWithdrawal(withdrawal_id, type) {
+
+			switch (type) {
+				case "WithdrawalBankCard":
+					url = "/admin/withdrawal/topUp/bankCard";
+					break;
+				case "WithdrawalQiwi":
+					url = "/admin/withdrawal/topUp/qiwi";
+					break;
+			}
+
 			$.ajax({
 				type: "POST",
-				url: "/admin/withdrawal/topUp",
+				url: url,
 				data: {
 					withdrawal_id: withdrawal_id
 				},

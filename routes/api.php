@@ -57,6 +57,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::group(['prefix' => 'withdrawal'], function() {
         Route::post('bankcard', 'WithdrawalController@withdrawalBankCard');
         Route::post('yandex', 'WithdrawalController@withdrawalYandex');
+        Route::post('qiwi', 'WithdrawalController@withdrawalQiwi');
         Route::post('bank_account', 'WithdrawalController@withdrawalBankAccount');
         Route::get('last', 'WithdrawalController@getLastWithdrawal');
     });
