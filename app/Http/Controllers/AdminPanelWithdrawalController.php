@@ -9,6 +9,7 @@ use App\Jobs\CheckTopUpWithdrawalJob;
 use App\TopUpWithdrawal;
 use App\WithdrawalBankAccount;
 use App\WithdrawalBankCard;
+use App\WithdrawalQiwi;
 use App\WithdrawalStatus;
 use App\WithdrawalYandex;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +31,7 @@ class AdminPanelWithdrawalController extends Controller
 
     public function get_withdrawals($type = null)
     {
-        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class];
+        $models = [WithdrawalBankAccount::class, WithdrawalYandex::class, WithdrawalBankCard::class, WithdrawalQiwi::class];
         $withdrawals = [];
 
         for ($i = 0, $size = count($models); $i < $size; ++$i) {
