@@ -259,7 +259,7 @@
 				});
 
 				function generateCard(paymentInfo, requisites, user) {
-					var statusClass = paymentInfo.status == "в обработке" ? "waiting" : paymentInfo.status == "выполнен" ? "success" : "error";
+					var statusClass = paymentInfo.status == "ожидает подтверждения" ? "waiting" : paymentInfo.status == "выполнен" ? "success" : "error";
 
 					var html = '<div class="withdrawal-info">' +
 									'<p class="title">Выплата на ' + paymentInfo.typeRU + '</p>' +

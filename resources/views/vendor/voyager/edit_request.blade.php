@@ -188,7 +188,7 @@
 				});
 
 				function generateCard(requestInfo, content, user) {
-					var statusClass = requestInfo.status == "в обработке" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
+					var statusClass = requestInfo.status == "ожидает подтверждения" ? "waiting" : requestInfo.status == "выполнен" ? "success" : "error";
 
 					var html = '<div class="withdrawal-info">' +
 						'<p class="title">' + requestInfo.type + '</p>' +
@@ -206,6 +206,9 @@
 						'Номер телефона: <b>' + user.phone + '</b><br><br>';
 
 					statuses.forEach(function (status) {
+						if (status.id == 4)
+							return;
+
 						var className = status.id == 1 ? "waiting" : status.id == 2 ? "success" : "error";
 
 						html += '<input class="' + className + '" value="' + status.name + '" type="button" onclick="changeStatus(' + requestInfo.id + ', ' + status.id + ');" />';
