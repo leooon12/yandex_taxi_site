@@ -18,10 +18,18 @@ class TopUpController extends Controller
 
     const PAYMENT_RESULT_FAILED = 160;
 
-    public static function makePayment($account_number, $amount)
+    public static function makePaymentToBankCard($card_number, $amount)
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $topup_response = $request_manager->makePayment($account_number, $amount);
+        $topup_response = $request_manager->makePaymentToBankCard($card_number, $amount);
+
+        return self::parseResponse($topup_response);
+    }
+
+    public static function makePaymentToQiwiWallet($phone_number, $amount)
+    {
+        $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
+        $topup_response = $request_manager->makePaymentToQiwiWallet($phone_number, $amount);
 
         return self::parseResponse($topup_response);
     }
@@ -37,7 +45,7 @@ class TopUpController extends Controller
     public static function getBalance()
     {
         $request_manager = new TopUpRequestManager(Config::get('topup.terminal_id'), Config::get('topup.password'));
-        $parsed_response = simplexml_load_string($request_manager->checkBalance());
+        $parsed_response = simplexml_load_string($request_manager->getBalance());
 
         $result = array();
 

@@ -34,15 +34,13 @@ Route::group(['prefix' => 'admin'], function () {
 
         //Нужен мидлварь от админа, а из api он не работает
         Route::group(['prefix' => 'withdrawal/topUp/'], function() {
-            Route::post('bankCard', 'AdminPanelWithdrawalController@top_up_withdrawal');
-            Route::post('qiwi',     function () {
-                return "new topUp function here";
-            });
+            Route::post('bankCard', 'AdminPanelWithdrawalController@makePaymentToBankCard');
+            Route::post('qiwi', 'AdminPanelWithdrawalController@makePaymentToQiwiWallet');
         });
     });
 
 });
 
-if (App::environment('production', 'staging')) {
+/*if (App::environment('production', 'staging')) {
     URL::forceScheme('https');
-}
+}*/
