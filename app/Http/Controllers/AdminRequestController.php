@@ -14,7 +14,7 @@ use JWTAuth;
 class AdminRequestController extends Controller
 {
     public function index() {
-        return view('/vendor/voyager/edit_request');
+        return view('/vendor/voyager/edit_requests');
     }
 
 

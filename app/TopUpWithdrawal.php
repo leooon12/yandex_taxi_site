@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class TopUpWithdrawal extends Model
 {
-    protected $fillable = ['transaction_number', 'card_number', 'sum', 'status', 'withdrawal_bank_card_id'];
+    const BANK_CARD_WITHDRAWAL_TYPE    = 'bank_card';
+    const QIWI_WITHDRAWAL_TYPE         = 'qiwi';
+
+    protected $fillable = ['transaction_number', 'requisites', 'sum', 'status', 'withdrawal_id', 'withdrawal_type'];
+
+    public function withdrawal()
+    {
+        return $this->morphTo('withdrawal');
+    }
 }

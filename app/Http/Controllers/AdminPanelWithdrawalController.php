@@ -19,7 +19,18 @@ use TCG\Voyager\Models\User;
 class AdminPanelWithdrawalController extends Controller
 {
     public function index() {
-        return view('/vendor/voyager/withdrawal');
+        return view('/vendor/voyager/withdrawals');
+    }
+
+    public function show($type, $id) {
+        $topUp = TopUpWithdrawal::find($id);
+
+        if ($topUp) {
+            $withdrawal = $topUp->withdrawal;
+            return view('/vendor/voyager/withdrawal', ['type' => $type, 'withdrawal' => $withdrawal]);
+        }
+
+        return "Данные по заявке отсуствуют";
     }
 
     public function get_withdrawal($id) {
@@ -150,11 +161,12 @@ class AdminPanelWithdrawalController extends Controller
         $top_up_withdrawal = TopUpWithdrawal::create
         (
             [
-                'transaction_number' => $top_up_response['payment']['transaction_number'],
-                'card_number' => $withdrawal_bank_card->card_number,
-                'sum' => $sum_to_pay,
-                'status' => $top_up_response['payment']['status'],
-                'withdrawal_bank_card_id' => $withdrawal_bank_card->id
+                'transaction_number'    => $top_up_response['payment']['transaction_number'],
+                'requisites'            => $withdrawal_bank_card->card_number,
+                'sum'                   => $sum_to_pay,
+                'status'                => $top_up_response['payment']['status'],
+                'withdrawal_id'         => $withdrawal_bank_card->id,
+                'withdrawal_type'       => TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE
             ]
         );
 
@@ -172,9 +184,10 @@ class AdminPanelWithdrawalController extends Controller
     }
 
     public function get_top_up_withdrawal() {
+
         $topUps = TopUpWithdrawal::orderBy('created_at', 'desc')->paginate(25);
 
-        return view('/vendor/voyager/top_up_withdrawal', ['topUps' => $topUps]);
+        return view('/vendor/voyager/top_up_withdrawals', ['topUps' => $topUps]);
     }
 
     /**

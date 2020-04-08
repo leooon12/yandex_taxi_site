@@ -29,7 +29,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'admin.user'], function () {
         Route::get('withdrawal/', ['uses' => 'AdminPanelWithdrawalController@index',  'as' => 'voyager.withdrawal.index']);
-        Route::get('withdrawal/topUp/', ['uses' => 'AdminPanelWithdrawalController@get_top_up_withdrawal', 'as' => 'voyager.topUpWithdrawal.index']);
+        Route::get('topUp/{type}/{id}', ['uses' => 'AdminPanelWithdrawalController@show',  'as' => 'voyager.withdrawal.show']);
+        Route::get('topUp', ['uses' => 'AdminPanelWithdrawalController@get_top_up_withdrawal', 'as' => 'voyager.topUpWithdrawal.index']);
         Route::get('edit_request/', ['uses' => 'AdminRequestController@index', 'as' => 'voyager.editRequests.index']);
 
         //Нужен мидлварь от админа, а из api он не работает

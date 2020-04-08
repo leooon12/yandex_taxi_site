@@ -67,10 +67,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Дата выплаты</th>
+                                <th>Тип</th>
                                 <th>Номер транзакции</th>
-                                <th>Номер карты</th>
+                                <th>Реквизиты</th>
                                 <th>Статус</th>
                                 <th>Выплаченная сумма</th>
+                                <th>Информация о заявке</th>
                             </tr>
                             </thead>
 
@@ -78,8 +80,19 @@
                                 <tr>
                                     <td>{{ $loop->index }}</td>
                                     <td>{{ $topUp->created_at }}</td>
+                                    @switch($topUp->withdrawal_type)
+                                        @case(\App\TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE)
+                                        <td>Банковская карта</td>
+                                        @break
+                                        @case(\App\TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE)
+                                        <td>Киви</td>
+                                        @break
+                                        @default
+                                        <td>Данные отсутствуют</td>
+                                        @break
+                                    @endswitch
                                     <td>{{ $topUp->transaction_number }}</td>
-                                    <td>{{ $topUp->card_number }}</td>
+                                    <td>{{ $topUp->requisites }}</td>
                                     @switch($topUp->status)
                                         @case(50)
                                         <td>Платеж принят в обработку</td>
@@ -97,11 +110,24 @@
                                         <td>Платеж не проведен или отменен</td>
                                         @break
                                         @default
-                                        <td>Платеж принят в обработку</td>
+                                        <td>Данные отсутствуют</td>
                                         @break
                                     @endswitch
 
                                     <td>{{ $topUp->sum }} руб</td>
+                                    <td>
+                                    @switch($topUp->withdrawal_type)
+                                        @case(\App\TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE)
+                                            <a href="topUp/{{ \App\TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE }}/{{ $topUp->id }}">Заяка</a>
+                                        @break
+                                        @case(\App\TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE)
+                                            <a href="topUp/{{ \App\TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE }}/{{ $topUp->id }}">Заяка</a>
+                                        @break
+                                        @default
+                                            Данные отсутствуют
+                                        @break
+                                    @endswitch
+                                    </td>
                                 </tr>
                             @endforeach
 
