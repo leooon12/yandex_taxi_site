@@ -3,6 +3,7 @@
 namespace App\AnotherClasses\Payments;
 
 use App\Http\Controllers\TopUpController;
+use App\TopUpWithdrawal;
 use App\WithdrawalQiwi;
 
 /**
@@ -27,6 +28,14 @@ class QiwiWalletPaymentRequest extends PaymentRequest
     public function getRequisites()
     {
         return '7'.$this->getPhoneNumberWithoutCountryCode($this->withdrawal->qiwi_number);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getType()
+    {
+        return TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE;
     }
 
     /**

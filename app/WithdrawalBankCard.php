@@ -9,7 +9,8 @@ class WithdrawalBankCard extends Model
 {
     use WithdrawalTrait;
 
-    const COMMISSION = 35;
+    const COMMISION = 35;
+    const QIWI_COMISSION = 0;
     const MAX_SUM    = 2000;
 
     protected $fillable = [

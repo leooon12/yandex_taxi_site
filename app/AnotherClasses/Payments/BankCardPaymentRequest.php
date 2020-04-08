@@ -3,6 +3,7 @@
 namespace App\AnotherClasses\Payments;
 
 use App\Http\Controllers\TopUpController;
+use App\TopUpWithdrawal;
 use App\WithdrawalQiwi;
 
 /**
@@ -27,6 +28,14 @@ class BankCardPaymentRequest extends PaymentRequest
     public function getRequisites()
     {
         return $this->withdrawal->card_number;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getType()
+    {
+        return TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE;
     }
 
     /**

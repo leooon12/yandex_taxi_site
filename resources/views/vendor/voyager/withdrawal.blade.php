@@ -88,8 +88,8 @@
                                     @endswitch
                                     Дата создания: <b>{{ $withdrawal->created_at }}</b><br><br>
                                     Реквизиты и суммы<br>{{ $requisites_name }}: <b>{{ $withdrawal->card_number }}</b><br>
-                                    Сумма: <b>{{ $withdrawal->sum }} руб</b><br>Комиссия: <b>{{ \App\WithdrawalBankCard::COMMISSION}} руб</b><br>
-                                    Сумма к выплате: {{ $withdrawal->sum - \App\WithdrawalBankCard::COMMISSION}} руб<br><br>
+                                    Сумма: <b>{{ $withdrawal->sum }} руб</b><br>Комиссия: <b>{{ \App\WithdrawalBankCard::COMMISION}} руб</b><br>
+                                    Сумма к выплате: {{ $withdrawal->sum - \App\WithdrawalBankCard::COMMISION}} руб<br><br>
                                     Пользователь<br>
                                     Номер телефона: <b>{{ $withdrawal->user->phone_number }}</b><br><br>
                                     <input class="waiting" value="ожидает подтверждения" type="button" onclick="changeStatus('{{ $model_name }}', '{{ $withdrawal->id }}', '{{\App\WithdrawalStatus::WAITING_FOR_CONFIRMATION}}');">

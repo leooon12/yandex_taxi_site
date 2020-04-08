@@ -102,10 +102,13 @@ class AdminPanelWithdrawalController extends Controller
             return ResponseHandler::getJsonResponse(400, "Автовыплату можно осуществлять только на ожидающие подтверждения запросы");
         }
 
+        //Коммисия для выплаты
+        $commission = $this->getCommision($payment_request);
+
         //Запрошенная сумма выплаты меньше или равна коммисии, выплату произвести невозможно
-        if ($payment_request->getSum() <= WithdrawalBankCard::COMMISSION)
+        if ($payment_request->getSum() <= $commission)
         {
-            return $this->setWithdrawalStatusAndResponse($payment_request, WithdrawalStatus::CANCELED, 400, 'Сумма автовыплаты должна быть больше '.WithdrawalBankCard::COMMISSION.' рублей');
+            return $this->setWithdrawalStatusAndResponse($payment_request, WithdrawalStatus::CANCELED, 400, 'Сумма автовыплаты должна быть больше '.WithdrawalBankCard::COMMISION.' рублей');
         }
 
         //Запрошенная сумма выплаты больше максимально возможной
@@ -115,7 +118,7 @@ class AdminPanelWithdrawalController extends Controller
         }
 
         //Сумма к выплате с учетом комиссии
-        $sum_to_pay = $payment_request->getSum() - WithdrawalBankCard::COMMISSION;
+        $sum_to_pay = $payment_request->getSum() - $commission;
 
         //Профиль водителя по идентификатору пользователя
         $driver_profile = WithdrawalUtils::getDriverProfile($payment_request->getUserId());
@@ -174,19 +177,12 @@ class AdminPanelWithdrawalController extends Controller
         (
             [
 
-                // 'transaction_number'    => $top_up_response['payment']['transaction_number'],
-                // 'requisites'            => $withdrawal_bank_card->card_number,
-                // 'sum'                   => $sum_to_pay,
-                // 'status'                => $top_up_response['payment']['status'],
-                // 'withdrawal_id'         => $withdrawal_bank_card->id,
-                // 'withdrawal_type'       => TopUpWithdrawal::BANK_CARD_WITHDRAWAL_TYPE
-
-                'transaction_number' => $top_up_response['payment']['transaction_number'],
-                'card_number' => $payment_request->getRequisites(),
-                'sum' => $sum_to_pay,
-                'status' => $top_up_response['payment']['status'],
-                'withdrawal_bank_card_id' => $payment_request->getWithdrawalId()
-
+                'transaction_number'    => $top_up_response['payment']['transaction_number'],
+                'requisites'            => $payment_request->getRequisites(),
+                'sum'                   => $sum_to_pay,
+                'status'                => $top_up_response['payment']['status'],
+                'withdrawal_id'         => $payment_request->getWithdrawalId(),
+                'withdrawal_type'       => $payment_request->getType()
             ]
         );
 
@@ -226,5 +222,15 @@ class AdminPanelWithdrawalController extends Controller
         return ResponseHandler::getJsonResponse($response_status, $message);
     }
 
-
+    /**
+     * @param $payment_request PaymentRequest Запрос на выплату
+     *
+     * @return double Коммиссия для указанного типа выплаты
+     */
+    private function getCommision($payment_request)
+    {
+        return $payment_request->getType() == TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE
+            ? WithdrawalQiwi::COMMISION
+            : WithdrawalBankCard::COMMISION;
+    }
 }

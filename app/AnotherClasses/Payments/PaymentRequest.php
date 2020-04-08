@@ -31,6 +31,11 @@ abstract class PaymentRequest
     abstract public function getRequisites();
 
     /**
+     * @return string Тип выплаты
+     */
+    abstract public function getType();
+
+    /**
      * Осуществляет выплату
      *
      * @param $sum double Сумма к выплате

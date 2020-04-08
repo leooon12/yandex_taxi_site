@@ -309,7 +309,7 @@
 						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+', \''+paymentInfo.type+'\');" />';
 
 					if (paymentInfo.type === "WithdrawalQiwi" && paymentInfo.status === "ожидает подтверждения")
-						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+', \''+paymentInfo.type+'\');" disabled/>';
+						html += '<input class="topUp" value="Автовыплата" type="button" onclick="topUpWithdrawal('+paymentInfo.id+', \''+paymentInfo.type+'\');"/>';
 
 					statuses.forEach(function (status) {
 						if (status.id == 4)
