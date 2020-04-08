@@ -47,7 +47,7 @@
             background: #53e888 !important;;
         }
 
-        .error {
+        .err {
             background: #e85353 !important;
         }
 
@@ -89,7 +89,7 @@
                                         <b class="success">выполнен</b><br>
                                         @break
                                         @case(\App\WithdrawalStatus::CANCELED)
-                                        <b class="error">отклонен</b><br>
+                                        <b class="err">отклонен</b><br>
                                         @break
                                         @case(\App\WithdrawalStatus::IN_WORK)
                                         <b class="waiting">в обработке</b><br>
