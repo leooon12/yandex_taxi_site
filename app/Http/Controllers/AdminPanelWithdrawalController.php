@@ -103,7 +103,7 @@ class AdminPanelWithdrawalController extends Controller
         }
 
         //Коммисия для выплаты
-        $commission = $this->getCommision($payment_request);
+        $commission = $this->getCommission($payment_request);
 
         //Запрошенная сумма выплаты меньше или равна коммисии, выплату произвести невозможно
         if ($payment_request->getSum() <= $commission)
@@ -194,7 +194,7 @@ class AdminPanelWithdrawalController extends Controller
 
         //Выплата в обработке
         $payment_request->setStatus(WithdrawalStatus::IN_WORK);
-        CheckTopUpWithdrawalJob::dispatch($top_up_withdrawal->id, $payment_request)->delay(now()->addMinutes(CheckTopUpWithdrawalJob::DELAY_TIME_IN_MINUTES));
+        CheckTopUpWithdrawalJob::dispatch($top_up_withdrawal, $payment_request)->delay(now()->addMinutes(CheckTopUpWithdrawalJob::DELAY_TIME_IN_MINUTES));
 
         return ResponseHandler::getJsonResponse(200, "Автовыплата передана в обработку");
     }
@@ -227,7 +227,7 @@ class AdminPanelWithdrawalController extends Controller
      *
      * @return double Коммиссия для указанного типа выплаты
      */
-    private function getCommision($payment_request)
+    private function getCommission($payment_request)
     {
         return $payment_request->getType() == TopUpWithdrawal::QIWI_WITHDRAWAL_TYPE
             ? WithdrawalQiwi::COMMISION
