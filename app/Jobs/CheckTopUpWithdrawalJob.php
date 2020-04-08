@@ -70,7 +70,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
         }
 
         //Обращение к TopUp API для получения статуса платежа
-        $top_up_response = TopUpController::checkPayment($this->top_up_withdrawal->card_number, $this->top_up_withdrawal->transaction_number);
+        $top_up_response = TopUpController::checkPayment($this->top_up_withdrawal->requisites, $this->top_up_withdrawal->transaction_number);
 
         //Ошибка ПРОВЕРКИ платежа. Не знаю, как это может произойти, но, подозреваю, что это стоит предусмотреть
         if ($top_up_response['status'] != TopUpController::REQUEST_RESULT_SUCCESS)
