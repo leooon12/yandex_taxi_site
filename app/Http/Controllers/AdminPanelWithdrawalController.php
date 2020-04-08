@@ -27,7 +27,9 @@ class AdminPanelWithdrawalController extends Controller
 
         if ($topUp) {
             $withdrawal = $topUp->withdrawal;
-            return view('/vendor/voyager/withdrawal', ['type' => $type, 'withdrawal' => $withdrawal]);
+
+            if ($withdrawal)
+                return view('/vendor/voyager/withdrawal', ['type' => $type, 'withdrawal' => $withdrawal]);
         }
 
         return "Данные по заявке отсуствуют";
