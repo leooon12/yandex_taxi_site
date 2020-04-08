@@ -53,10 +53,17 @@ class QiwiWalletPaymentRequest extends PaymentRequest
      *
      * @return string Номер телефона без кода страны
      */
-    private function getPhoneNumberWithoutCountryCode($phone_number)
+/*    private function getPhoneNumberWithoutCountryCode($phone_number)
     {
         $matches = array();
         preg_match("/(\+7|8|)([0-9]+)/", $phone_number, $matches);
+
+        return $matches[2];
+    }*/
+    private function getPhoneNumberWithoutCountryCode($phone_number)
+    {
+        $matches = array();
+        preg_match("/(\+7|8|)([0-9]+)/", preg_replace("/[\(\)\s-]+/", '', $phone_number), $matches);
 
         return $matches[2];
     }
