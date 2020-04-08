@@ -103,7 +103,7 @@
                                     Номер телефона: <b>{{ $withdrawal->user->phone_number }}</b><br><br>
                                     <input class="waiting" value="ожидает подтверждения" type="button" onclick="changeStatus('{{ $model_name }}', '{{ $withdrawal->id }}', '{{\App\WithdrawalStatus::WAITING_FOR_CONFIRMATION}}');">
                                     <input class="success" value="выполнен" type="button" onclick="changeStatus('{{ $model_name }}', '{{ $withdrawal->id }}', '{{\App\WithdrawalStatus::COMPLETED}}');">
-                                    <input class="error" value="отклонен" type="button" onclick="changeStatus('{{ $model_name }}', '{{ $withdrawal->id }}', '{{\App\WithdrawalStatus::CANCELED}}');">
+                                    <input class="err" value="отклонен" type="button" onclick="changeStatus('{{ $model_name }}', '{{ $withdrawal->id }}', '{{\App\WithdrawalStatus::CANCELED}}');">
                                 </div>
                     </div>
                 </div>
