@@ -75,7 +75,7 @@ class CheckTopUpWithdrawalJob implements ShouldQueue
         //Ошибка ПРОВЕРКИ платежа. Не знаю, как это может произойти, но, подозреваю, что это стоит предусмотреть
         if ($top_up_response['status'] != TopUpController::REQUEST_RESULT_SUCCESS)
         {
-            $this->rollbackPayment(TopUpController::PAYMENT_RESULT_FAILED, $driver_profile);
+            $this->rollbackPayment(TopUpController::PAYMENT_RESULT_FAILED, null);
             return;
         }
 
