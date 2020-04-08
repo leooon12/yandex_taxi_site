@@ -4,7 +4,8 @@ namespace App\AnotherClasses;
 
 use App\AnotherClasses\Api\TopUp\CheckPaymentTopUpRequestBody;
 use App\AnotherClasses\Api\TopUp\CheckUserTopUpRequestBody;
-use App\AnotherClasses\Api\TopUp\MakePaymentTopUpRequestBody;
+use App\AnotherClasses\Api\TopUp\MakePaymentToBankCardTopUpRequestBody;
+use App\AnotherClasses\Api\TopUp\MakePaymentToQiwiWalletTopUpRequestBody;
 use App\AnotherClasses\Api\TopUp\TopUpRequest;
 
 class TopUpRequestManager
@@ -19,7 +20,7 @@ class TopUpRequestManager
         $this->_password = $password;
     }
 
-    public function checkBalance()
+    public function getBalance()
     {
         $request = new TopUpRequest("ping", $this->_terminal_id, $this->_password);
         $request->requestBody("");
@@ -43,10 +44,18 @@ class TopUpRequestManager
         return $request->getResponse();
     }
 
-    public function makePayment($account_number, $amount)
+    public function makePaymentToBankCard($card_number, $amount)
     {
         $request = new TopUpRequest("pay", $this->_terminal_id, $this->_password);
-        $request->requestBody((new MakePaymentTopUpRequestBody($account_number, $amount))->toString());
+        $request->requestBody((new MakePaymentToBankCardTopUpRequestBody($card_number, $amount))->toString());
+
+        return $request->getResponse();
+    }
+
+    public function makePaymentToQiwiWallet($phone_number, $amount)
+    {
+        $request = new TopUpRequest("pay", $this->_terminal_id, $this->_password);
+        $request->requestBody((new MakePaymentToQiwiWalletTopUpRequestBody($phone_number, $amount))->toString());
 
         return $request->getResponse();
     }

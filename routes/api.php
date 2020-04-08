@@ -21,6 +21,7 @@ Route::resource('/driver', 'DriverController', ['only' => [
     'index', 'store'
 ]]);
 
+Route::get('withdrawal/topUp/getBalance', 'TopUpController@getBalance');
 
 Route::namespace('JWTAuth')->group(function () {
     Route::post('/register',    'RegisterController@register');
@@ -33,8 +34,6 @@ Route::namespace('JWTAuth')->group(function () {
 });
 
 Route::get('/taximetr', 'UserController@taximetr');
-
-
 
 //Route::group(['prefix' => 'test'], function() {
 //    Route::get('get_driver_profiles/{filter_string}', 'FleetController@getDriverProfiles');

@@ -6,7 +6,6 @@
             color: #333333;
             font-weight: bold;
         }
-
         .withdrawal-info {
             display: inline-block;
             padding: 10px;
@@ -16,11 +15,9 @@
             font-weight: bold;
             color: #333333;
         }
-
         .withdrawal-info .title {
             text-align: center;
         }
-
         input[type="button"] {
             background: #dddddd;
             border: 0;
@@ -30,27 +27,21 @@
             color: #333333;
             opacity: 0.9;
         }
-
         input[type="button"]:hover {
             opacity: 1;
         }
-
         .all {
             background: #53aae8 !important;;
         }
-
         .waiting {
             background: #e8c153 !important;;
         }
-
         .success {
             background: #53e888 !important;;
         }
-
         .err {
             background: #e85353 !important;
         }
-
         .topUp {
             background: #16CEDB !important;
         }
@@ -114,7 +105,6 @@
 
 <script>
     function changeStatus(model_name, withdrawal_id, status_id) {
-
         $.ajax({
             type: "POST",
             url: "/api/withdrawal/status",
